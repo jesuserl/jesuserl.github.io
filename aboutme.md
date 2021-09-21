@@ -1,7 +1,7 @@
 ---
 layout: page
 title: About me
-subtitle: Geek forever, Star Wars Lovers
+subtitle: Geek forever, Star Wars Lovers, Linux user
 ---
 
 My name is Jesus Enrique Rojas. 
