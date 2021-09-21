@@ -16,10 +16,12 @@ author: Jesus Rojas
 navbar-links:
   About Me: "aboutme"
   Professional: "profesional"
-  Resources:
-    # - Beautiful Jekyll: "https://beautifuljekyll.com"
-    - Learn markdown: "https://www.markdowntutorial.com/"
   Linkedin: "https://www.linkedin.com/in/jesuserl"
+  Hobbies link:
+    # - Beautiful Jekyll: "https://beautifuljekyll.com"
+    - Manjaro Linux: "https://manjaro.org//"
+    - Star Wars: "https://www.starwars.com/"
+ 
 
 # --- Logo --- #
 
