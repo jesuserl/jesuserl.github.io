@@ -2,7 +2,7 @@
 layout: page
 title: Professional Experience
 subtitle: Brief summary of my work
-cover-img: "/assets/img/path.png"
+cover-img: /assets/img/path.jpg
 ---
 
 My name is Jesus Enrique Rojas. 
