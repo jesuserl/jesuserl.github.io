@@ -15,7 +15,7 @@ author: Jesus Rojas
 
 navbar-links:
   About Me: "aboutme"
-  Profesional: "profesional"
+  Professional: "profesional"
   Resources:
     # - Beautiful Jekyll: "https://beautifuljekyll.com"
     - Learn markdown: "https://www.markdowntutorial.com/"
