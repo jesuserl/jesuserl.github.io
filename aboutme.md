@@ -2,9 +2,9 @@
 layout: page
 title: About me
 subtitle: Geek forever, Star Wars Lovers, Linux user
-cover-img: /assets/img/101619.jpg
-#thumbnail-img: /assets/img/thumb.png
-share-img: /assets/img/101619.jpg
+cover-img: /assets/img/22589.jpg
+# thumbnail-img: /assets/img/thumb.png
+share-img: /assets/img/22589.jpg
 ---
 
 My name is Jesus Enrique Rojas. 
