@@ -2,9 +2,9 @@
 layout: page
 title: Professional Experience
 subtitle: Brief summary of my work
-cover-img: /assets/img/path.jpg
+cover-img: /assets/img/22589.jpg
 thumbnail-img: /assets/img/thumb.png
-share-img: /assets/img/path.jpg
+share-img: /assets/img/22589.jpg
 ---
 
 My name is Jesus Enrique Rojas. 
