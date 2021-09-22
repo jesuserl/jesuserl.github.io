@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Professional Experience
+title: Professional Exp
 subtitle: Brief summary of my work
 cover-img: /assets/img/22589.jpg
 share-img: /assets/img/22589.jpg
