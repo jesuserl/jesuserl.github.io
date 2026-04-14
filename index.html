@@ -1,433 +1,504 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jesús Rojas — IT Infrastructure Leader</title>
 <style>
-  :root {
-    --bg: #0f0f0f;
-    --bg2: #1a1a1a;
-    --bg3: #242424;
-    --text: #f0f0f0;
-    --text2: #a0a0a0;
-    --accent: #3b82f6;
-    --accent2: #1d4ed8;
-    --border: rgba(255,255,255,0.08);
-    --card: #1e1e1e;
-  }
-  [data-theme="light"] {
-    --bg: #f8f8f6;
-    --bg2: #ffffff;
-    --bg3: #f0f0ed;
-    --text: #1a1a1a;
-    --text2: #555;
-    --accent: #1d4ed8;
-    --accent2: #1e40af;
-    --border: rgba(0,0,0,0.08);
-    --card: #ffffff;
-  }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); transition: background .3s, color .3s; line-height: 1.6; }
+:root {
+  --bg:#0a0a0a; --bg2:#111; --bg3:#1a1a1a; --bg4:#222;
+  --text:#f2f2f2; --text2:#888; --text3:#555;
+  --accent:#3b82f6; --accent2:#1d4ed8; --accent-glow:rgba(59,130,246,.15);
+  --border:rgba(255,255,255,.07); --border2:rgba(255,255,255,.13);
+  --card:#141414; --radius:12px;
+}
+[data-theme="light"] {
+  --bg:#f5f5f3; --bg2:#fff; --bg3:#efefec; --bg4:#e8e8e4;
+  --text:#111; --text2:#666; --text3:#aaa;
+  --accent:#1d4ed8; --accent2:#1e3a8a; --accent-glow:rgba(29,78,216,.1);
+  --border:rgba(0,0,0,.07); --border2:rgba(0,0,0,.13);
+  --card:#fff; --radius:12px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;}
 
-  nav {
-    position: fixed; top:0; left:0; right:0; z-index:100;
-    background: var(--bg); border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 2rem; height: 60px;
-  }
-  .nav-logo { font-size: 15px; font-weight: 600; letter-spacing: -.3px; }
-  .nav-logo span { color: var(--accent); }
-  .nav-right { display: flex; align-items: center; gap: 8px; }
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;border-bottom:1px solid var(--border);backdrop-filter:blur(12px);background:rgba(10,10,10,.85);}
+[data-theme="light"] nav{background:rgba(245,245,243,.88);}
+.nav-logo{font-size:15px;font-weight:700;letter-spacing:-.5px;display:flex;align-items:center;gap:6px;}
+.logo-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);}
+.nav-center{display:flex;gap:2px;}
+.nav-link{font-size:13px;color:var(--text2);text-decoration:none;padding:5px 12px;border-radius:6px;transition:color .2s,background .2s;}
+.nav-link:hover{color:var(--text);background:var(--bg3);}
+.nav-right{display:flex;align-items:center;gap:8px;}
+.tab-group{display:flex;background:var(--bg3);border-radius:8px;padding:3px;border:1px solid var(--border);}
+.tab-btn{padding:5px 14px;border-radius:6px;border:none;font-size:12px;font-weight:500;cursor:pointer;background:transparent;color:var(--text2);transition:all .2s;}
+.tab-btn.active{background:var(--accent);color:#fff;}
+.theme-btn{width:32px;height:32px;border-radius:8px;border:1px solid var(--border);background:var(--bg3);color:var(--text);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.theme-btn:hover{border-color:var(--border2);}
 
-  .toggle-mode {
-    width: 36px; height: 36px; border-radius: 8px;
-    border: 1px solid var(--border); background: var(--bg3);
-    color: var(--text); cursor: pointer; font-size: 16px;
-    display: flex; align-items: center; justify-content: center;
-    transition: background .2s;
-  }
-  .toggle-mode:hover { background: var(--bg2); }
+/* VIEWS */
+.view{display:none;}.view.active{display:block;}
 
-  .tab-btn {
-    padding: 6px 16px; border-radius: 20px; border: 1px solid var(--border);
-    font-size: 13px; font-weight: 500; cursor: pointer;
-    background: transparent; color: var(--text2); transition: all .2s;
-  }
-  .tab-btn.active {
-    background: var(--accent); color: #fff; border-color: var(--accent);
-  }
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:6rem 2rem 4rem;max-width:900px;margin:0 auto;}
+.hero-eyebrow{display:flex;align-items:center;gap:8px;margin-bottom:2rem;}
+.status-dot{width:7px;height:7px;border-radius:50%;background:#22c55e;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+.status-text{font-size:12px;color:var(--text2);letter-spacing:.5px;}
+.hero h1{font-size:clamp(2.8rem,6vw,4.5rem);font-weight:700;line-height:1.08;letter-spacing:-1.5px;margin-bottom:1rem;}
+.hero h1 em{font-style:normal;color:var(--accent);}
+.hero-desc{font-size:1.05rem;color:var(--text2);max-width:560px;line-height:1.75;margin-bottom:2.5rem;}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:3rem;}
+.btn-primary{padding:11px 24px;border-radius:8px;background:var(--accent);color:#fff;font-size:14px;font-weight:500;text-decoration:none;border:none;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:6px;}
+.btn-primary:hover{background:var(--accent2);transform:translateY(-1px);}
+.btn-outline{padding:11px 24px;border-radius:8px;background:transparent;color:var(--text);font-size:14px;font-weight:500;border:1px solid var(--border2);text-decoration:none;transition:all .2s;}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px);}
+.hero-stats{display:flex;gap:2rem;flex-wrap:wrap;}
+.stat{display:flex;flex-direction:column;}
+.stat-num{font-size:1.6rem;font-weight:700;letter-spacing:-1px;}
+.stat-label{font-size:12px;color:var(--text2);}
 
-  main { padding-top: 60px; }
+/* SECTIONS */
+.section{max-width:900px;margin:0 auto;padding:5rem 2rem;}
+.section-header{display:flex;align-items:baseline;gap:1rem;margin-bottom:3rem;}
+.section-num{font-size:12px;font-weight:600;color:var(--accent);letter-spacing:2px;}
+.section-title{font-size:1.5rem;font-weight:700;letter-spacing:-.5px;}
+hr.div{border:none;border-top:1px solid var(--border);max-width:900px;margin:0 auto;}
 
-  section { max-width: 860px; margin: 0 auto; padding: 5rem 2rem; }
+/* SKILLS */
+.skills-wrap{display:flex;flex-direction:column;gap:1.5rem;}
+.skill-group{}
+.skill-group-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);margin-bottom:10px;}
+.skill-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.skill-tag{font-size:12px;font-weight:500;padding:5px 12px;border-radius:6px;background:var(--bg3);border:1px solid var(--border);color:var(--text2);transition:all .2s;cursor:default;}
+.skill-tag:hover{border-color:var(--accent);color:var(--accent);}
 
-  .hero {
-    min-height: calc(100vh - 60px);
-    display: flex; flex-direction: column; justify-content: center;
-    padding: 4rem 2rem;
-  }
-  .hero-tag {
-    display: inline-block; font-size: 12px; font-weight: 500;
-    background: var(--bg3); border: 1px solid var(--border);
-    border-radius: 20px; padding: 4px 14px; color: var(--text2);
-    margin-bottom: 1.5rem; letter-spacing: .5px; text-transform: uppercase;
-  }
-  .hero h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 700; line-height: 1.15; letter-spacing: -.5px; margin-bottom: .75rem; }
-  .hero h1 span { color: var(--accent); }
-  .hero-sub { font-size: 1.1rem; color: var(--text2); max-width: 580px; margin-bottom: 2rem; }
-  .hero-links { display: flex; gap: 12px; flex-wrap: wrap; }
-  .btn-primary {
-    padding: 10px 22px; border-radius: 8px; background: var(--accent);
-    color: #fff; font-size: 14px; font-weight: 500; text-decoration: none;
-    border: none; cursor: pointer; transition: background .2s;
-  }
-  .btn-primary:hover { background: var(--accent2); }
-  .btn-outline {
-    padding: 10px 22px; border-radius: 8px; background: transparent;
-    color: var(--text); font-size: 14px; font-weight: 500;
-    border: 1px solid var(--border); text-decoration: none; transition: border-color .2s;
-  }
-  .btn-outline:hover { border-color: var(--accent); }
+/* EXPERIENCE */
+.timeline{display:flex;flex-direction:column;}
+.tl-item{display:grid;grid-template-columns:150px 1fr;gap:0 2.5rem;padding:2rem 0;border-top:1px solid var(--border);position:relative;transition:background .2s;}
+.tl-item:last-child{border-bottom:1px solid var(--border);}
+.tl-left{display:flex;flex-direction:column;gap:6px;padding-top:2px;}
+.tl-date{font-size:11px;font-weight:600;color:var(--text3);letter-spacing:.5px;text-transform:uppercase;}
+.tl-co{font-size:12px;color:var(--accent);font-weight:600;}
+.tl-location{font-size:11px;color:var(--text3);}
+.tl-role{font-size:15px;font-weight:600;margin-bottom:6px;letter-spacing:-.2px;}
+.tl-desc{font-size:13px;color:var(--text2);line-height:1.7;}
 
-  .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;}
+.proj-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;transition:all .25s;cursor:default;position:relative;overflow:hidden;}
+.proj-card::before{content:'';position:absolute;inset:0;background:var(--accent-glow);opacity:0;transition:opacity .3s;}
+.proj-card:hover{border-color:var(--border2);transform:translateY(-3px);}
+.proj-card:hover::before{opacity:1;}
+.proj-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem;}
+.proj-icon{width:40px;height:40px;border-radius:10px;background:var(--accent-glow);border:1px solid rgba(59,130,246,.2);display:flex;align-items:center;justify-content:center;font-size:18px;}
+.proj-tag{font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;background:var(--bg3);color:var(--text3);border:1px solid var(--border);}
+.proj-title{font-size:15px;font-weight:600;margin-bottom:6px;letter-spacing:-.2px;}
+.proj-desc{font-size:13px;color:var(--text2);line-height:1.65;margin-bottom:1rem;}
+.proj-tech{display:flex;flex-wrap:wrap;gap:5px;}
+.proj-pill{font-size:11px;padding:3px 9px;border-radius:5px;background:var(--bg4);color:var(--text3);border:1px solid var(--border);}
 
-  h2.section-title {
-    font-size: 13px; font-weight: 600; text-transform: uppercase;
-    letter-spacing: 1.5px; color: var(--accent); margin-bottom: 2rem;
-  }
+/* CERTS & EDU */
+.certs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;}
+.cert-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;transition:border-color .2s;}
+.cert-card:hover{border-color:var(--border2);}
+.cert-title{font-size:14px;font-weight:600;margin-bottom:4px;}
+.cert-issuer{font-size:12px;color:var(--text2);}
+.edu-grid{display:flex;flex-direction:column;gap:0;}
+.edu-item{padding:1.25rem 0;border-top:1px solid var(--border);}
+.edu-item:last-child{border-bottom:1px solid var(--border);}
+.edu-degree{font-size:15px;font-weight:600;}
+.edu-uni{font-size:13px;color:var(--text2);margin-top:3px;}
 
-  .about-text { font-size: 1rem; color: var(--text2); max-width: 680px; line-height: 1.8; }
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;}
+.contact-card{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.1rem 1.25rem;text-decoration:none;color:var(--text);font-size:14px;font-weight:500;transition:all .2s;}
+.contact-card:hover{border-color:var(--accent);color:var(--accent);}
+.contact-icon{width:36px;height:36px;border-radius:8px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
 
-  .skills-grid { display: flex; flex-wrap: wrap; gap: 8px; }
-  .skill-tag {
-    font-size: 12px; font-weight: 500; padding: 5px 13px;
-    border-radius: 6px; background: var(--bg3); border: 1px solid var(--border);
-    color: var(--text2);
-  }
+/* PERSONAL */
+.ph-hero{text-align:center;padding:7rem 2rem 4rem;max-width:700px;margin:0 auto;}
+.ph-avatar{width:88px;height:88px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:700;color:#fff;margin:0 auto 1.5rem;border:3px solid var(--border2);}
+.ph-hero h1{font-size:2.2rem;font-weight:700;letter-spacing:-.5px;margin-bottom:.75rem;}
+.ph-hero p{font-size:1rem;color:var(--text2);max-width:460px;margin:0 auto 2rem;line-height:1.75;}
+.p-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;}
+.p-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.4rem;transition:border-color .2s;}
+.p-card:hover{border-color:var(--border2);}
+.p-icon{font-size:20px;margin-bottom:.75rem;}
+.p-card h3{font-size:14px;font-weight:600;margin-bottom:6px;}
+.p-card p{font-size:13px;color:var(--text2);line-height:1.65;}
 
-  .timeline { display: flex; flex-direction: column; gap: 0; }
-  .timeline-item {
-    display: grid; grid-template-columns: 140px 1fr;
-    gap: 0 2rem; padding: 1.75rem 0; border-top: 1px solid var(--border);
-  }
-  .timeline-item:last-child { border-bottom: 1px solid var(--border); }
-  .tl-date { font-size: 12px; color: var(--text2); padding-top: 2px; line-height: 1.5; }
-  .tl-company { font-size: 13px; font-weight: 600; color: var(--accent); margin-bottom: 2px; }
-  .tl-role { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
-  .tl-desc { font-size: 13px; color: var(--text2); line-height: 1.65; }
+/* FOOTER */
+footer{text-align:center;padding:2.5rem 2rem;border-top:1px solid var(--border);font-size:12px;color:var(--text3);}
 
-  .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
-  .cert-card {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 10px; padding: 1rem 1.25rem;
-  }
-  .cert-card p:first-child { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
-  .cert-card p:last-child { font-size: 12px; color: var(--text2); }
+/* ANIMATIONS */
+.fade-in{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease;}
+.fade-in.visible{opacity:1;transform:none;}
 
-  .edu-item { padding: 1rem 0; border-top: 1px solid var(--border); }
-  .edu-item:last-child { border-bottom: 1px solid var(--border); }
-  .edu-item p:first-child { font-size: 15px; font-weight: 600; }
-  .edu-item p { font-size: 13px; color: var(--text2); margin-top: 2px; }
-
-  /* Personal view */
-  .personal-hero { text-align: center; }
-  .avatar {
-    width: 90px; height: 90px; border-radius: 50%;
-    background: var(--accent); display: flex; align-items: center;
-    justify-content: center; font-size: 28px; font-weight: 700; color: #fff;
-    margin: 0 auto 1.5rem;
-  }
-  .personal-hero h1 { font-size: 2rem; font-weight: 700; margin-bottom: .5rem; }
-  .personal-hero p { font-size: 1rem; color: var(--text2); max-width: 500px; margin: 0 auto 1.5rem; }
-
-  .personal-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
-  .p-card {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 12px; padding: 1.25rem;
-  }
-  .p-card-icon { font-size: 22px; margin-bottom: .75rem; }
-  .p-card h3 { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
-  .p-card p { font-size: 13px; color: var(--text2); line-height: 1.6; }
-
-  .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
-  .contact-link {
-    display: flex; align-items: center; gap: 10px;
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 10px; padding: 1rem 1.25rem; text-decoration: none;
-    color: var(--text); font-size: 14px; font-weight: 500; transition: border-color .2s;
-  }
-  .contact-link:hover { border-color: var(--accent); }
-  .contact-link span { font-size: 18px; }
-
-  footer {
-    text-align: center; padding: 2rem; font-size: 12px;
-    color: var(--text2); border-top: 1px solid var(--border);
-  }
-
-  .view { display: none; }
-  .view.active { display: block; }
-
-  @media (max-width: 600px) {
-    .timeline-item { grid-template-columns: 1fr; gap: 4px; }
-    nav { padding: 0 1rem; }
-    section { padding: 3rem 1.25rem; }
-  }
+@media(max-width:640px){
+  .tl-item{grid-template-columns:1fr;}
+  .tl-left{flex-direction:row;flex-wrap:wrap;gap:4px 12px;margin-bottom:8px;}
+  nav{padding:0 1rem;}
+  .nav-center{display:none;}
+  .hero h1{letter-spacing:-1px;}
+}
 </style>
 </head>
-<body data-theme="dark">
+<body>
 
 <nav>
-  <div class="nav-logo">JR<span>.</span></div>
+  <div class="nav-logo"><div class="logo-dot"></div>Jesús Rojas</div>
+  <div class="nav-center">
+    <a class="nav-link" href="#sobre">Sobre mí</a>
+    <a class="nav-link" href="#proyectos">Proyectos</a>
+    <a class="nav-link" href="#experiencia">Experiencia</a>
+    <a class="nav-link" href="#contacto">Contacto</a>
+  </div>
   <div class="nav-right">
-    <button class="tab-btn active" onclick="switchView('pro', this)">Profesional</button>
-    <button class="tab-btn" onclick="switchView('personal', this)">Personal</button>
-    <button class="toggle-mode" onclick="toggleTheme()" id="themeBtn" title="Cambiar tema">☀️</button>
+    <div class="tab-group">
+      <button class="tab-btn active" onclick="switchView('pro',this)">Profesional</button>
+      <button class="tab-btn" onclick="switchView('personal',this)">Personal</button>
+    </div>
+    <button class="theme-btn" onclick="toggleTheme()" id="themeBtn" title="Cambiar tema">☀️</button>
   </div>
 </nav>
 
-<main>
-
-<!-- ===== PROFESSIONAL VIEW ===== -->
+<!-- ======= PROFESSIONAL ======= -->
 <div id="view-pro" class="view active">
 
-  <section class="hero" style="max-width:860px;margin:0 auto;">
-    <div class="hero-tag">Disponible para proyectos</div>
-    <h1>Jesús Enrique<br><span>Rojas L.</span></h1>
-    <p class="hero-sub">Líder de Infraestructura Tecnológica con más de 15 años de experiencia en entornos On-Premise y Cloud. Especialista en Microsoft Azure, SAP Business One, redes y virtualización.</p>
-    <div class="hero-links">
-      <a class="btn-primary" href="https://www.linkedin.com/in/jesuserl" target="_blank">LinkedIn</a>
-      <a class="btn-outline" href="mailto:jesuserl@gmail.com">Contactar</a>
+  <div class="hero fade-in">
+    <div class="hero-eyebrow">
+      <div class="status-dot"></div>
+      <span class="status-text">DISPONIBLE PARA PROYECTOS · VENEZUELA</span>
     </div>
-  </section>
-
-  <hr class="divider">
-
-  <section>
-    <h2 class="section-title">Sobre mí</h2>
-    <p class="about-text">Especialista en Sistemas con amplia experiencia en soporte técnico, administración de infraestructura, servidores, redes y sistemas integrados. Experto en implementación y consultoría de soluciones tecnológicas, incluyendo Microsoft Azure, Office 365, SAP Business One y Odoo. Competente en la administración avanzada de infraestructura en entornos On-Premise y Cloud, garantizando alto rendimiento, disponibilidad y optimización de recursos.</p>
-  </section>
-
-  <hr class="divider">
-
-  <section>
-    <h2 class="section-title">Tecnologías</h2>
-    <div class="skills-grid">
-      <span class="skill-tag">Microsoft Azure</span>
-      <span class="skill-tag">Azure AD</span>
-      <span class="skill-tag">Microsoft 365</span>
-      <span class="skill-tag">SharePoint</span>
-      <span class="skill-tag">Exchange Server</span>
-      <span class="skill-tag">Active Directory</span>
-      <span class="skill-tag">Windows Server</span>
-      <span class="skill-tag">Linux</span>
-      <span class="skill-tag">SAP Business One</span>
-      <span class="skill-tag">Odoo</span>
-      <span class="skill-tag">VMware ESXi</span>
-      <span class="skill-tag">Docker</span>
-      <span class="skill-tag">Mikrotik</span>
-      <span class="skill-tag">WatchGuard</span>
-      <span class="skill-tag">SQL Server</span>
-      <span class="skill-tag">SAP HANA</span>
-      <span class="skill-tag">Crystal Reports</span>
-      <span class="skill-tag">VPN</span>
-      <span class="skill-tag">Firewalls</span>
-      <span class="skill-tag">MS Dynamics CRM</span>
+    <h1>Jesús Enrique<br><em>Rojas L.</em></h1>
+    <p class="hero-desc">Líder de Infraestructura Tecnológica con más de 15 años diseñando, implementando y optimizando soluciones IT en entornos On-Premise y Cloud. Especialista en Microsoft Azure, SAP Business One, redes y virtualización.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="https://www.linkedin.com/in/jesuserl" target="_blank">Ver LinkedIn →</a>
+      <a class="btn-outline" href="mailto:jesuserl@gmail.com">Escribirme</a>
     </div>
-  </section>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num">15+</span><span class="stat-label">Años de experiencia</span></div>
+      <div class="stat"><span class="stat-num">8</span><span class="stat-label">Empresas y proyectos</span></div>
+      <div class="stat"><span class="stat-num">3</span><span class="stat-label">Países atendidos</span></div>
+    </div>
+  </div>
 
-  <hr class="divider">
+  <hr class="div">
 
-  <section>
-    <h2 class="section-title">Experiencia</h2>
+  <div class="section fade-in" id="sobre">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Tecnologías</h2>
+    </div>
+    <div class="skills-wrap">
+      <div class="skill-group">
+        <div class="skill-group-label">Cloud & Microsoft</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Microsoft Azure</span><span class="skill-tag">Azure AD</span><span class="skill-tag">Microsoft 365</span><span class="skill-tag">SharePoint</span><span class="skill-tag">Exchange Server</span><span class="skill-tag">Office 365</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Infraestructura & Redes</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Windows Server</span><span class="skill-tag">Linux</span><span class="skill-tag">Active Directory</span><span class="skill-tag">Mikrotik</span><span class="skill-tag">WatchGuard</span><span class="skill-tag">VPN</span><span class="skill-tag">Firewalls</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Virtualización & Contenedores</div>
+        <div class="skill-tags">
+          <span class="skill-tag">VMware ESXi</span><span class="skill-tag">vCenter Server</span><span class="skill-tag">Docker</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">ERP & Bases de datos</div>
+        <div class="skill-tags">
+          <span class="skill-tag">SAP Business One</span><span class="skill-tag">SAP HANA</span><span class="skill-tag">SQL Server</span><span class="skill-tag">Odoo</span><span class="skill-tag">Crystal Reports</span><span class="skill-tag">MS Dynamics CRM</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="div">
+
+  <div class="section fade-in" id="proyectos">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Proyectos destacados</h2>
+    </div>
+    <div class="projects-grid">
+      <div class="proj-card">
+        <div class="proj-top">
+          <div class="proj-icon">☁️</div>
+          <span class="proj-tag">Virtualización</span>
+        </div>
+        <div class="proj-title">Nube privada Vicson Bekaert</div>
+        <p class="proj-desc">Diseño y despliegue completo de nube privada con VMware ESXi y vCenter. Migración íntegra de servicios a la nueva plataforma logrando alta disponibilidad y mejora operativa significativa.</p>
+        <div class="proj-tech">
+          <span class="proj-pill">VMware ESXi</span><span class="proj-pill">vCenter</span><span class="proj-pill">SAN HP</span><span class="proj-pill">Fibra óptica</span>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-top">
+          <div class="proj-icon">🔄</div>
+          <span class="proj-tag">ERP Migration</span>
+        </div>
+        <div class="proj-title">Migración SAP B1 — Vamatech</div>
+        <p class="proj-desc">Gestión de la migración y administración de SAP Business One desde la versión 8.82 hasta la 9.3. Implementación de consultoría CRM y despliegue de Odoo con contenedores Docker.</p>
+        <div class="proj-tech">
+          <span class="proj-pill">SAP Business One</span><span class="proj-pill">SQL Server</span><span class="proj-pill">Docker</span><span class="proj-pill">Odoo</span>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-top">
+          <div class="proj-icon">🏗️</div>
+          <span class="proj-tag">Infraestructura</span>
+        </div>
+        <div class="proj-title">Infraestructura IT — Ron Carúpano</div>
+        <p class="proj-desc">Diseño e implementación de estrategias tecnológicas: servidores, redes (firewalls, routers, switches, VPNs) y soluciones de almacenamiento. Supervisión proactiva de rendimiento y disponibilidad.</p>
+        <div class="proj-tech">
+          <span class="proj-pill">Azure</span><span class="proj-pill">WatchGuard</span><span class="proj-pill">Mikrotik</span><span class="proj-pill">VPN</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="div">
+
+  <div class="section fade-in" id="experiencia">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Experiencia</h2>
+    </div>
     <div class="timeline">
-      <div class="timeline-item">
-        <div class="tl-date">Sep 2024<br>Presente</div>
+      <div class="tl-item">
+        <div class="tl-left">
+          <span class="tl-date">Sep 2024 — Presente</span>
+          <span class="tl-co">Ron Carúpano</span>
+          <span class="tl-location">Caracas, VE</span>
+        </div>
         <div>
-          <div class="tl-company">Ron Carúpano</div>
           <div class="tl-role">Especialista de Infraestructura Tecnológica</div>
-          <div class="tl-desc">Diseño e implementación de estrategias tecnológicas, configuración de servidores, administración de redes (firewalls, routers, switches, VPNs) y gestión de soluciones de almacenamiento y virtualización.</div>
+          <div class="tl-desc">Diseño e implementación de estrategias y soluciones tecnológicas. Configuración de servidores, administración de redes (firewalls, routers, switches, VPNs) y gestión de almacenamiento y virtualización.</div>
         </div>
       </div>
-      <div class="timeline-item">
-        <div class="tl-date">Ene 2019<br>Ene 2022</div>
+      <div class="tl-item">
+        <div class="tl-left">
+          <span class="tl-date">Ene 2019 — Ene 2022</span>
+          <span class="tl-co">PRN Consultores</span>
+          <span class="tl-location">Freelance</span>
+        </div>
         <div>
-          <div class="tl-company">PRN Consultores</div>
-          <div class="tl-role">IT Consultant — SAP Business One / Microsoft Cloud</div>
-          <div class="tl-desc">Soporte a SAP Business One en entornos Cloud y On-Premise (SQL y HANA). Evaluaciones de infraestructura y reportes personalizados en Crystal Reports.</div>
+          <div class="tl-role">IT Consultant — SAP B1 / Microsoft Cloud</div>
+          <div class="tl-desc">Soporte SAP Business One en Cloud y On-Premise (SQL y HANA). Evaluaciones de infraestructura y reportes en Crystal Reports.</div>
         </div>
       </div>
-      <div class="timeline-item">
-        <div class="tl-date">Dic 2018<br>Dic 2019</div>
+      <div class="tl-item">
+        <div class="tl-left">
+          <span class="tl-date">Dic 2018 — Dic 2019</span>
+          <span class="tl-co">Seidor C.A. y Caribe</span>
+          <span class="tl-location">Freelance</span>
+        </div>
         <div>
-          <div class="tl-company">Seidor Centroamérica y Caribe</div>
           <div class="tl-role">IT Consultant — Azure / Office 365 / SAP B1</div>
-          <div class="tl-desc">Soporte remoto a clientes de Seidor en Centroamérica. Evaluaciones de infraestructura y desarrollo de reportes en Crystal Reports (SQL y HANA).</div>
+          <div class="tl-desc">Soporte remoto a clientes en Centroamérica. Evaluaciones de infraestructura y desarrollo de reportes (SQL y HANA).</div>
         </div>
       </div>
-      <div class="timeline-item">
-        <div class="tl-date">Abr 2016<br>Sep 2017</div>
+      <div class="tl-item">
+        <div class="tl-left">
+          <span class="tl-date">Abr 2016 — Sep 2017</span>
+          <span class="tl-co">Grupo Vamatech</span>
+          <span class="tl-location">Valencia, VE</span>
+        </div>
         <div>
-          <div class="tl-company">Grupo Vamatech</div>
-          <div class="tl-role">Gerente de Soporte de Infraestructura Tecnológica</div>
-          <div class="tl-desc">Gestión integral del soporte SAP B1. Despliegue de infraestructuras On-Premise y Cloud con Azure. Consultoría CRM e implementaciones con Docker/Odoo.</div>
+          <div class="tl-role">Gerente de Soporte de Infraestructura</div>
+          <div class="tl-desc">Gestión integral del soporte SAP B1. Despliegue de infraestructuras On-Premise y Cloud con Azure. Consultoría CRM y despliegue con Docker/Odoo.</div>
         </div>
       </div>
-      <div class="timeline-item">
-        <div class="tl-date">Sep 2014<br>Abr 2016</div>
+      <div class="tl-item">
+        <div class="tl-left">
+          <span class="tl-date">Sep 2014 — Abr 2016</span>
+          <span class="tl-co">Grupo Vamatech</span>
+          <span class="tl-location">Valencia, VE</span>
+        </div>
         <div>
-          <div class="tl-company">Grupo Vamatech</div>
           <div class="tl-role">Consultor Senior de IT</div>
-          <div class="tl-desc">Implementación de SAP Business One, Microsoft Dynamics CRM y Dynamics AX para clientes corporativos.</div>
+          <div class="tl-desc">Implementación de SAP Business One, MS Dynamics CRM y Dynamics AX para clientes corporativos.</div>
         </div>
       </div>
-      <div class="timeline-item">
-        <div class="tl-date">Sep 2013<br>Ago 2014</div>
+      <div class="tl-item">
+        <div class="tl-left">
+          <span class="tl-date">Sep 2013 — Ago 2014</span>
+          <span class="tl-co">Eurosillas</span>
+          <span class="tl-location">Valencia, VE</span>
+        </div>
         <div>
-          <div class="tl-company">Eurosillas</div>
           <div class="tl-role">Coordinador de IT</div>
-          <div class="tl-desc">Soporte al sistema Profit Plus, estabilización de servidores y diseño de planes de respaldo para bases de datos productivas.</div>
+          <div class="tl-desc">Soporte al sistema Profit Plus, estabilización de servidores y planes de respaldo para bases de datos productivas.</div>
         </div>
       </div>
-      <div class="timeline-item">
-        <div class="tl-date">Nov 2011<br>Jun 2013</div>
+      <div class="tl-item">
+        <div class="tl-left">
+          <span class="tl-date">Nov 2011 — Jun 2013</span>
+          <span class="tl-co">O&M International</span>
+          <span class="tl-location">Valencia, VE</span>
+        </div>
         <div>
-          <div class="tl-company">O&M International Corporation</div>
-          <div class="tl-role">Ingeniero de Infraestructura (Preventa y Consultoría)</div>
-          <div class="tl-desc">Implementación de VMware ESXi y vCenter. Configuración de SAN HP con fibra óptica. Despliegue de nube privada para Vicson Beakert.</div>
+          <div class="tl-role">Ingeniero de Infraestructura (Preventa)</div>
+          <div class="tl-desc">Implementación de VMware ESXi y vCenter. Configuración de SAN HP con fibra óptica. Despliegue de nube privada para Vicson Bekaert.</div>
         </div>
       </div>
-      <div class="timeline-item">
-        <div class="tl-date">Nov 2004<br>Oct 2008</div>
+      <div class="tl-item">
+        <div class="tl-left">
+          <span class="tl-date">Nov 2004 — Oct 2008</span>
+          <span class="tl-co">IVEC</span>
+          <span class="tl-location">Valencia, VE</span>
+        </div>
         <div>
-          <div class="tl-company">IVEC</div>
           <div class="tl-role">Director de Informática</div>
-          <div class="tl-desc">Dirección de proyectos IT y desarrollos internos. Supervisión de infraestructura para ~230 usuarios. Optimización del 60% de sistemas existentes y expansión del DataCenter.</div>
+          <div class="tl-desc">Dirección de proyectos IT. Infraestructura para ~230 usuarios. Optimización del 60% de sistemas. Expansión del DataCenter.</div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <hr class="divider">
+  <hr class="div">
 
-  <section>
-    <h2 class="section-title">Certificaciones</h2>
-    <div class="certs-grid">
+  <div class="section fade-in">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Certificaciones & Educación</h2>
+    </div>
+    <div class="certs-grid" style="margin-bottom:2.5rem;">
       <div class="cert-card">
-        <p>AWS Cloud Practitioner Essentials</p>
-        <p>Amazon Web Services</p>
+        <div class="cert-title">AWS Cloud Practitioner Essentials</div>
+        <div class="cert-issuer">Amazon Web Services</div>
       </div>
       <div class="cert-card">
-        <p>VMware VSP5</p>
-        <p>VMware</p>
+        <div class="cert-title">VMware VSP5</div>
+        <div class="cert-issuer">VMware</div>
       </div>
     </div>
-  </section>
-
-  <hr class="divider">
-
-  <section>
-    <h2 class="section-title">Educación</h2>
-    <div>
+    <div class="edu-grid">
       <div class="edu-item">
-        <p>Ingeniero de Sistemas</p>
-        <p>Universidad Bicentenaria de Aragua · 1999–2004</p>
+        <div class="edu-degree">Ingeniero de Sistemas</div>
+        <div class="edu-uni">Universidad Bicentenaria de Aragua · 1999–2004</div>
       </div>
       <div class="edu-item">
-        <p>T.S.U. en Administración mención Informática</p>
-        <p>CUMT · 1996–1999</p>
+        <div class="edu-degree">T.S.U. en Administración — Informática</div>
+        <div class="edu-uni">CUMT · 1996–1999</div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <hr class="divider">
+  <hr class="div">
 
-  <section>
-    <h2 class="section-title">Contacto</h2>
+  <div class="section fade-in" id="contacto">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Contacto</h2>
+    </div>
+    <p style="color:var(--text2);margin-bottom:1.75rem;font-size:.95rem;max-width:500px;">¿Tienes un proyecto, necesitas consultoría o simplemente quieres conectar? Escríbeme.</p>
     <div class="contact-grid">
-      <a class="contact-link" href="mailto:jesuserl@gmail.com"><span>✉</span> jesuserl@gmail.com</a>
-      <a class="contact-link" href="https://www.linkedin.com/in/jesuserl" target="_blank"><span>🔗</span> linkedin.com/in/jesuserl</a>
+      <a class="contact-card" href="mailto:jesuserl@gmail.com">
+        <div class="contact-icon">✉</div>jesuserl@gmail.com
+      </a>
+      <a class="contact-card" href="https://www.linkedin.com/in/jesuserl" target="_blank">
+        <div class="contact-icon">in</div>linkedin.com/in/jesuserl
+      </a>
     </div>
-  </section>
+  </div>
 
-</div>
+</div><!-- end pro -->
 
-<!-- ===== PERSONAL VIEW ===== -->
+<!-- ======= PERSONAL ======= -->
 <div id="view-personal" class="view">
 
-  <section style="max-width:860px;margin:0 auto;padding-top:6rem;text-align:center;">
-    <div class="avatar">JR</div>
-    <h1 style="font-size:2rem;font-weight:700;margin-bottom:.5rem;">Hola, soy Jesús 👋</h1>
-    <p style="color:var(--text2);max-width:500px;margin:0 auto 2rem;font-size:1rem;">Más allá del trabajo, soy una persona apasionada por la tecnología, el aprendizaje continuo y los nuevos retos.</p>
+  <div class="ph-hero fade-in">
+    <div class="ph-avatar">JR</div>
+    <h1>Hola, soy Jesús 👋</h1>
+    <p>Más allá del servidor y del cable de red, soy una persona curiosa, apasionada por aprender y siempre lista para el siguiente reto.</p>
     <a class="btn-primary" href="mailto:jesuserl@gmail.com">Escríbeme</a>
-  </section>
+  </div>
 
-  <hr class="divider" style="margin-top:4rem;">
+  <hr class="div">
 
-  <section style="max-width:860px;margin:0 auto;">
-    <h2 class="section-title">Un poco sobre mí</h2>
-    <div class="personal-cards">
+  <div class="section fade-in">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Un poco sobre mí</h2>
+    </div>
+    <div class="p-cards">
       <div class="p-card">
-        <div class="p-card-icon">🌐</div>
-        <h3>Tecnología</h3>
-        <p>Siempre explorando nuevas herramientas, plataformas cloud y tendencias en infraestructura IT. La tecnología es mi trabajo y también mi pasión.</p>
+        <div class="p-icon">🌐</div>
+        <h3>Tecnología como pasión</h3>
+        <p>La infraestructura IT no es solo mi trabajo; es lo que me apasiona. Siempre explorando nuevas herramientas, plataformas y tendencias cloud.</p>
       </div>
       <div class="p-card">
-        <div class="p-card-icon">📚</div>
+        <div class="p-icon">📚</div>
         <h3>Aprendizaje continuo</h3>
-        <p>Certificaciones, cursos y proyectos personales me mantienen actualizado. Creo que quien deja de aprender, deja de crecer.</p>
+        <p>Certificaciones, cursos y proyectos personales me mantienen al día. Creo que quien deja de aprender, deja de crecer.</p>
       </div>
       <div class="p-card">
-        <div class="p-card-icon">🌍</div>
-        <h3>Venezuela</h3>
-        <p>Orgullosamente venezolano. Mi cultura, historia y gente son parte fundamental de quién soy.</p>
+        <div class="p-icon">🌍</div>
+        <h3>Orgullosamente venezolano</h3>
+        <p>Mi cultura, historia y gente son parte fundamental de quién soy, sin importar dónde me lleve el trabajo.</p>
       </div>
       <div class="p-card">
-        <div class="p-card-icon">🤝</div>
+        <div class="p-icon">🤝</div>
         <h3>Colaboración</h3>
-        <p>Me gusta compartir conocimiento y colaborar en proyectos donde la tecnología resuelve problemas reales.</p>
+        <p>Disfruto compartir conocimiento y colaborar en proyectos donde la tecnología resuelve problemas reales de las personas.</p>
       </div>
     </div>
-  </section>
+  </div>
 
-  <hr class="divider">
+  <hr class="div">
 
-  <section style="max-width:860px;margin:0 auto;">
-    <h2 class="section-title">Hablemos</h2>
-    <p style="color:var(--text2);margin-bottom:1.5rem;font-size:.95rem;">¿Tienes un proyecto en mente, una pregunta técnica, o simplemente quieres conectar? Estoy disponible.</p>
-    <div class="contact-grid">
-      <a class="contact-link" href="mailto:jesuserl@gmail.com"><span>✉</span> jesuserl@gmail.com</a>
-      <a class="contact-link" href="https://www.linkedin.com/in/jesuserl" target="_blank"><span>🔗</span> LinkedIn</a>
+  <div class="section fade-in" id="contacto-personal">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Hablemos</h2>
     </div>
-  </section>
+    <p style="color:var(--text2);margin-bottom:1.75rem;font-size:.95rem;">¿Tienes una idea, un proyecto o simplemente quieres conectar? Estoy disponible.</p>
+    <div class="contact-grid">
+      <a class="contact-card" href="mailto:jesuserl@gmail.com">
+        <div class="contact-icon">✉</div>jesuserl@gmail.com
+      </a>
+      <a class="contact-card" href="https://www.linkedin.com/in/jesuserl" target="_blank">
+        <div class="contact-icon">in</div>linkedin.com/in/jesuserl
+      </a>
+    </div>
+  </div>
 
-</div>
+</div><!-- end personal -->
 
-</main>
-
-<footer>
-  &copy; 2025 Jesús Enrique Rojas L. — Hecho con ❤️ para GitHub Pages
-</footer>
+<footer>&copy; 2025 Jesús Enrique Rojas L. — Hecho para GitHub Pages</footer>
 
 <script>
-  function switchView(view, btn) {
-    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('view-' + view).classList.add('active');
-    btn.classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-  function toggleTheme() {
-    const body = document.body;
-    const btn = document.getElementById('themeBtn');
-    if (body.dataset.theme === 'dark') {
-      body.dataset.theme = 'light';
-      btn.textContent = '🌙';
-    } else {
-      body.dataset.theme = 'dark';
-      btn.textContent = '☀️';
-    }
-  }
+function switchView(v,btn){
+  document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('view-'+v).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  setTimeout(observeFade,100);
+}
+function toggleTheme(){
+  const h=document.documentElement;
+  const btn=document.getElementById('themeBtn');
+  if(h.dataset.theme==='dark'){h.dataset.theme='light';btn.textContent='🌙';}
+  else{h.dataset.theme='dark';btn.textContent='☀️';}
+}
+function observeFade(){
+  const els=document.querySelectorAll('.fade-in:not(.visible)');
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});
+  },{threshold:.12});
+  els.forEach(el=>io.observe(el));
+}
+document.addEventListener('DOMContentLoaded',observeFade);
 </script>
 </body>
 </html>
