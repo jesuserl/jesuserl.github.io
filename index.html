@@ -1,7 +1,433 @@
----
-layout: home
-title: Hi, I'm Jesus
-subtitle: You can find a bit of my personal and professional experience
-cover-img: /assets/img/101619.jpg
-share-img: /assets/img/101619.jpg
----
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jesús Rojas — IT Infrastructure Leader</title>
+<style>
+  :root {
+    --bg: #0f0f0f;
+    --bg2: #1a1a1a;
+    --bg3: #242424;
+    --text: #f0f0f0;
+    --text2: #a0a0a0;
+    --accent: #3b82f6;
+    --accent2: #1d4ed8;
+    --border: rgba(255,255,255,0.08);
+    --card: #1e1e1e;
+  }
+  [data-theme="light"] {
+    --bg: #f8f8f6;
+    --bg2: #ffffff;
+    --bg3: #f0f0ed;
+    --text: #1a1a1a;
+    --text2: #555;
+    --accent: #1d4ed8;
+    --accent2: #1e40af;
+    --border: rgba(0,0,0,0.08);
+    --card: #ffffff;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); transition: background .3s, color .3s; line-height: 1.6; }
+
+  nav {
+    position: fixed; top:0; left:0; right:0; z-index:100;
+    background: var(--bg); border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2rem; height: 60px;
+  }
+  .nav-logo { font-size: 15px; font-weight: 600; letter-spacing: -.3px; }
+  .nav-logo span { color: var(--accent); }
+  .nav-right { display: flex; align-items: center; gap: 8px; }
+
+  .toggle-mode {
+    width: 36px; height: 36px; border-radius: 8px;
+    border: 1px solid var(--border); background: var(--bg3);
+    color: var(--text); cursor: pointer; font-size: 16px;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .2s;
+  }
+  .toggle-mode:hover { background: var(--bg2); }
+
+  .tab-btn {
+    padding: 6px 16px; border-radius: 20px; border: 1px solid var(--border);
+    font-size: 13px; font-weight: 500; cursor: pointer;
+    background: transparent; color: var(--text2); transition: all .2s;
+  }
+  .tab-btn.active {
+    background: var(--accent); color: #fff; border-color: var(--accent);
+  }
+
+  main { padding-top: 60px; }
+
+  section { max-width: 860px; margin: 0 auto; padding: 5rem 2rem; }
+
+  .hero {
+    min-height: calc(100vh - 60px);
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 4rem 2rem;
+  }
+  .hero-tag {
+    display: inline-block; font-size: 12px; font-weight: 500;
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 20px; padding: 4px 14px; color: var(--text2);
+    margin-bottom: 1.5rem; letter-spacing: .5px; text-transform: uppercase;
+  }
+  .hero h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 700; line-height: 1.15; letter-spacing: -.5px; margin-bottom: .75rem; }
+  .hero h1 span { color: var(--accent); }
+  .hero-sub { font-size: 1.1rem; color: var(--text2); max-width: 580px; margin-bottom: 2rem; }
+  .hero-links { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-primary {
+    padding: 10px 22px; border-radius: 8px; background: var(--accent);
+    color: #fff; font-size: 14px; font-weight: 500; text-decoration: none;
+    border: none; cursor: pointer; transition: background .2s;
+  }
+  .btn-primary:hover { background: var(--accent2); }
+  .btn-outline {
+    padding: 10px 22px; border-radius: 8px; background: transparent;
+    color: var(--text); font-size: 14px; font-weight: 500;
+    border: 1px solid var(--border); text-decoration: none; transition: border-color .2s;
+  }
+  .btn-outline:hover { border-color: var(--accent); }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+  h2.section-title {
+    font-size: 13px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 1.5px; color: var(--accent); margin-bottom: 2rem;
+  }
+
+  .about-text { font-size: 1rem; color: var(--text2); max-width: 680px; line-height: 1.8; }
+
+  .skills-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-tag {
+    font-size: 12px; font-weight: 500; padding: 5px 13px;
+    border-radius: 6px; background: var(--bg3); border: 1px solid var(--border);
+    color: var(--text2);
+  }
+
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .timeline-item {
+    display: grid; grid-template-columns: 140px 1fr;
+    gap: 0 2rem; padding: 1.75rem 0; border-top: 1px solid var(--border);
+  }
+  .timeline-item:last-child { border-bottom: 1px solid var(--border); }
+  .tl-date { font-size: 12px; color: var(--text2); padding-top: 2px; line-height: 1.5; }
+  .tl-company { font-size: 13px; font-weight: 600; color: var(--accent); margin-bottom: 2px; }
+  .tl-role { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+  .tl-desc { font-size: 13px; color: var(--text2); line-height: 1.65; }
+
+  .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+  .cert-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 1rem 1.25rem;
+  }
+  .cert-card p:first-child { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+  .cert-card p:last-child { font-size: 12px; color: var(--text2); }
+
+  .edu-item { padding: 1rem 0; border-top: 1px solid var(--border); }
+  .edu-item:last-child { border-bottom: 1px solid var(--border); }
+  .edu-item p:first-child { font-size: 15px; font-weight: 600; }
+  .edu-item p { font-size: 13px; color: var(--text2); margin-top: 2px; }
+
+  /* Personal view */
+  .personal-hero { text-align: center; }
+  .avatar {
+    width: 90px; height: 90px; border-radius: 50%;
+    background: var(--accent); display: flex; align-items: center;
+    justify-content: center; font-size: 28px; font-weight: 700; color: #fff;
+    margin: 0 auto 1.5rem;
+  }
+  .personal-hero h1 { font-size: 2rem; font-weight: 700; margin-bottom: .5rem; }
+  .personal-hero p { font-size: 1rem; color: var(--text2); max-width: 500px; margin: 0 auto 1.5rem; }
+
+  .personal-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+  .p-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.25rem;
+  }
+  .p-card-icon { font-size: 22px; margin-bottom: .75rem; }
+  .p-card h3 { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+  .p-card p { font-size: 13px; color: var(--text2); line-height: 1.6; }
+
+  .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+  .contact-link {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 1rem 1.25rem; text-decoration: none;
+    color: var(--text); font-size: 14px; font-weight: 500; transition: border-color .2s;
+  }
+  .contact-link:hover { border-color: var(--accent); }
+  .contact-link span { font-size: 18px; }
+
+  footer {
+    text-align: center; padding: 2rem; font-size: 12px;
+    color: var(--text2); border-top: 1px solid var(--border);
+  }
+
+  .view { display: none; }
+  .view.active { display: block; }
+
+  @media (max-width: 600px) {
+    .timeline-item { grid-template-columns: 1fr; gap: 4px; }
+    nav { padding: 0 1rem; }
+    section { padding: 3rem 1.25rem; }
+  }
+</style>
+</head>
+<body data-theme="dark">
+
+<nav>
+  <div class="nav-logo">JR<span>.</span></div>
+  <div class="nav-right">
+    <button class="tab-btn active" onclick="switchView('pro', this)">Profesional</button>
+    <button class="tab-btn" onclick="switchView('personal', this)">Personal</button>
+    <button class="toggle-mode" onclick="toggleTheme()" id="themeBtn" title="Cambiar tema">☀️</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- ===== PROFESSIONAL VIEW ===== -->
+<div id="view-pro" class="view active">
+
+  <section class="hero" style="max-width:860px;margin:0 auto;">
+    <div class="hero-tag">Disponible para proyectos</div>
+    <h1>Jesús Enrique<br><span>Rojas L.</span></h1>
+    <p class="hero-sub">Líder de Infraestructura Tecnológica con más de 15 años de experiencia en entornos On-Premise y Cloud. Especialista en Microsoft Azure, SAP Business One, redes y virtualización.</p>
+    <div class="hero-links">
+      <a class="btn-primary" href="https://www.linkedin.com/in/jesuserl" target="_blank">LinkedIn</a>
+      <a class="btn-outline" href="mailto:jesuserl@gmail.com">Contactar</a>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section>
+    <h2 class="section-title">Sobre mí</h2>
+    <p class="about-text">Especialista en Sistemas con amplia experiencia en soporte técnico, administración de infraestructura, servidores, redes y sistemas integrados. Experto en implementación y consultoría de soluciones tecnológicas, incluyendo Microsoft Azure, Office 365, SAP Business One y Odoo. Competente en la administración avanzada de infraestructura en entornos On-Premise y Cloud, garantizando alto rendimiento, disponibilidad y optimización de recursos.</p>
+  </section>
+
+  <hr class="divider">
+
+  <section>
+    <h2 class="section-title">Tecnologías</h2>
+    <div class="skills-grid">
+      <span class="skill-tag">Microsoft Azure</span>
+      <span class="skill-tag">Azure AD</span>
+      <span class="skill-tag">Microsoft 365</span>
+      <span class="skill-tag">SharePoint</span>
+      <span class="skill-tag">Exchange Server</span>
+      <span class="skill-tag">Active Directory</span>
+      <span class="skill-tag">Windows Server</span>
+      <span class="skill-tag">Linux</span>
+      <span class="skill-tag">SAP Business One</span>
+      <span class="skill-tag">Odoo</span>
+      <span class="skill-tag">VMware ESXi</span>
+      <span class="skill-tag">Docker</span>
+      <span class="skill-tag">Mikrotik</span>
+      <span class="skill-tag">WatchGuard</span>
+      <span class="skill-tag">SQL Server</span>
+      <span class="skill-tag">SAP HANA</span>
+      <span class="skill-tag">Crystal Reports</span>
+      <span class="skill-tag">VPN</span>
+      <span class="skill-tag">Firewalls</span>
+      <span class="skill-tag">MS Dynamics CRM</span>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section>
+    <h2 class="section-title">Experiencia</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="tl-date">Sep 2024<br>Presente</div>
+        <div>
+          <div class="tl-company">Ron Carúpano</div>
+          <div class="tl-role">Especialista de Infraestructura Tecnológica</div>
+          <div class="tl-desc">Diseño e implementación de estrategias tecnológicas, configuración de servidores, administración de redes (firewalls, routers, switches, VPNs) y gestión de soluciones de almacenamiento y virtualización.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-date">Ene 2019<br>Ene 2022</div>
+        <div>
+          <div class="tl-company">PRN Consultores</div>
+          <div class="tl-role">IT Consultant — SAP Business One / Microsoft Cloud</div>
+          <div class="tl-desc">Soporte a SAP Business One en entornos Cloud y On-Premise (SQL y HANA). Evaluaciones de infraestructura y reportes personalizados en Crystal Reports.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-date">Dic 2018<br>Dic 2019</div>
+        <div>
+          <div class="tl-company">Seidor Centroamérica y Caribe</div>
+          <div class="tl-role">IT Consultant — Azure / Office 365 / SAP B1</div>
+          <div class="tl-desc">Soporte remoto a clientes de Seidor en Centroamérica. Evaluaciones de infraestructura y desarrollo de reportes en Crystal Reports (SQL y HANA).</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-date">Abr 2016<br>Sep 2017</div>
+        <div>
+          <div class="tl-company">Grupo Vamatech</div>
+          <div class="tl-role">Gerente de Soporte de Infraestructura Tecnológica</div>
+          <div class="tl-desc">Gestión integral del soporte SAP B1. Despliegue de infraestructuras On-Premise y Cloud con Azure. Consultoría CRM e implementaciones con Docker/Odoo.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-date">Sep 2014<br>Abr 2016</div>
+        <div>
+          <div class="tl-company">Grupo Vamatech</div>
+          <div class="tl-role">Consultor Senior de IT</div>
+          <div class="tl-desc">Implementación de SAP Business One, Microsoft Dynamics CRM y Dynamics AX para clientes corporativos.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-date">Sep 2013<br>Ago 2014</div>
+        <div>
+          <div class="tl-company">Eurosillas</div>
+          <div class="tl-role">Coordinador de IT</div>
+          <div class="tl-desc">Soporte al sistema Profit Plus, estabilización de servidores y diseño de planes de respaldo para bases de datos productivas.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-date">Nov 2011<br>Jun 2013</div>
+        <div>
+          <div class="tl-company">O&M International Corporation</div>
+          <div class="tl-role">Ingeniero de Infraestructura (Preventa y Consultoría)</div>
+          <div class="tl-desc">Implementación de VMware ESXi y vCenter. Configuración de SAN HP con fibra óptica. Despliegue de nube privada para Vicson Beakert.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-date">Nov 2004<br>Oct 2008</div>
+        <div>
+          <div class="tl-company">IVEC</div>
+          <div class="tl-role">Director de Informática</div>
+          <div class="tl-desc">Dirección de proyectos IT y desarrollos internos. Supervisión de infraestructura para ~230 usuarios. Optimización del 60% de sistemas existentes y expansión del DataCenter.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section>
+    <h2 class="section-title">Certificaciones</h2>
+    <div class="certs-grid">
+      <div class="cert-card">
+        <p>AWS Cloud Practitioner Essentials</p>
+        <p>Amazon Web Services</p>
+      </div>
+      <div class="cert-card">
+        <p>VMware VSP5</p>
+        <p>VMware</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section>
+    <h2 class="section-title">Educación</h2>
+    <div>
+      <div class="edu-item">
+        <p>Ingeniero de Sistemas</p>
+        <p>Universidad Bicentenaria de Aragua · 1999–2004</p>
+      </div>
+      <div class="edu-item">
+        <p>T.S.U. en Administración mención Informática</p>
+        <p>CUMT · 1996–1999</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section>
+    <h2 class="section-title">Contacto</h2>
+    <div class="contact-grid">
+      <a class="contact-link" href="mailto:jesuserl@gmail.com"><span>✉</span> jesuserl@gmail.com</a>
+      <a class="contact-link" href="https://www.linkedin.com/in/jesuserl" target="_blank"><span>🔗</span> linkedin.com/in/jesuserl</a>
+    </div>
+  </section>
+
+</div>
+
+<!-- ===== PERSONAL VIEW ===== -->
+<div id="view-personal" class="view">
+
+  <section style="max-width:860px;margin:0 auto;padding-top:6rem;text-align:center;">
+    <div class="avatar">JR</div>
+    <h1 style="font-size:2rem;font-weight:700;margin-bottom:.5rem;">Hola, soy Jesús 👋</h1>
+    <p style="color:var(--text2);max-width:500px;margin:0 auto 2rem;font-size:1rem;">Más allá del trabajo, soy una persona apasionada por la tecnología, el aprendizaje continuo y los nuevos retos.</p>
+    <a class="btn-primary" href="mailto:jesuserl@gmail.com">Escríbeme</a>
+  </section>
+
+  <hr class="divider" style="margin-top:4rem;">
+
+  <section style="max-width:860px;margin:0 auto;">
+    <h2 class="section-title">Un poco sobre mí</h2>
+    <div class="personal-cards">
+      <div class="p-card">
+        <div class="p-card-icon">🌐</div>
+        <h3>Tecnología</h3>
+        <p>Siempre explorando nuevas herramientas, plataformas cloud y tendencias en infraestructura IT. La tecnología es mi trabajo y también mi pasión.</p>
+      </div>
+      <div class="p-card">
+        <div class="p-card-icon">📚</div>
+        <h3>Aprendizaje continuo</h3>
+        <p>Certificaciones, cursos y proyectos personales me mantienen actualizado. Creo que quien deja de aprender, deja de crecer.</p>
+      </div>
+      <div class="p-card">
+        <div class="p-card-icon">🌍</div>
+        <h3>Venezuela</h3>
+        <p>Orgullosamente venezolano. Mi cultura, historia y gente son parte fundamental de quién soy.</p>
+      </div>
+      <div class="p-card">
+        <div class="p-card-icon">🤝</div>
+        <h3>Colaboración</h3>
+        <p>Me gusta compartir conocimiento y colaborar en proyectos donde la tecnología resuelve problemas reales.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section style="max-width:860px;margin:0 auto;">
+    <h2 class="section-title">Hablemos</h2>
+    <p style="color:var(--text2);margin-bottom:1.5rem;font-size:.95rem;">¿Tienes un proyecto en mente, una pregunta técnica, o simplemente quieres conectar? Estoy disponible.</p>
+    <div class="contact-grid">
+      <a class="contact-link" href="mailto:jesuserl@gmail.com"><span>✉</span> jesuserl@gmail.com</a>
+      <a class="contact-link" href="https://www.linkedin.com/in/jesuserl" target="_blank"><span>🔗</span> LinkedIn</a>
+    </div>
+  </section>
+
+</div>
+
+</main>
+
+<footer>
+  &copy; 2025 Jesús Enrique Rojas L. — Hecho con ❤️ para GitHub Pages
+</footer>
+
+<script>
+  function switchView(view, btn) {
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('view-' + view).classList.add('active');
+    btn.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  function toggleTheme() {
+    const body = document.body;
+    const btn = document.getElementById('themeBtn');
+    if (body.dataset.theme === 'dark') {
+      body.dataset.theme = 'light';
+      btn.textContent = '🌙';
+    } else {
+      body.dataset.theme = 'dark';
+      btn.textContent = '☀️';
+    }
+  }
+</script>
+</body>
+</html>
