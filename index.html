@@ -5,45 +5,42 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Jesús Rojas | IT Infrastructure Leader | Azure & SAP Specialist</title>
-<meta name="description" content="Líder de Infraestructura Tecnológica con más de 20 años de experiencia. Especialista en Azure, SAP Business One, WatchGuard y MikroTik.">
-<meta property="og:type" content="website">
+<meta name="description" content="Líder de Infraestructura Tecnológica con más de 20 años de experiencia. Especialista en Azure, SAP Business One y Ciberseguridad.">
 <meta property="og:title" content="Jesús Rojas | IT Infrastructure Leader">
-<meta property="og:description" content="Experto en ciberseguridad, virtualización y optimización de redes corporativas.">
+<meta property="og:description" content="Especialista en ciberseguridad, virtualización y optimización de redes corporativas.">
 <meta property="og:image" content="https://tuusuario.github.io/og-image.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
   :root {
-    --bg: #0f0f0f;
-    --bg2: #1a1a1a;
-    --bg3: #242424;
+    --bg: #0a0a0a;
+    --bg2: #141414;
+    --bg3: #1d1d1d;
     --text: #f0f0f0;
-    --text2: #a0a0a0;
+    --text2: #94a3b8;
     --accent: #3b82f6;
-    --accent-glow: rgba(59, 130, 246, 0.3);
-    --border: rgba(255,255,255,0.08);
-    --card: #1e1e1e;
+    --accent-glow: rgba(59, 130, 246, 0.25);
+    --border: rgba(255,255,255,0.06);
+    --card: #121212;
+    --grid: rgba(255,255,255,0.03);
   }
   [data-theme="light"] {
-    --bg: #f8f8f6;
+    --bg: #f8fafc;
     --bg2: #ffffff;
-    --bg3: #f0f0ed;
-    --text: #1a1a1a;
-    --text2: #555;
-    --accent: #1d4ed8;
-    --accent-glow: rgba(29, 78, 216, 0.15);
-    --border: rgba(0,0,0,0.08);
+    --bg3: #f1f5f9;
+    --text: #0f172a;
+    --text2: #64748b;
+    --accent: #2563eb;
+    --accent-glow: rgba(37, 99, 235, 0.1);
+    --border: rgba(0,0,0,0.06);
     --card: #ffffff;
+    --grid: rgba(0,0,0,0.03);
   }
 
-  html { 
-    scroll-behavior: smooth; 
-    color-scheme: light dark;
-  }
-  
+  html { scroll-behavior: smooth; color-scheme: light dark; }
   * { margin:0; padding:0; box-sizing:border-box; }
   
   body { 
@@ -52,10 +49,14 @@
     color: var(--text); 
     transition: background .3s, color .3s; 
     line-height: 1.6;
-    overflow-x: hidden;
+    /* Fondo de Ingeniería (Grid) */
+    background-image: linear-gradient(var(--grid) 1px, transparent 1px),
+                      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 50px 50px;
+    background-attachment: fixed;
   }
 
-  h1, h2, h3 { text-wrap: balance; }
+  h1, h2, h3 { text-wrap: balance; letter-spacing: -0.02em; }
   p { text-wrap: pretty; }
 
   /* Navbar */
@@ -63,98 +64,97 @@
     position: fixed; top:0; left:0; right:0; z-index:100;
     background: transparent; border-bottom: 1px solid transparent;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 0 2rem; height: 65px; transition: all 0.3s ease;
+    padding: 0 2rem; height: 70px; transition: all 0.3s ease;
   }
   nav.scrolled {
-    background: rgba(15, 15, 15, 0.8);
+    background: rgba(10, 10, 10, 0.8);
     backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
   }
-  [data-theme="light"] nav.scrolled { background: rgba(248, 248, 246, 0.85); }
+  [data-theme="light"] nav.scrolled { background: rgba(248, 250, 252, 0.8); }
 
-  .nav-logo { font-size: 16px; font-weight: 700; letter-spacing: -0.5px; }
+  .nav-logo { font-size: 18px; font-weight: 800; }
   .nav-logo span { color: var(--accent); }
-  .nav-right { display: flex; align-items: center; gap: 10px; }
+  .nav-right { display: flex; align-items: center; gap: 12px; }
 
-  /* Buttons & Toggles */
-  .toggle-mode {
-    width: 38px; height: 38px; border-radius: 10px;
+  /* Toggles */
+  .icon-btn {
+    width: 40px; height: 40px; border-radius: 10px;
     border: 1px solid var(--border); background: var(--bg3);
     color: var(--text); cursor: pointer; display: flex; 
     align-items: center; justify-content: center; transition: 0.2s;
   }
+  .icon-btn:hover { border-color: var(--accent); background: var(--bg2); }
+
   .tab-btn {
-    padding: 7px 16px; border-radius: 20px; border: 1px solid var(--border);
+    padding: 8px 18px; border-radius: 20px; border: 1px solid var(--border);
     font-size: 13px; font-weight: 600; cursor: pointer;
     background: transparent; color: var(--text2); transition: 0.2s;
   }
   .tab-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
 
-  /* Scroll Reveal Animation */
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.7s cubic-bezier(0.5, 0, 0, 1);
-  }
+  /* Language Switch Logic */
+  [lang="en"] .lang-es { display: none; }
+  [lang="es"] .lang-en { display: none; }
+
+  /* Section Styles */
+  section { max-width: 1000px; margin: 0 auto; padding: 6rem 2rem; }
+  .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.2, 0, 0, 1); }
   .reveal.active { opacity: 1; transform: translateY(0); }
 
-  /* Hero Section */
-  section { max-width: 900px; margin: 0 auto; padding: 5rem 2rem; }
-  .hero { 
-    min-height: 90vh; display: flex; flex-direction: column; justify-content: center; 
-  }
+  /* Hero */
+  .hero { min-height: 85vh; display: flex; flex-direction: column; justify-content: center; }
   .hero-tag {
     display: inline-block; font-size: 11px; font-weight: 700;
     background: var(--bg3); border: 1px solid var(--border);
     border-radius: 20px; padding: 5px 15px; color: var(--accent);
     margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px;
   }
-  .hero h1 { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 800; line-height: 1.1; margin-bottom: 1rem; letter-spacing: -1px; }
+  .hero h1 { font-size: clamp(2.5rem, 7vw, 4.5rem); font-weight: 800; line-height: 1.05; margin-bottom: 1.5rem; }
   .hero h1 span { color: var(--accent); }
-  .hero-sub { font-size: 1.2rem; color: var(--text2); max-width: 600px; margin-bottom: 2.5rem; }
+  .hero-sub { font-size: 1.25rem; color: var(--text2); max-width: 650px; margin-bottom: 3rem; }
 
-  /* Grid & Cards */
-  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-  .card-premium {
+  /* Services Grid */
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 2rem; }
+  .service-card {
     background: var(--card); border: 1px solid var(--border);
-    border-radius: 16px; padding: 2rem; transition: 0.3s;
-    position: relative; overflow: hidden;
+    border-radius: 20px; padding: 2.5rem; transition: 0.3s;
   }
-  .card-premium:hover {
-    transform: translateY(-5px);
-    border-color: var(--accent);
-    box-shadow: 0 15px 35px -10px var(--accent-glow);
+  .service-card:hover { 
+    transform: translateY(-8px); 
+    border-color: var(--accent); 
+    box-shadow: 0 20px 40px -15px var(--accent-glow);
   }
+  .service-icon { font-size: 32px; margin-bottom: 1.5rem; display: block; }
+  .service-card h3 { font-size: 18px; margin-bottom: 1rem; }
+  .service-card p { font-size: 14px; color: var(--text2); }
 
-  .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+  /* Experience & Skills */
+  .skills-flex { display: flex; flex-wrap: wrap; gap: 10px; }
   .skill-tag {
-    font-size: 12px; font-weight: 600; padding: 6px 14px;
+    font-size: 12px; font-weight: 600; padding: 6px 16px;
     border-radius: 8px; background: var(--bg3); border: 1px solid var(--border);
     color: var(--text2); transition: 0.2s;
   }
-  .skill-tag:hover { border-color: var(--accent); color: var(--text); }
+  .skill-tag:hover { border-color: var(--accent); color: var(--text); background: var(--card); }
 
-  /* Timeline */
   .timeline-item {
-    display: grid; grid-template-columns: 160px 1fr;
-    gap: 2rem; padding: 2rem 0; border-top: 1px solid var(--border);
+    display: grid; grid-template-columns: 180px 1fr;
+    gap: 2rem; padding: 2.5rem 0; border-top: 1px solid var(--border);
   }
-  .tl-company { color: var(--accent); font-weight: 700; font-size: 13px; text-transform: uppercase; }
-  .tl-role { font-size: 18px; font-weight: 700; margin: 4px 0; }
-  .tl-desc { font-size: 14px; color: var(--text2); }
 
-  /* Contact Links */
-  .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px; }
+  /* Contact */
+  .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
   .contact-link {
     display: flex; align-items: center; gap: 12px;
     background: var(--card); border: 1px solid var(--border);
-    border-radius: 12px; padding: 1.2rem; text-decoration: none;
-    color: var(--text); font-size: 14px; font-weight: 600; transition: 0.2s;
+    border-radius: 14px; padding: 1.5rem; text-decoration: none;
+    color: var(--text); font-size: 15px; font-weight: 600; transition: 0.2s;
   }
   .contact-link:hover { border-color: var(--accent); transform: scale(1.02); }
 
-  /* Floating Button */
+  .btn-wa { background: #25D366 !important; color: white !important; border: none !important; }
+
   #backToTop {
     position: fixed; bottom: 30px; right: 30px; 
     width: 45px; height: 45px; border-radius: 50%;
@@ -168,18 +168,24 @@
 
   @media (max-width: 768px) {
     .timeline-item { grid-template-columns: 1fr; gap: 8px; }
-    .hero { padding: 2rem 1rem; }
+    nav { padding: 0 1rem; }
+    .hero h1 { font-size: 2.5rem; }
   }
 </style>
 </head>
-<body data-theme="dark">
+<body data-theme="dark" lang="es">
 
 <nav id="navbar">
   <div class="nav-logo">ROJAS<span>.</span>IT</div>
   <div class="nav-right">
-    <button class="tab-btn active" onclick="switchView('pro', this)">Profesional</button>
-    <button class="tab-btn" onclick="switchView('personal', this)">Personal</button>
-    <button class="toggle-mode" onclick="toggleTheme()" id="themeBtn">☀️</button>
+    <button class="tab-btn active" onclick="switchView('pro', this)">
+      <span class="lang-es">Profesional</span><span class="lang-en">Professional</span>
+    </button>
+    <button class="tab-btn" onclick="switchView('personal', this)">
+      <span class="lang-es">Personal</span><span class="lang-en">Personal</span>
+    </button>
+    <button class="icon-btn" onclick="toggleLang()" id="langBtn" aria-label="Cambiar idioma">EN</button>
+    <button class="icon-btn" onclick="toggleTheme()" id="themeBtn" aria-label="Cambiar tema">☀️</button>
   </div>
 </nav>
 
@@ -187,58 +193,86 @@
 
 <div id="view-pro" class="view active">
   <section class="hero reveal">
-    <div class="hero-tag">Senior Infrastructure Engineer</div>
-    <h1>Construyendo<br><span>Sistemas Resilientes.</span></h1>
-    <p class="hero-sub">Líder de Infraestructura con más de 20 años de trayectoria. Especializado en escalar operaciones críticas, ciberseguridad perimetral y entornos híbridos Azure/On-Premise.</p>
-    <div style="display: flex; gap: 15px;">
-      <button class="btn-primary" style="padding: 12px 25px; background: var(--accent); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;" onclick="copyEmail()" id="mainEmailBtn">Contactar ahora</button>
-      <a href="https://linkedin.com/in/jesuserl" class="contact-link" style="padding: 12px 20px; border-radius: 8px;">LinkedIn</a>
+    <div class="hero-tag">
+      <span class="lang-es">Disponible para Consultoría</span>
+      <span class="lang-en">Available for Consulting</span>
+    </div>
+    <h1>
+      <span class="lang-es">Arquitectura de Sistemas e <span>Infraestructura Crítica.</span></span>
+      <span class="lang-en">System Architecture & <span>Critical Infrastructure.</span></span>
+    </h1>
+    <p class="hero-sub">
+      <span class="lang-es">Líder IT con +20 años de experiencia optimizando operaciones. Especialista en Azure, ciberseguridad perimetral y ecosistemas SAP Business One.</span>
+      <span class="lang-en">IT Leader with 20+ years of experience optimizing operations. Specialist in Azure, perimeter cybersecurity, and SAP Business One ecosystems.</span>
+    </p>
+    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+      <a href="https://wa.me/58XXXXXXXXX?text=Hola%20Jesús,%20estoy%20interesado%20en%20tus%20servicios%20de%20infraestructura" class="contact-link btn-wa" style="padding: 12px 25px;">
+        <span>💬</span> <span class="lang-es">WhatsApp Directo</span><span class="lang-en">Direct WhatsApp</span>
+      </a>
+      <a href="https://linkedin.com/in/jesuserl" class="contact-link" style="padding: 12px 25px; background: var(--bg3);">LinkedIn</a>
     </div>
   </section>
 
   <section class="reveal">
-    <h2 style="font-size: 12px; color: var(--accent); letter-spacing: 2px; margin-bottom: 2rem;">CAPACIDADES TÉCNICAS</h2>
-    <div class="skills-grid">
-      <span class="skill-tag">Microsoft Azure</span>
+    <h2 style="font-size: 12px; color: var(--accent); letter-spacing: 2px; margin-bottom: 2.5rem; text-transform: uppercase;">
+      <span class="lang-es">Servicios Especializados</span><span class="lang-en">Specialized Services</span>
+    </h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-icon">☁️</span>
+        <h3><span class="lang-es">Arquitectura Cloud e Híbrida</span><span class="lang-en">Cloud & Hybrid Architecture</span></h3>
+        <p>
+          <span class="lang-es">Diseño, migración y estabilización de servidores en Microsoft Azure. Especialista en entornos híbridos y virtualización avanzada con VMware.</span>
+          <span class="lang-en">Design, migration, and stabilization of servers in Microsoft Azure. Specialist in hybrid environments and advanced virtualization with VMware.</span>
+        </p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🛡️</span>
+        <h3><span class="lang-es">Seguridad y Hardening</span><span class="lang-en">Security & Hardening</span></h3>
+        <p>
+          <span class="lang-es">Auditoría de seguridad perimetral, configuración de WatchGuard/MikroTik y protección de activos contra ataques de fuerza bruta.</span>
+          <span class="lang-en">Perimeter security auditing, WatchGuard/MikroTik configuration, and asset protection against brute-force attacks.</span>
+        </p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">📊</span>
+        <h3><span class="lang-es">Continuidad SAP & ERP</span><span class="lang-en">SAP & ERP Continuity</span></h3>
+        <p>
+          <span class="lang-es">Optimización de bases de datos SAP HANA/SQL, reportes críticos y planes de recuperación ante desastres para garantizar la continuidad operativa.</span>
+          <span class="lang-en">Optimization of SAP HANA/SQL databases, critical reporting, and disaster recovery plans to ensure operational continuity.</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <h2 style="font-size: 12px; color: var(--accent); letter-spacing: 2px; margin-bottom: 2rem; text-transform: uppercase;">Stack Tecnológico</h2>
+    <div class="skills-flex">
+      <span class="skill-tag">Azure AD / Entra ID</span>
       <span class="skill-tag">WatchGuard Cloud</span>
       <span class="skill-tag">MikroTik RouterOS</span>
-      <span class="skill-tag">SAP Business One (HANA/SQL)</span>
-      <span class="skill-tag">VMware vSphere</span>
-      <span class="skill-tag">Linux Server</span>
-      <span class="skill-tag">Ciberseguridad Perimetral</span>
-      <span class="skill-tag">VLAN Segmentation</span>
-      <span class="skill-tag">Docker</span>
+      <span class="skill-tag">SAP Business One</span>
+      <span class="skill-tag">HANA / SQL Server</span>
+      <span class="skill-tag">VMware ESXi</span>
+      <span class="skill-tag">Windows & Linux Server</span>
+      <span class="skill-tag">VLAN / BOVPN</span>
       <span class="skill-tag">Odoo ERP</span>
+      <span class="skill-tag">Docker</span>
     </div>
   </section>
 
   <section class="reveal">
-    <h2 style="font-size: 12px; color: var(--accent); letter-spacing: 2px; margin-bottom: 2rem;">CASOS DE ÉXITO</h2>
-    <div class="projects-grid">
-      <div class="card-premium">
-        <h3 style="margin-bottom: 10px;">Security Hardening</h3>
-        <p class="tl-desc">Defensa crítica contra ataques de fuerza bruta en infraestructuras web corporativas, reduciendo incidentes mediante auditoría de logs y MFA estricto.</p>
-      </div>
-      <div class="card-premium">
-        <h3 style="margin-bottom: 10px;">Cloud Recovery</h3>
-        <p class="tl-desc">Restauración y migración de bases de datos PostgreSQL en infraestructuras WatchGuard Dimension, asegurando cero pérdida de datos de red.</p>
-      </div>
-      <div class="card-premium">
-        <h3 style="margin-bottom: 10px;">Network Backbone</h3>
-        <p class="tl-desc">Interconexión segura de sucursales mediante túneles BOVPN y segmentación avanzada de tráfico para optimizar el rendimiento de ERPs remotos.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="reveal">
-    <h2 style="font-size: 12px; color: var(--accent); letter-spacing: 2px; margin-bottom: 2rem;">TRAYECTORIA</h2>
+    <h2 style="font-size: 12px; color: var(--accent); letter-spacing: 2px; margin-bottom: 2rem; text-transform: uppercase;">Experiencia</h2>
     <div class="timeline">
       <div class="timeline-item">
-        <div class="tl-desc">2024 — Actualidad</div>
+        <div class="tl-desc">2024 — <span class="lang-es">Presente</span><span class="lang-en">Present</span></div>
         <div>
           <div class="tl-company">Ron Carúpano</div>
           <div class="tl-role">Especialista de Infraestructura Tecnológica</div>
-          <p class="tl-desc">Liderando la arquitectura de servidores, seguridad WatchGuard y optimización de redes para la marca premium de destilados.</p>
+          <p class="tl-desc">
+            <span class="lang-es">Responsable de la resiliencia tecnológica y ciberseguridad de la infraestructura nacional de la marca.</span>
+            <span class="lang-en">Responsible for the technological resilience and cybersecurity of the brand's national infrastructure.</span>
+          </p>
         </div>
       </div>
       <div class="timeline-item">
@@ -246,7 +280,10 @@
         <div>
           <div class="tl-company">PRN Consultores</div>
           <div class="tl-role">IT Consultant — SAP Business One</div>
-          <p class="tl-desc">Consultoría de alto nivel para despliegues de SAP en entornos SQL y HANA.</p>
+          <p class="tl-desc">
+            <span class="lang-es">Implementación de soluciones críticas sobre arquitecturas Cloud e híbridas para el sector empresarial.</span>
+            <span class="lang-en">Implementation of critical solutions on Cloud and hybrid architectures for the business sector.</span>
+          </p>
         </div>
       </div>
     </div>
@@ -255,37 +292,43 @@
 
 <div id="view-personal" class="view">
   <section class="hero reveal" style="text-align: center; align-items: center;">
-    <div style="width: 100px; height: 100px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 40px; margin-bottom: 1.5rem;">JR</div>
-    <h1>Ingeniería por<span> Naturaleza.</span></h1>
-    <p class="hero-sub">Mi curiosidad técnica no termina en los servidores. Soy un entusiasta de la mecánica, los datos y la tecnología funcional.</p>
+    <div style="width: 100px; height: 100px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 40px; margin-bottom: 1.5rem; color: white;">JR</div>
+    <h1>
+      <span class="lang-es">Ingeniería, Datos y <span>Motores.</span></span>
+      <span class="lang-en">Engineering, Data & <span>Engines.</span></span>
+    </h1>
+    <p class="hero-sub">
+      <span class="lang-es">Apasionado por entender cómo funcionan las cosas, desde un servidor en la nube hasta un motor de 250cc.</span>
+      <span class="lang-en">Passionate about understanding how things work, from a cloud server to a 250cc engine.</span>
+    </p>
   </section>
 
   <section class="reveal">
-    <div class="projects-grid">
-      <div class="card-premium">
-        <span style="font-size: 30px;">🏍️</span>
-        <h3 style="margin-top: 15px;">Mechanical Hacking</h3>
-        <p class="tl-desc">Restauración de motos estilo Scrambler. Actualmente trabajando en un swap de motor Zongshen para optimizar potencia y fiabilidad.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-icon">🏍️</span>
+        <h3>Mecánica Scrambler</h3>
+        <p>Restauración y customización mecánica. Actualmente trabajando en proyectos de engine swaps para mejorar performance técnico.</p>
       </div>
-      <div class="card-premium">
-        <span style="font-size: 30px;">⌚</span>
-        <h3 style="margin-top: 15px;">Vintage Tech</h3>
-        <p class="tl-desc">Investigador y coleccionista de relojes digitales clásicos (Casio Geo Trail). Pasión por el diseño robusto y funcional de los 2000s.</p>
+      <div class="service-card">
+        <span class="service-icon">⌚</span>
+        <h3>Horología Digital</h3>
+        <p>Investigación técnica de modelos vintage Casio. Enfoque en materiales robustos y precisión electrónica.</p>
       </div>
-      <div class="card-premium">
-        <span style="font-size: 30px;">🏀</span>
-        <h3 style="margin-top: 15px;">Data & NBA</h3>
-        <p class="tl-desc">Análisis estadístico de la NBA. Desde métricas de posesión de los 90s hasta la evolución del juego moderno.</p>
+      <div class="service-card">
+        <span class="service-icon">🏀</span>
+        <h3>Data NBA</h3>
+        <p>Análisis de métricas avanzadas de rendimiento deportivo de la era de los 90s vs la era moderna.</p>
       </div>
     </div>
   </section>
 </div>
 
 <section class="reveal" style="text-align: center;">
-  <h2 style="font-size: 12px; color: var(--accent); letter-spacing: 2px; margin-bottom: 2rem;">¿CONECTAMOS?</h2>
+  <h2 style="font-size: 12px; color: var(--accent); letter-spacing: 2px; margin-bottom: 2rem; text-transform: uppercase;">Contacto</h2>
   <div class="contact-grid">
     <button class="contact-link" onclick="copyEmail()" id="emailBtn">
-      <span>✉</span> jesuserl@gmail.com
+      <span>✉</span> <span id="emailText">jesuserl@gmail.com</span>
     </button>
     <a href="https://linkedin.com/in/jesuserl" target="_blank" class="contact-link">
       <span>🔗</span> LinkedIn Profile
@@ -295,48 +338,57 @@
 
 </main>
 
-<button id="backToTop" onclick="window.scrollTo(0,0)">↑</button>
+<button id="backToTop" onclick="window.scrollTo(0,0)" aria-label="Volver arriba">↑</button>
 
 <footer style="padding: 4rem 2rem; text-align: center; border-top: 1px solid var(--border); font-size: 12px; color: var(--text2);">
   &copy; 2025 Jesús Enrique Rojas L. — Caracas / Valencia, Venezuela.
 </footer>
 
 <script>
-  // Persistencia de Tema
+  // Persistencia de Tema y Lenguaje
   const themeBtn = document.getElementById('themeBtn');
-  const savedTheme = localStorage.getItem('theme') || 'dark';
-  document.body.dataset.theme = savedTheme;
-  themeBtn.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+  const langBtn = document.getElementById('langBtn');
+  
+  let currentTheme = localStorage.getItem('theme') || 'dark';
+  let currentLang = localStorage.getItem('lang') || 'es';
+
+  document.body.dataset.theme = currentTheme;
+  document.body.lang = currentLang;
+  themeBtn.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
+  langBtn.textContent = currentLang === 'es' ? 'EN' : 'ES';
 
   function toggleTheme() {
-    const newTheme = document.body.dataset.theme === 'dark' ? 'light' : 'dark';
-    document.body.dataset.theme = newTheme;
-    themeBtn.textContent = newTheme === 'dark' ? '☀️' : '🌙';
-    localStorage.setItem('theme', newTheme);
+    currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    document.body.dataset.theme = currentTheme;
+    themeBtn.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
+    localStorage.setItem('theme', currentTheme);
   }
 
-  // Cambio de Vistas con Scroll automático
+  function toggleLang() {
+    currentLang = currentLang === 'es' ? 'en' : 'es';
+    document.body.lang = currentLang;
+    langBtn.textContent = currentLang === 'es' ? 'EN' : 'ES';
+    localStorage.setItem('lang', currentLang);
+  }
+
+  // Cambio de Vistas
   function switchView(view, btn) {
     document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     document.getElementById('view-' + view).classList.add('active');
     btn.classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    window.scrollTo({ top: 0 });
     reveal();
   }
 
-  // Copiar Email Micro-interacción
+  // Copiar Email
   function copyEmail() {
     const email = "jesuserl@gmail.com";
     navigator.clipboard.writeText(email);
-    const btns = [document.getElementById('emailBtn'), document.getElementById('mainEmailBtn')];
-    btns.forEach(btn => {
-      if(btn) {
-        const originalText = btn.innerHTML;
-        btn.innerHTML = "✅ ¡Email Copiado!";
-        setTimeout(() => btn.innerHTML = originalText, 2000);
-      }
-    });
+    const btn = document.getElementById('emailBtn');
+    const originalText = document.getElementById('emailText').textContent;
+    document.getElementById('emailText').textContent = "¡Email Copiado! / Copied!";
+    setTimeout(() => document.getElementById('emailText').textContent = originalText, 2000);
   }
 
   // Animaciones Scroll Reveal
@@ -349,7 +401,6 @@
     });
   }
 
-  // Efectos de Navbar y Botón Volver Arriba
   window.addEventListener('scroll', () => {
     const nav = document.getElementById('navbar');
     const btt = document.getElementById('backToTop');
@@ -363,7 +414,6 @@
     reveal();
   });
 
-  // Ejecución inicial
   reveal();
 </script>
 </body>
