@@ -18,9 +18,10 @@
     --bg-side: #313335;     
     --bg-card: #3c3f41;     
     --text: #a9b7c6;        
+    --text-title: #ffffff;  /* Títulos en modo oscuro */
     --text-dim: #808080;    
-    --accent: #cc7832;      /* Orange */
-    --accent-glow: rgba(204, 120, 50, 0.2);
+    --accent: #589df6;      /* Azul Darcula (Links/Methods) */
+    --accent-glow: rgba(88, 157, 246, 0.2);
     --border: #4d4d4d;      
     --grid: rgba(169, 183, 198, 0.03);
   }
@@ -29,7 +30,8 @@
     --bg: #f8fafc;
     --bg-side: #ffffff;
     --bg-card: #f1f5f9;
-    --text: #1e293b;
+    --text: #334155;
+    --text-title: #0f172a;  /* Títulos oscuros en modo claro */
     --text-dim: #64748b;
     --accent: #2563eb;
     --accent-glow: rgba(37, 99, 235, 0.1);
@@ -90,9 +92,10 @@
     margin: 0 auto 1.5rem; display: flex; align-items: center;
     justify-content: center; font-size: 36px; font-weight: 800;
     font-family: 'JetBrains Mono', monospace;
+    color: var(--text-title);
   }
 
-  .vcard-sidebar h1 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.5rem; color: #fff; }
+  .vcard-sidebar h1 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--text-title); }
   .vcard-sidebar .tag {
     background: var(--bg-card); color: var(--accent);
     padding: 6px 14px; border-radius: 8px; font-size: 10px;
@@ -140,7 +143,7 @@
   .tab.active { color: var(--accent); background: var(--bg-side); }
 
   section { padding-bottom: 2.5rem; }
-  .title-line { font-size: 1.8rem; font-weight: 800; margin-bottom: 2rem; position: relative; color: #fff; }
+  .title-line { font-size: 1.8rem; font-weight: 800; margin-bottom: 2rem; position: relative; color: var(--text-title); }
   .title-line::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 40px; height: 5px; background: var(--accent); border-radius: 10px; }
 
   /* PERSONAL CABECERA */
@@ -152,7 +155,7 @@
   .job-item[open] { border-left: 5px solid var(--accent); border-color: var(--accent); }
   .job-summary { padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none; outline: none; }
   .job-summary::-webkit-details-marker { display: none; }
-  .job-title { font-size: 16px; font-weight: 700; color: #fff; }
+  .job-title { font-size: 16px; font-weight: 700; color: var(--text-title); }
   .job-meta { font-size: 12px; color: var(--accent); font-weight: 700; margin-bottom: 4px; display: block; font-family: 'JetBrains Mono', monospace; }
   .job-body { padding: 0 1.5rem 1.5rem; font-size: 14px; color: var(--text-dim); line-height: 1.7; }
 
@@ -471,7 +474,7 @@
         <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:15px;">
           <div style="background:var(--bg-card); padding:20px; border-radius:16px; border:1px solid var(--border)">
             <span style="font-size:30px">🏍️</span>
-            <h4 style="margin-top:10px; color: #fff;"><span class="lang-es">Motos Scrambler</span><span class="lang-en">Scrambler Bikes</span></h4>
+            <h4 style="margin-top:10px; color: var(--text-title);"><span class="lang-es">Motos Scrambler</span><span class="lang-en">Scrambler Bikes</span></h4>
             <p style="font-size:12px; color:var(--text-dim); margin-top:5px;">
               <span class="lang-es">Proyectos mecánicos hands-on, modificaciones y engine swaps.</span>
               <span class="lang-en">Hands-on mechanical projects, modifications, and engine swaps.</span>
@@ -479,7 +482,7 @@
           </div>
           <div style="background:var(--bg-card); padding:20px; border-radius:16px; border:1px solid var(--border)">
             <span style="font-size:30px">⌚</span>
-            <h4 style="margin-top:10px; color: #fff;"><span class="lang-es">Casio Vintage</span><span class="lang-en">Vintage Casio</span></h4>
+            <h4 style="margin-top:10px; color: var(--text-title);"><span class="lang-es">Casio Vintage</span><span class="lang-en">Vintage Casio</span></h4>
             <p style="font-size:12px; color:var(--text-dim); margin-top:5px;">
               <span class="lang-es">Coleccionismo y restauración de relojería digital robusta (Geo Trail).</span>
               <span class="lang-en">Collecting and restoring rugged digital watches (Geo Trail).</span>
@@ -487,7 +490,7 @@
           </div>
           <div style="background:var(--bg-card); padding:20px; border-radius:16px; border:1px solid var(--border)">
             <span style="font-size:30px">🏀</span>
-            <h4 style="margin-top:10px; color: #fff;"><span class="lang-es">Análisis NBA</span><span class="lang-en">NBA Analytics</span></h4>
+            <h4 style="margin-top:10px; color: var(--text-title);"><span class="lang-es">Análisis NBA</span><span class="lang-en">NBA Analytics</span></h4>
             <p style="font-size:12px; color:var(--text-dim); margin-top:5px;">
               <span class="lang-es">Métricas avanzadas para comparar el rendimiento histórico de los 90s.</span>
               <span class="lang-en">Advanced metrics comparing historical 90s performance.</span>
@@ -495,7 +498,7 @@
           </div>
           <div style="background:var(--bg-card); padding:20px; border-radius:16px; border:1px solid var(--border)">
             <span style="font-size:30px">🤖</span>
-            <h4 style="margin-top:10px; color: #fff;"><span class="lang-es">Inteligencia Artificial</span><span class="lang-en">AI Tinkering</span></h4>
+            <h4 style="margin-top:10px; color: var(--text-title);"><span class="lang-es">Inteligencia Artificial</span><span class="lang-en">AI Tinkering</span></h4>
             <p style="font-size:12px; color:var(--text-dim); margin-top:5px;">
               <span class="lang-es">Exploración de LLMs y automatización de flujos con agentes autónomos.</span>
               <span class="lang-en">Exploring LLMs and automating workflows with autonomous agents.</span>
