@@ -5,27 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Jesús Rojas — IT Infrastructure Leader</title>
-<meta name="description" content="Líder de Infraestructura Tecnológica con más de 20 años de experiencia. Especialista en Azure, SAP B1 y Virtualización.">
-<meta property="og:title" content="Jesús Rojas | IT Infrastructure Leader">
-<meta property="og:image" content="https://jesuserl.github.io/og-image.jpg">
+<meta name="description" content="Líder de Infraestructura Tecnológica con más de 20 años de experiencia.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 
 <style>
   :root {
-    /* PALETA DARCULA PURA */
-    --bg: #2b2b2b;
-    --bg-side: #313335;
-    --bg-card: #3c3f41;
-    --text: #a9b7c6;
-    --text-dim: #808080;
-    --accent: #cc7832; /* Naranja Darcula Keywords */
+    /* PALETA DARCULA OFICIAL */
+    --bg: #2b2b2b;          /* Fondo principal */
+    --bg-side: #313335;     /* Sidebar/Gutter */
+    --bg-card: #3c3f41;     /* Tarjetas/Popups */
+    --text: #a9b7c6;        /* Texto (gris azulado) */
+    --text-dim: #808080;    /* Comentarios/Muted */
+    --accent: #cc7832;      /* Orange (Keywords) */
     --accent-glow: rgba(204, 120, 50, 0.2);
-    --border: #4d4d4d;
+    --border: #4d4d4d;      /* Líneas de división */
+    --success: #6a8759;     /* Verde (Strings) */
+    --info: #6897bb;        /* Azul (Numbers) */
     --grid: rgba(169, 183, 198, 0.03);
-    --white: #ffffff;
   }
 
   [data-theme="light"] {
@@ -40,13 +39,13 @@
     --grid: rgba(0,0,0,0.02);
   }
 
-  /* 1. SCROLLBAR PERSONALIZADO */
-  ::-webkit-scrollbar { width: 8px; }
+  /* BARRA DE DESPLAZAMIENTO ESTILO IDE */
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
-  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
-  ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+  ::-webkit-scrollbar-thumb { background: var(--bg-card); border: 2px solid var(--bg); border-radius: 5px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--border); }
 
-  html { scroll-behavior: smooth; color-scheme: light dark; }
+  html { scroll-behavior: smooth; }
   * { margin:0; padding:0; box-sizing:border-box; }
   
   body { 
@@ -56,7 +55,7 @@
     line-height: 1.6;
     background-image: linear-gradient(var(--grid) 1px, transparent 1px),
                       linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-    background-size: 40px 40px;
+    background-size: 50px 50px;
     background-attachment: fixed;
     min-height: 100vh;
   }
@@ -64,271 +63,243 @@
   /* PROGRESS BAR */
   #progressBar {
     position: fixed; top: 0; left: 0; height: 3px; 
-    background: var(--accent); width: 0%; 
-    z-index: 10000; transition: width 0.1s;
+    background: var(--accent); width: 0%; z-index: 9999;
   }
 
-  /* LAYOUT PRINCIPAL (vCard Style) */
-  .app-container {
-    max-width: 1200px;
+  /* LAYOUT PRINCIPAL */
+  .layout-wrapper {
+    max-width: 1250px;
     margin: 2rem auto;
-    padding: 0 1rem;
+    padding: 0 1.5rem 5rem 1.5rem;
     display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: 1.5rem;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
     align-items: start;
   }
 
-  /* SIDEBAR FIJO */
-  .sidebar {
+  /* SIDEBAR (vCard) */
+  .vcard-sidebar {
     background: var(--bg-side);
     border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 2.5rem 1.5rem;
+    border-radius: 24px;
+    padding: 3rem 2rem;
     position: sticky;
     top: 2rem;
     text-align: center;
-    z-index: 10;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
   }
 
-  .avatar-box {
-    width: 120px; height: 120px; background: var(--bg-card);
-    border: 2px solid var(--accent); border-radius: 20px;
+  .avatar {
+    width: 130px; height: 130px; background: var(--bg-card);
+    border: 2px solid var(--accent); border-radius: 24px;
     margin: 0 auto 1.5rem; display: flex; align-items: center;
-    justify-content: center; font-size: 40px; font-weight: 800;
-    color: var(--text); font-family: monospace;
+    justify-content: center; font-size: 44px; font-weight: 800;
+    color: var(--text); font-family: 'JetBrains Mono', monospace;
   }
 
-  .sidebar h1 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.5rem; }
-  .sidebar .badge {
+  .vcard-sidebar h1 { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; color: #fff; }
+  .vcard-sidebar .tag {
     background: var(--bg-card); color: var(--accent);
-    padding: 4px 12px; border-radius: 8px; font-size: 11px;
-    font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+    padding: 6px 14px; border-radius: 8px; font-size: 11px;
+    font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
   }
 
-  .sidebar-info {
-    margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border);
-    display: flex; flex-direction: column; gap: 1rem;
+  .contact-list {
+    margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--border);
+    display: flex; flex-direction: column; gap: 1.2rem;
   }
 
-  .info-item { display: flex; align-items: center; gap: 12px; font-size: 13px; color: var(--text-dim); }
-  .info-item svg { width: 18px; height: 18px; fill: var(--accent); }
+  .contact-item { display: flex; align-items: center; gap: 14px; font-size: 13px; text-decoration: none; color: var(--text-dim); transition: 0.2s; }
+  .contact-item:hover { color: var(--text); }
+  .contact-item svg { width: 20px; height: 20px; fill: var(--accent); flex-shrink: 0; }
 
-  /* MAIN CONTENT AREA */
-  .content-area {
+  /* CONTENIDO PRINCIPAL */
+  .main-content {
     background: var(--bg-side);
     border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 2rem;
+    border-radius: 24px;
+    padding: 3rem;
     position: relative;
-    min-height: 80vh;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
   }
 
-  /* TOP NAVIGATION (Tabs) */
-  .top-nav {
+  /* TABS NAVEGACIÓN */
+  .navigation-menu {
     position: absolute; top: 0; right: 0;
-    background: var(--bg-card); border-bottom-left-radius: 20px;
-    border-top-right-radius: 20px; border: 1px solid var(--border);
+    background: var(--bg-card); border-bottom-left-radius: 24px;
+    border-top-right-radius: 24px; border: 1px solid var(--border);
     display: flex; overflow: hidden;
   }
 
-  .nav-link {
-    padding: 12px 24px; font-size: 13px; font-weight: 700;
+  .nav-tab {
+    padding: 14px 28px; font-size: 13px; font-weight: 700;
     cursor: pointer; border: none; background: transparent;
     color: var(--text-dim); transition: 0.3s;
   }
-  .nav-link:hover { color: var(--accent); }
-  .nav-link.active { color: var(--accent); background: rgba(204, 120, 50, 0.05); }
+  .nav-tab.active { color: var(--accent); background: var(--bg-side); }
 
-  /* SECTION STYLES */
-  section { padding: 2rem 0; }
-  .section-title { font-size: 1.8rem; font-weight: 800; margin-bottom: 1.5rem; position: relative; padding-bottom: 10px; }
-  .section-title::after { content: ''; position: absolute; bottom: 0; left: 0; width: 40px; height: 4px; background: var(--accent); border-radius: 2px; }
+  /* SECCIONES */
+  section { padding: 1rem 0 3rem 0; opacity: 0; transform: translateY(20px); transition: 0.6s; }
+  section.active { opacity: 1; transform: translateY(0); }
 
-  /* ACORDEONES DAR CULA */
-  .accordion-group { display: flex; flex-direction: column; gap: 10px; margin-top: 1rem; }
-  .job-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
-  .job-card[open] { border-left: 4px solid var(--accent); border-color: var(--accent); box-shadow: 0 5px 20px var(--accent-glow); }
-  .job-summary { padding: 1.2rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none; user-select: none; }
+  .title-line { font-size: 2rem; font-weight: 800; margin-bottom: 2rem; position: relative; }
+  .title-line::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 50px; height: 5px; background: var(--accent); border-radius: 10px; }
+
+  /* ACORDEONES DARCULA */
+  .job-block { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; margin-bottom: 1rem; overflow: hidden; transition: 0.3s; }
+  .job-block[open] { border-left: 5px solid var(--accent); border-color: var(--accent); }
+  
+  .job-summary { padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none; }
   .job-summary::-webkit-details-marker { display: none; }
-  .job-title { font-size: 15px; font-weight: 700; color: var(--text); }
-  .job-company { font-size: 13px; color: var(--accent); font-weight: 700; display: block; }
-  .job-date { font-size: 12px; color: var(--text-dim); font-family: monospace; }
-  .job-content { padding: 0 1.2rem 1.2rem; font-size: 14px; color: var(--text-dim); line-height: 1.6; animation: slideIn 0.3s ease; }
+  
+  .job-info h3 { font-size: 16px; font-weight: 700; color: #fff; }
+  .job-info .company { color: var(--accent); font-weight: 700; font-size: 14px; }
+  .job-info .date { font-size: 12px; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; }
 
-  @keyframes slideIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+  .job-details { padding: 0 1.5rem 1.5rem 1.5rem; font-size: 14px; color: var(--text-dim); line-height: 1.7; }
 
-  /* SKILL TAGS */
-  .skills-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1rem; }
-  .skill-tag { background: var(--bg-card); border: 1px solid var(--border); padding: 5px 12px; border-radius: 8px; font-size: 12px; font-weight: 600; color: var(--text); }
+  /* SKILLS TAGS */
+  .skills-container { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1rem; }
+  .skill-pill { background: var(--bg); border: 1px solid var(--border); padding: 6px 14px; border-radius: 10px; font-size: 12px; font-weight: 600; }
 
-  /* PERSONAL CARDS (Glassmorphism) */
-  .personal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
-  .p-card { background: var(--bg-card); border: 1px solid var(--border); padding: 1.5rem; border-radius: 16px; transition: 0.3s; }
-  .p-card:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 10px 25px var(--accent-glow); }
-  .p-icon { font-size: 28px; margin-bottom: 0.8rem; display: block; }
-  .p-card h3 { font-size: 15px; margin-bottom: 6px; }
-  .p-card p { font-size: 13px; color: var(--text-dim); }
+  /* ACCESIBILIDAD */
+  button:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px dashed var(--accent); outline-offset: 4px; }
 
-  /* BOTÓN FLOTANTE E IMPRESIÓN */
-  #backToTop { position: fixed; bottom: 30px; right: 30px; width: 45px; height: 45px; border-radius: 12px; background: var(--accent); color: #fff; border: none; cursor: pointer; display: none; z-index: 1000; font-family: monospace; font-size: 18px; }
-
-  @media print {
-    body { background: white !important; color: black !important; }
-    .sidebar, .top-nav, #progressBar, #backToTop, .bottom-nav { display: none !important; }
-    .app-container { display: block !important; }
-    .content-area { border: none !important; }
-    details { display: block !important; margin-bottom: 1.5rem; }
-    details[open] .job-content { display: block !important; }
-  }
-
-  /* 2. NAVEGACIÓN MÓVIL (Bottom App Bar) */
-  .bottom-nav {
+  /* MOBILE NAVIGATION */
+  .mobile-navbar {
     display: none; position: fixed; bottom: 0; left: 0; right: 0;
-    background: rgba(49, 51, 53, 0.9); backdrop-filter: blur(10px);
-    border-top: 1px solid var(--border); z-index: 1000;
-    justify-content: space-around; padding: 10px 0;
+    background: rgba(43, 43, 43, 0.95); backdrop-filter: blur(15px);
+    border-top: 1px solid var(--border); z-index: 999;
+    justify-content: space-around; padding: 15px 0;
   }
 
-  @media (max-width: 900px) {
-    .app-container { grid-template-columns: 1fr; margin-top: 1rem; }
-    .sidebar { position: static; margin-bottom: 1.5rem; }
-    .top-nav { display: none; }
-    .bottom-nav { display: flex; }
-    .content-area { padding-bottom: 5rem; }
+  @media (max-width: 950px) {
+    .layout-wrapper { grid-template-columns: 1fr; margin-top: 1rem; }
+    .vcard-sidebar { position: static; }
+    .navigation-menu { display: none; }
+    .mobile-navbar { display: flex; }
+    .main-content { padding: 2rem; border-radius: 20px; }
   }
 
-  @media (max-width: 600px) {
-    .job-header { flex-direction: column; }
-    .section-title { font-size: 1.4rem; }
+  /* PRINT MODE */
+  @media print {
+    body { background: white !important; color: black !important; background-image: none !important; }
+    .vcard-sidebar, .mobile-navbar, #progressBar, .navigation-menu { display: none !important; }
+    .layout-wrapper { display: block !important; width: 100% !important; margin: 0 !important; }
+    .main-content { border: none !important; width: 100% !important; }
+    details { display: block !important; border: none !important; border-bottom: 1px solid #eee !important; }
+    details .job-details { display: block !important; padding: 10px 0 !important; }
   }
 </style>
 </head>
-<body data-theme="dark" lang="es">
+<body data-theme="dark">
 
 <div id="progressBar"></div>
 
-<div class="app-container">
+<div class="layout-wrapper">
   
-  <aside class="sidebar">
-    <div class="avatar-box">JR_</div>
-    <h1>Jesús Enrique Rojas L.</h1>
-    <div class="badge">IT Infrastructure Specialist</div>
+  <aside class="vcard-sidebar">
+    <div class="avatar">JR_</div>
+    <h1>Jesús Rojas L.</h1>
+    <span class="tag">Infrastructure Specialist</span>
     
-    <div class="sidebar-info">
-      <div class="info-item">
+    <div class="contact-list">
+      <a href="mailto:jesuserl@gmail.com" class="contact-item">
         <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-        <span onclick="copyEmail()" style="cursor:pointer" class="email-text">jesuserl@gmail.com</span>
-      </div>
-      <div class="info-item">
-        <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.82 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        <span class="email-text">jesuserl@gmail.com</span>
+      </a>
+      <a href="https://wa.me/584224427392" class="contact-item">
+        <svg viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.185-.573c.948.527 2.023.814 3.146.814 3.182 0 5.768-2.586 5.769-5.766 0-3.18-2.586-5.766-5.769-5.766z"/></svg>
         <span>+58 422 4427392</span>
-      </div>
-      <div class="info-item">
-        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-        <span>Venezuela</span>
+      </a>
+      <div class="contact-item">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+        <span>Caracas / Valencia, VZ</span>
       </div>
     </div>
 
     <div style="margin-top: 2rem; display: flex; justify-content: center; gap: 10px;">
-      <button class="icon-btn" onclick="toggleLang()" id="langBtn" title="Cambiar Idioma">EN</button>
-      <button class="icon-btn" onclick="toggleTheme()" id="themeBtn" title="Modo Claro/Oscuro">☀️</button>
+      <button class="icon-btn" onclick="toggleLang()" id="langBtn">EN</button>
+      <button class="icon-btn" onclick="toggleTheme()" id="themeBtn">☀️</button>
     </div>
 
-    <a href="Resumen Curricular - Ing. Jesus Rojas -V4.pdf" download class="contact-link btn-pdf" style="margin-top: 1.5rem; background: var(--accent); color: white; border-radius: 12px; padding: 12px; display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; font-weight: 700; font-size: 13px;">
-      <svg style="width:16px; fill:white" viewBox="0 0 24 24"><path d="M12 21l-8-9h6v-12h4v12h6l-8 9zm9-1v2h-18v-2h-2v4h22v-4h-2z"/></svg>
+    <a href="Resumen Curricular - Ing. Jesus Rojas -V4.pdf" download class="btn-pdf" style="margin-top: 2rem; background: var(--accent); color: white; border-radius: 12px; padding: 14px; display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; font-weight: 700; font-size: 13px;">
+      <svg style="width:18px; fill:white" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
       <span class="lang-es">Descargar CV</span><span class="lang-en">Download CV</span>
     </a>
   </aside>
 
-  <main class="content-area">
+  <main class="main-content">
     
-    <nav class="top-nav">
-      <button class="nav-link active" onclick="switchView('pro', this)">
-        <span class="lang-es">Profesional</span><span class="lang-en">Professional</span>
-      </button>
-      <button class="nav-link" onclick="switchView('personal', this)">
-        <span class="lang-es">Personal</span><span class="lang-en">Personal</span>
-      </button>
+    <nav class="navigation-menu">
+      <button class="nav-tab active" onclick="switchView('pro', this)">PROFESIONAL</button>
+      <button class="nav-tab" onclick="switchView('personal', this)">PERSONAL</button>
     </nav>
 
-    <div id="view-pro" class="view active">
-      <section>
-        <h2 class="section-title"><span class="lang-es">Perfil</span><span class="lang-en">About</span></h2>
+    <div id="view-pro" class="view-content active">
+      <section class="active">
+        <h2 class="title-line">Perfil Profesional</h2>
         <p class="about-text">
-          <span class="lang-es">Especialista en Sistemas con más de 20 años de experiencia técnica. Experto en infraestructura de servidores, virtualización local (VMware, Hyper-V) y Cloud (Azure), aseguramiento de información y consultoría funcional para ERPs (SAP Business One) y CRMs.</span>
-          <span class="lang-en">Systems Specialist with over 20 years of technical experience. Expert in server infrastructure, local virtualization (VMware, Hyper-V) and Cloud (Azure), information assurance, and functional consulting for ERPs (SAP Business One) and CRMs.</span>
+          <span class="lang-es">Ingeniero de Sistemas con más de 20 años de experiencia técnica. Especialista en infraestructura crítica, virtualización Cloud (Azure) y local (VMware), y consultoría para ERPs como SAP Business One.</span>
+          <span class="lang-en">Systems Engineer with 20+ years of technical experience. Specialist in critical infrastructure, Cloud (Azure) and local (VMware) virtualization, and SAP Business One consulting.</span>
         </p>
-      </section>
-
-      <section>
-        <h2 class="section-title">Skills</h2>
-        <div class="skills-grid">
-          <span class="skill-tag">Microsoft Azure</span><span class="skill-tag">VMware ESXi</span><span class="skill-tag">SAP Business One</span>
-          <span class="skill-tag">WatchGuard</span><span class="skill-tag">Mikrotik</span><span class="skill-tag">Windows Server</span>
-          <span class="skill-tag">Linux</span><span class="skill-tag">Docker</span><span class="skill-tag">Hyper-V</span><span class="skill-tag">Odoo</span>
+        
+        <div class="skills-container">
+          <span class="skill-pill">Azure Cloud</span><span class="skill-pill">VMware</span><span class="skill-pill">WatchGuard</span>
+          <span class="skill-pill">Mikrotik</span><span class="skill-pill">SAP B1</span><span class="skill-pill">Hyper-V</span>
         </div>
       </section>
 
-      <section>
-        <h2 class="section-title"><span class="lang-es">Experiencia</span><span class="lang-en">Experience</span></h2>
+      <section class="active">
+        <h2 class="title-line">Experiencia</h2>
         <div class="accordion-group">
-          <details class="job-card" name="work" open>
+          
+          <details class="job-block" open>
             <summary class="job-summary">
-              <div>
-                <span class="job-date">2024 — <span class="lang-es">Actual</span><span class="lang-en">Present</span></span>
-                <span class="job-company">Ron Carúpano</span>
-                <span class="job-title">IT Infrastructure Specialist</span>
+              <div class="job-info">
+                <span class="date">2024 — ACTUAL</span>
+                <div class="company">Ron Carúpano</div>
+                <h3>IT Infrastructure Specialist</h3>
               </div>
-              <span class="job-icon">+</span>
+              <span style="color:var(--accent)">+</span>
             </summary>
-            <div class="job-content">
-              <span class="lang-es">Diseño e implementación de estrategias tecnológicas, administración de redes críticas, firewalls (WatchGuard) y virtualización corporativa.</span>
-              <span class="lang-en">Design and implementation of technological strategies, administration of critical networks, firewalls (WatchGuard), and corporate virtualization.</span>
+            <div class="job-details">
+              <span class="lang-es">Lidero la arquitectura de red y seguridad perimetral. Gestión de servidores corporativos y planes de recuperación ante desastres.</span>
+              <span class="lang-en">Leading network architecture and perimeter security. Corporate server management and disaster recovery plans.</span>
             </div>
           </details>
 
-          <details class="job-card" name="work">
+          <details class="job-block">
             <summary class="job-summary">
-              <div>
-                <span class="job-date">2018 — 2022</span>
-                <span class="job-company">PRN Consultores</span>
-                <span class="job-title">IT Consultant — SAP B1</span>
+              <div class="job-info">
+                <span class="date">2018 — 2022</span>
+                <div class="company">PRN Consultores</div>
+                <h3>IT Consultant SAP B1</h3>
               </div>
-              <span class="job-icon">+</span>
+              <span style="color:var(--accent)">+</span>
             </summary>
-            <div class="job-content">
-              <span class="lang-es">Soporte a infraestructura Cloud/On-premise para entornos SAP Business One (SQL/HANA).</span>
-              <span class="lang-en">Cloud/On-premise infrastructure support for SAP Business One environments (SQL/HANA).</span>
+            <div class="job-details">
+              Atención remota y presencial a servidores en Cloud y Onpremise sobre plataformas SQL y HANA. Assessment de plataforma IT.
             </div>
           </details>
-          </div>
+
+        </div>
       </section>
     </div>
 
-    <div id="view-personal" class="view">
-      <section>
-        <h2 class="section-title"><span class="lang-es">Pasiones</span><span class="lang-en">Interests</span></h2>
-        <div class="personal-grid">
-          <div class="p-card">
-            <span class="p-icon">🏍️</span>
-            <h3>Scrambler Project</h3>
-            <p><span class="lang-es">Modificación de motos y engine swaps (motores Zongshen/Loncin).</span><span class="lang-en">Customizing bikes and engine swaps (Zongshen/Loncin).</span></p>
+    <div id="view-personal" class="view-content" style="display:none">
+       <section class="active">
+        <h2 class="title-line">Pasiones</h2>
+        <div class="skills-container" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:20px;">
+          <div style="background:var(--bg-card); padding:20px; border-radius:15px; border:1px solid var(--border)">
+            <span style="font-size:30px">🏍️</span>
+            <h4>Motos Scrambler</h4>
+            <p style="font-size:12px; color:var(--text-dim)">Engine swaps y mecánica hands-on.</p>
           </div>
-          <div class="p-card">
-            <span class="p-icon">⌚</span>
-            <h3>Vintage Casio</h3>
-            <p><span class="lang-es">Coleccionismo y restauración de relojes digitales robustos (Geo Trail).</span><span class="lang-en">Collecting and restoring rugged digital watches (Geo Trail).</span></p>
-          </div>
-          <div class="p-card">
-            <span class="p-icon">🏀</span>
-            <h3>NBA Analytics</h3>
-            <p><span class="lang-es">Análisis estadístico de la era dorada de los 90s.</span><span class="lang-en">Statistical analysis of the 90s golden era.</span></p>
-          </div>
-          <div class="p-card">
-            <span class="p-icon">🤖</span>
-            <h3>Local AI</h3>
-            <p><span class="lang-es">Implementación de agentes de IA locales para automatización.</span><span class="lang-en">Deploying local AI agents for automation.</span></p>
+          <div style="background:var(--bg-card); padding:20px; border-radius:15px; border:1px solid var(--border)">
+            <span style="font-size:30px">⌚</span>
+            <h4>Casio Vintage</h4>
+            <p style="font-size:12px; color:var(--text-dim)">Restauración de relojería digital.</p>
           </div>
         </div>
       </section>
@@ -337,41 +308,30 @@
   </main>
 </div>
 
-<nav class="bottom-nav">
-  <button class="nav-link active" onclick="switchView('pro', this)">💼</button>
-  <button class="nav-link" onclick="switchView('personal', this)">👤</button>
-  <button class="nav-link" onclick="window.scrollTo(0,0)">🔝</button>
+<nav class="mobile-navbar">
+  <button class="nav-tab active" onclick="switchView('pro', this)">💼</button>
+  <button class="nav-tab" onclick="switchView('personal', this)">👤</button>
+  <button class="nav-tab" onclick="window.scrollTo(0,0)">🔝</button>
 </nav>
 
-<button id="backToTop" onclick="window.scrollTo(0,0)">↑</button>
-
 <script>
-  let currentLang = 'es';
-  const themeBtn = document.getElementById('themeBtn');
-  const langBtn = document.getElementById('langBtn');
+  function switchView(view, btn) {
+    document.querySelectorAll('.view-content').forEach(v => v.style.display = 'none');
+    document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+    document.getElementById('view-' + view).style.display = 'block';
+    btn.classList.add('active');
+  }
 
   function toggleTheme() {
     const isDark = document.body.dataset.theme === 'dark';
     document.body.dataset.theme = isDark ? 'light' : 'dark';
-    themeBtn.textContent = isDark ? '🌙' : '☀️';
+    document.getElementById('themeBtn').textContent = isDark ? '🌙' : '☀️';
   }
 
   function toggleLang() {
-    currentLang = currentLang === 'es' ? 'en' : 'es';
-    document.body.lang = currentLang;
-    langBtn.textContent = currentLang === 'es' ? 'EN' : 'ES';
-  }
-
-  function switchView(view, btn) {
-    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-    document.querySelectorAll('.nav-link').forEach(b => b.classList.remove('active'));
-    document.getElementById('view-' + view).classList.add('active');
-    btn.classList.add('active');
-  }
-
-  function copyEmail() {
-    navigator.clipboard.writeText("jesuserl@gmail.com");
-    alert("Email copiado al portapapeles / Email copied!");
+    const lang = document.body.lang === 'es' ? 'en' : 'es';
+    document.body.lang = lang;
+    document.getElementById('langBtn').textContent = lang.toUpperCase();
   }
 
   window.addEventListener('scroll', () => {
@@ -379,8 +339,6 @@
     const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     const scrolled = (winScroll / height) * 100;
     document.getElementById('progressBar').style.width = scrolled + "%";
-    
-    document.getElementById('backToTop').style.display = window.scrollY > 300 ? 'block' : 'none';
   });
 </script>
 </body>
