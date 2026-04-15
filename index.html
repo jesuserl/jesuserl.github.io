@@ -109,6 +109,7 @@
     background: var(--bg-card); border: 1px solid var(--border);
     padding: 12px 16px; border-radius: 12px; text-decoration: none;
     color: var(--text); font-size: 13px; font-weight: 600; transition: 0.2s;
+    cursor: pointer;
   }
   .contact-box:hover { border-color: var(--accent); transform: translateY(-2px); }
   .contact-box svg { width: 20px; height: 20px; fill: var(--accent); flex-shrink: 0; }
@@ -138,7 +139,7 @@
   }
   .tab.active { color: var(--accent); background: var(--bg-side); }
 
-  section { padding-bottom: 2rem; }
+  section { padding-bottom: 2.5rem; }
   .title-line { font-size: 1.8rem; font-weight: 800; margin-bottom: 2rem; position: relative; color: #fff; }
   .title-line::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 40px; height: 5px; background: var(--accent); border-radius: 10px; }
 
@@ -147,13 +148,17 @@
   .personal-img { width: 140px; height: 140px; border-radius: 50%; border: 3px solid var(--accent); object-fit: cover; }
 
   /* ACORDEONES */
-  .job-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; margin-bottom: 12px; overflow: hidden; }
-  .job-item[open] { border-left: 5px solid var(--accent); }
-  .job-summary { padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none; }
+  .job-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; margin-bottom: 12px; overflow: hidden; transition: 0.3s; }
+  .job-item[open] { border-left: 5px solid var(--accent); border-color: var(--accent); }
+  .job-summary { padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none; outline: none; }
   .job-summary::-webkit-details-marker { display: none; }
   .job-title { font-size: 16px; font-weight: 700; color: #fff; }
-  .job-meta { font-size: 12px; color: var(--accent); font-weight: 700; margin-bottom: 4px; display: block; }
-  .job-body { padding: 0 1.5rem 1.5rem; font-size: 14px; color: var(--text-dim); }
+  .job-meta { font-size: 12px; color: var(--accent); font-weight: 700; margin-bottom: 4px; display: block; font-family: 'JetBrains Mono', monospace; }
+  .job-body { padding: 0 1.5rem 1.5rem; font-size: 14px; color: var(--text-dim); line-height: 1.7; }
+
+  /* SKILLS TAGS */
+  .skills-container { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1rem; }
+  .skill-pill { background: var(--bg); border: 1px solid var(--border); padding: 6px 14px; border-radius: 10px; font-size: 12px; font-weight: 600; }
 
   /* MOBILE */
   .mobile-bar {
@@ -209,8 +214,8 @@
     </div>
 
     <div style="margin-top: 2rem; display: flex; justify-content: center; gap: 8px;">
-      <button class="icon-btn" style="padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text); cursor: pointer;" onclick="toggleLang()" id="langBtn">EN</button>
-      <button class="icon-btn" style="padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text); cursor: pointer;" onclick="toggleTheme()" id="themeBtn">☀️</button>
+      <button class="contact-box" style="padding: 10px; border-radius: 8px;" onclick="toggleLang()" id="langBtn">EN</button>
+      <button class="contact-box" style="padding: 10px; border-radius: 8px;" onclick="toggleTheme()" id="themeBtn">☀️</button>
     </div>
 
     <a href="Resumen Curricular - Ing. Jesus Rojas -V4.pdf" download class="contact-box" style="margin-top: 1.5rem; background: var(--accent); color: white; justify-content: center; border: none;">
@@ -227,28 +232,233 @@
     </nav>
 
     <div id="view-pro" class="view-content active">
+      
       <section>
-        <h2 class="title-line"><span class="lang-es">Sobre Mí</span><span class="lang-en">About Me</span></h2>
-        <p style="color: var(--text-dim);">Ingeniero de Sistemas con más de 20 años de experiencia, especializado en infraestructura de servidores, virtualización en entornos locales y Cloud (Azure).</p>
+        <h2 class="title-line"><span class="lang-es">Perfil Profesional</span><span class="lang-en">Professional Profile</span></h2>
+        <p style="color: var(--text-dim); line-height: 1.8;">
+          <span class="lang-es">Ingeniero de Sistemas con más de 20 años de experiencia técnica. Experto en infraestructura de servidores, virtualización en entornos locales (VMware, Hyper-V) y Cloud (Azure), aseguramiento de información y consultoría funcional para ERPs (SAP Business One) y CRMs.</span>
+          <span class="lang-en">Systems Engineer with over 20 years of technical experience. Expert in server infrastructure, local virtualization (VMware, Hyper-V) and Cloud (Azure) environments, information assurance, and functional consulting for ERPs (SAP Business One) and CRMs.</span>
+        </p>
+        
+        <div class="skills-container">
+          <span class="skill-pill">Microsoft Azure</span>
+          <span class="skill-pill">Microsoft 365</span>
+          <span class="skill-pill">VMware ESX</span>
+          <span class="skill-pill">Hyper-V</span>
+          <span class="skill-pill">Windows Server</span>
+          <span class="skill-pill">Linux</span>
+          <span class="skill-pill">SAP Business One</span>
+          <span class="skill-pill">Dynamics CRM</span>
+          <span class="skill-pill">Odoo</span>
+          <span class="skill-pill">Fortigate / Sophos</span>
+          <span class="skill-pill">Mikrotik / WatchGuard</span>
+          <span class="skill-pill">SQL Server / SAP HANA</span>
+          <span class="skill-pill">Docker</span>
+        </div>
       </section>
 
       <section>
-        <h2 class="title-line"><span class="lang-es">Experiencia</span><span class="lang-en">Experience</span></h2>
-        <div class="job-item" open>
-          <details open>
-            <summary class="job-summary">
-              <div class="job-info">
-                <span class="job-meta">2024 — <span class="lang-es">ACTUAL</span><span class="lang-en">PRESENT</span></span>
-                <span class="job-title">IT Infrastructure Specialist // Ron Carúpano</span>
-              </div>
-              <span style="color:var(--accent)">+</span>
-            </summary>
-            <div class="job-body">
-              Diseño e implementación de estrategias tecnológicas, administración de redes críticas y virtualización.
+        <h2 class="title-line"><span class="lang-es">Experiencia Laboral</span><span class="lang-en">Work Experience</span></h2>
+        
+        <details class="job-item" open>
+          <summary class="job-summary">
+            <div class="job-info">
+              <span class="job-meta">Sep 2024 — <span class="lang-es">ACTUAL</span><span class="lang-en">PRESENT</span></span>
+              <span class="job-title"><span class="lang-es">Especialista de Infraestructura Tecnológica</span><span class="lang-en">IT Infrastructure Specialist</span> // Ron Carúpano</span>
             </div>
-          </details>
-        </div>
-        </section>
+            <span style="color:var(--accent); font-size:18px;">+</span>
+          </summary>
+          <div class="job-body">
+            <span class="lang-es">Diseño e implementación de estrategias tecnológicas, configuración de servidores, administración de redes (firewalls, routers, switches y VPNs), y gestión de soluciones de almacenamiento y virtualización.</span>
+            <span class="lang-en">Design and implementation of technological strategies, server configuration, network administration (firewalls, routers, switches, and VPNs), and management of storage and virtualization solutions.</span>
+          </div>
+        </details>
+
+        <details class="job-item">
+          <summary class="job-summary">
+            <div class="job-info">
+              <span class="job-meta">Jul 2022 — Ene 2024</span>
+              <span class="job-title"><span class="lang-es">Consultor IT Freelance</span><span class="lang-en">Independent IT Consultant</span> // Lima, Perú</span>
+            </div>
+            <span style="color:var(--accent); font-size:18px;">+</span>
+          </summary>
+          <div class="job-body">
+            <span class="lang-es">Desarrollo de múltiples proyectos tecnológicos independientes, asesoría en infraestructura e implementaciones como consultor freelance.</span>
+            <span class="lang-en">Development of multiple independent technology projects, infrastructure consulting, and implementations as a freelance consultant.</span>
+          </div>
+        </details>
+
+        <details class="job-item">
+          <summary class="job-summary">
+            <div class="job-info">
+              <span class="job-meta">Dic 2018 — Sep 2022</span>
+              <span class="job-title">Consultor de IT — SAP B1 // PRN Consultores S.A.C</span>
+            </div>
+            <span style="color:var(--accent); font-size:18px;">+</span>
+          </summary>
+          <div class="job-body">
+            <span class="lang-es">Atención remota y presencial a servidores en Cloud y On-premise en plataforma SQL y HANA. Assessment de Plataforma IT y creación de reportes en Crystal Reports.</span>
+            <span class="lang-en">Remote and on-site support for Cloud and On-premise servers on SQL and HANA platforms. IT Platform assessment and creation of Crystal Reports.</span>
+          </div>
+        </details>
+
+        <details class="job-item">
+          <summary class="job-summary">
+            <div class="job-info">
+              <span class="job-meta">Mar 2019 — Nov 2020</span>
+              <span class="job-title">Consultor de IT // Seidor Centro América y el Caribe</span>
+            </div>
+            <span style="color:var(--accent); font-size:18px;">+</span>
+          </summary>
+          <div class="job-body">
+            <span class="lang-es">Soporte a la Plataforma de SAP Business One, brindando atención a servidores Cloud/On-premise. Assessment y mejoras en procesos tecnológicos.</span>
+            <span class="lang-en">SAP Business One platform support, providing service to Cloud/On-premise servers. Assessment and improvements in technological processes.</span>
+          </div>
+        </details>
+
+        <details class="job-item">
+          <summary class="job-summary">
+            <div class="job-info">
+              <span class="job-meta">Sep 2014 — Sep 2017</span>
+              <span class="job-title"><span class="lang-es">Gerente de Soporte IT</span><span class="lang-en">IT Support Manager</span> // Grupo Vamatech</span>
+            </div>
+            <span style="color:var(--accent); font-size:18px;">+</span>
+          </summary>
+          <div class="job-body">
+            <span class="lang-es">Gerencia del Soporte SAP B1 y apoyo en despliegues Cloud (Azure). Consultoría en Dynamics CRM, SAP B1 y despliegues locales de Odoo con Docker.</span>
+            <span class="lang-en">Management of SAP B1 Support and Azure Cloud deployments. Dynamics CRM, SAP B1 consulting, and local Odoo deployments with Docker.</span>
+          </div>
+        </details>
+
+        <details class="job-item">
+          <summary class="job-summary">
+            <div class="job-info">
+              <span class="job-meta">Sep 2013 — Sep 2014</span>
+              <span class="job-title"><span class="lang-es">Coordinador de IT</span><span class="lang-en">IT Coordinator</span> // TOP MOBILIER, C.A (Eurosillas)</span>
+            </div>
+            <span style="color:var(--accent); font-size:18px;">+</span>
+          </summary>
+          <div class="job-body">
+            <span class="lang-es">Encargado del área tecnológica, soporte al sistema Profit Plus, estabilización de servidores (cero caídas), creación de planes de respaldo y reportes.</span>
+            <span class="lang-en">In charge of the technological area, Profit Plus system support, server stabilization (zero downtime), creation of backup plans and reports.</span>
+          </div>
+        </details>
+
+        <details class="job-item">
+          <summary class="job-summary">
+            <div class="job-info">
+              <span class="job-meta">Nov 2011 — Jun 2013</span>
+              <span class="job-title"><span class="lang-es">Ingeniero de IT (Preventa y Consultoría)</span><span class="lang-en">IT Engineer (Presales & Consulting)</span> // O&M Consultores</span>
+            </div>
+            <span style="color:var(--accent); font-size:18px;">+</span>
+          </summary>
+          <div class="job-body">
+            <span class="lang-es">Implementación de VMware ESXi, vCenter Server, configuración de servidores HP en Datacenter (SAN Switch, fibra) y despliegue de nube privada.</span>
+            <span class="lang-en">VMware ESXi and vCenter Server implementation, HP server configuration in Datacenter (SAN Switch, fiber) and private cloud deployment.</span>
+          </div>
+        </details>
+
+        <details class="job-item">
+          <summary class="job-summary">
+            <div class="job-info">
+              <span class="job-meta">Dic 2009 — Oct 2011</span>
+              <span class="job-title"><span class="lang-es">Gerente de Tecnología</span><span class="lang-en">Technology Manager</span> // Inv. y Sum. Informáticos JRAA</span>
+            </div>
+            <span style="color:var(--accent); font-size:18px;">+</span>
+          </summary>
+          <div class="job-body">
+            <span class="lang-es">Empresa propia. Ventas y servicios tecnológicos orientados a productos empresariales de HP y Symantec.</span>
+            <span class="lang-en">Own company. Sales and technology services oriented to enterprise products from HP and Symantec.</span>
+          </div>
+        </details>
+
+        <details class="job-item">
+          <summary class="job-summary">
+            <div class="job-info">
+              <span class="job-meta">Nov 2004 — Dic 2008</span>
+              <span class="job-title"><span class="lang-es">Director de Informática</span><span class="lang-en">IT Director</span> // IVEC</span>
+            </div>
+            <span style="color:var(--accent); font-size:18px;">+</span>
+          </summary>
+          <div class="job-body">
+            <span class="lang-es">Dirección de informática, control de proyectos IT para 230 usuarios. Mejoras en sistemas desarrollados, migración a nuevas plataformas y expansión del DataCenter.</span>
+            <span class="lang-en">IT direction, IT project control for 230 users. Improvements in developed systems, migration to new platforms and DataCenter expansion.</span>
+          </div>
+        </details>
+
+        <details class="job-item">
+          <summary class="job-summary">
+            <div class="job-info">
+              <span class="job-meta"><span class="lang-es">OTRO</span><span class="lang-en">OTHER</span></span>
+              <span class="job-title"><span class="lang-es">Experiencia Docente</span><span class="lang-en">Teaching Experience</span> // Universidad de Carabobo & IUTEPI</span>
+            </div>
+            <span style="color:var(--accent); font-size:18px;">+</span>
+          </summary>
+          <div class="job-body">
+            <span class="lang-es"><strong>UC:</strong> Plataforma Computacional I y II. <br><strong>IUTEPI:</strong> Lógica y Diagramación, Introducción a la Computación.</span>
+            <span class="lang-en"><strong>UC:</strong> Computational Platform I & II. <br><strong>IUTEPI:</strong> Logic and Flowcharting, Introduction to Computing.</span>
+          </div>
+        </details>
+
+      </section>
+
+      <section>
+        <h2 class="title-line"><span class="lang-es">Educación & Certificaciones</span><span class="lang-en">Education & Certifications</span></h2>
+        
+        <details class="job-item" open>
+          <summary class="job-summary">
+            <div class="job-info">
+              <span class="job-meta">1999 — 2004</span>
+              <span class="job-title"><span class="lang-es">Ingeniero de Sistemas</span><span class="lang-en">Systems Engineer</span> // Universidad Bicentenaria de Aragua</span>
+            </div>
+            <span style="color:var(--accent); font-size:18px;">+</span>
+          </summary>
+          <div class="job-body">
+            <span class="lang-es">Máxima nota en defensa de tesis de grado.</span>
+            <span class="lang-en">Highest grade in thesis defense.</span>
+          </div>
+        </details>
+
+        <details class="job-item">
+          <summary class="job-summary">
+            <div class="job-info">
+              <span class="job-meta">1996 — 1999</span>
+              <span class="job-title">T.S.U. en Administración mención Informática // CUMT</span>
+            </div>
+            <span style="color:var(--accent); font-size:18px;">+</span>
+          </summary>
+          <div class="job-body"></div>
+        </details>
+
+        <details class="job-item">
+          <summary class="job-summary">
+            <div class="job-info">
+              <span class="job-meta"><span class="lang-es">CERTIFICACIÓN</span><span class="lang-en">CERTIFICATION</span></span>
+              <span class="job-title">Mikrotik MTCNA-1706NA7858</span>
+            </div>
+            <span style="color:var(--accent); font-size:18px;">+</span>
+          </summary>
+          <div class="job-body">
+            Mikrotik Certified Network Associate.
+          </div>
+        </details>
+
+        <details class="job-item">
+          <summary class="job-summary">
+            <div class="job-info">
+              <span class="job-meta"><span class="lang-es">FORMACIÓN CONTINUA</span><span class="lang-en">CONTINUOUS TRAINING</span></span>
+              <span class="job-title"><span class="lang-es">Especializaciones & Reconocimientos</span><span class="lang-en">Specializations & Recognitions</span></span>
+            </div>
+            <span style="color:var(--accent); font-size:18px;">+</span>
+          </summary>
+          <div class="job-body">
+            <span class="lang-es">Múltiples capacitaciones en entornos GNU/Linux Avanzado, Seguridad en Linux, MVA Microsoft Virtualization (Hyper-V), Office 365, Symantec Backup Exec y VMware VSP5.</span>
+            <span class="lang-en">Multiple trainings in Advanced GNU/Linux, Linux Security, MVA Microsoft Virtualization (Hyper-V), Office 365, Symantec Backup Exec, and VMware VSP5.</span>
+          </div>
+        </details>
+
+      </section>
+
     </div>
 
     <div id="view-personal" class="view-content" style="display:none">
@@ -261,13 +471,35 @@
         <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:15px;">
           <div style="background:var(--bg-card); padding:20px; border-radius:16px; border:1px solid var(--border)">
             <span style="font-size:30px">🏍️</span>
-            <h4 style="margin-top:10px">Motos Scrambler</h4>
-            <p style="font-size:12px; color:var(--text-dim)">Proyectos mecánicos y personalización.</p>
+            <h4 style="margin-top:10px; color: #fff;"><span class="lang-es">Motos Scrambler</span><span class="lang-en">Scrambler Bikes</span></h4>
+            <p style="font-size:12px; color:var(--text-dim); margin-top:5px;">
+              <span class="lang-es">Proyectos mecánicos hands-on, modificaciones y engine swaps.</span>
+              <span class="lang-en">Hands-on mechanical projects, modifications, and engine swaps.</span>
+            </p>
           </div>
           <div style="background:var(--bg-card); padding:20px; border-radius:16px; border:1px solid var(--border)">
             <span style="font-size:30px">⌚</span>
-            <h4 style="margin-top:10px">Casio Vintage</h4>
-            <p style="font-size:12px; color:var(--text-dim)">Coleccionismo de relojería digital.</p>
+            <h4 style="margin-top:10px; color: #fff;"><span class="lang-es">Casio Vintage</span><span class="lang-en">Vintage Casio</span></h4>
+            <p style="font-size:12px; color:var(--text-dim); margin-top:5px;">
+              <span class="lang-es">Coleccionismo y restauración de relojería digital robusta (Geo Trail).</span>
+              <span class="lang-en">Collecting and restoring rugged digital watches (Geo Trail).</span>
+            </p>
+          </div>
+          <div style="background:var(--bg-card); padding:20px; border-radius:16px; border:1px solid var(--border)">
+            <span style="font-size:30px">🏀</span>
+            <h4 style="margin-top:10px; color: #fff;"><span class="lang-es">Análisis NBA</span><span class="lang-en">NBA Analytics</span></h4>
+            <p style="font-size:12px; color:var(--text-dim); margin-top:5px;">
+              <span class="lang-es">Métricas avanzadas para comparar el rendimiento histórico de los 90s.</span>
+              <span class="lang-en">Advanced metrics comparing historical 90s performance.</span>
+            </p>
+          </div>
+          <div style="background:var(--bg-card); padding:20px; border-radius:16px; border:1px solid var(--border)">
+            <span style="font-size:30px">🤖</span>
+            <h4 style="margin-top:10px; color: #fff;"><span class="lang-es">Inteligencia Artificial</span><span class="lang-en">AI Tinkering</span></h4>
+            <p style="font-size:12px; color:var(--text-dim); margin-top:5px;">
+              <span class="lang-es">Exploración de LLMs y automatización de flujos con agentes autónomos.</span>
+              <span class="lang-en">Exploring LLMs and automating workflows with autonomous agents.</span>
+            </p>
           </div>
         </div>
       </section>
@@ -287,7 +519,13 @@
     document.querySelectorAll('.view-content').forEach(v => v.style.display = 'none');
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     document.getElementById('view-' + view).style.display = 'block';
-    btn.classList.add('active');
+    
+    // Sincroniza las pestañas activas
+    document.querySelectorAll('.tab').forEach(t => {
+      if(t.innerHTML === btn.innerHTML || (t.textContent.includes('PROFES') && view==='pro') || (t.textContent.includes('PERSON') && view==='personal')) {
+        t.classList.add('active');
+      }
+    });
   }
 
   function toggleTheme() {
@@ -304,7 +542,11 @@
 
   function copyEmail() {
     navigator.clipboard.writeText("jesuserl@gmail.com");
-    alert("Email copiado al portapapeles!");
+    const textNodes = document.querySelectorAll('.email-text');
+    textNodes.forEach(node => {
+      node.textContent = document.body.lang === 'es' ? "¡Copiado!" : "Copied!";
+      setTimeout(() => node.textContent = "Gmail", 2000);
+    });
   }
 
   window.addEventListener('scroll', () => {
