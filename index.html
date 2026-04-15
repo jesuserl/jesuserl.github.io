@@ -21,7 +21,7 @@
     --bg3: #3c3f41;
     --text: #a9b7c6;
     --text2: #808080;
-    --accent: #cc7832; /* Naranja Darcula (Keywords) */
+    --accent: #cc7832; /* Naranja Darcula */
     --accent-glow: rgba(204, 120, 50, 0.15);
     --border: #4d4d4d;
     --card: #313335;
@@ -29,7 +29,7 @@
   }
   
   [data-theme="light"] {
-    /* IntelliJ Light Theme Equivalent */
+    /* IntelliJ Light Theme */
     --bg: #ffffff;
     --bg2: #f2f2f2;
     --bg3: #e6e6e6;
@@ -60,6 +60,20 @@
   h1, h2, h3 { text-wrap: balance; letter-spacing: -0.02em; color: var(--text); }
   p { text-wrap: pretty; }
 
+  /* 1. PROGRESS BAR (Micro-interacción) */
+  #progressBar {
+    position: fixed; top: 0; left: 0; height: 3px; 
+    background: var(--accent); width: 0%; 
+    z-index: 10000; transition: width 0.1s ease-out;
+  }
+
+  /* 2. ACCESIBILIDAD (Foco visible por teclado) */
+  button:focus-visible, a:focus-visible, summary:focus-visible {
+    outline: 2px dashed var(--accent) !important;
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+
   /* Navbar */
   nav {
     position: fixed; top:0; left:0; right:0; z-index:100;
@@ -88,11 +102,14 @@
   .icon-btn:hover { border-color: var(--accent); background: var(--bg2); color: var(--accent); }
 
   .tab-btn {
+    display: flex; align-items: center; gap: 6px;
     padding: 8px 16px; border-radius: 8px; border: 1px solid var(--border);
     font-size: 13px; font-weight: 600; cursor: pointer;
     background: transparent; color: var(--text2); transition: 0.2s;
   }
   .tab-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  
+  .tab-icon { display: none; font-size: 16px; }
 
   /* Language Switch Logic */
   [lang="en"] .lang-es { display: none; }
@@ -115,7 +132,6 @@
   .hero h1 span { color: var(--accent); }
   .hero-sub { font-size: 1.15rem; color: var(--text2); max-width: 650px; margin-bottom: 2.5rem; }
 
-  /* Text & Tags */
   .about-text { font-size: 1.05rem; color: var(--text2); line-height: 1.8; }
   .skills-flex { display: flex; flex-wrap: wrap; gap: 8px; }
   .skill-tag {
@@ -131,7 +147,14 @@
     background: var(--card); border: 1px solid var(--border); border-radius: 8px;
     overflow: hidden; transition: all 0.3s ease;
   }
-  .job-accordion[open] { border-color: var(--accent); box-shadow: 0 5px 20px var(--accent-glow); }
+  
+  /* 3. INDICADOR VISUAL DE ACORDEÓN (Borde Izquierdo) */
+  .job-accordion[open] { 
+    border-left: 4px solid var(--accent); 
+    border-color: var(--accent); 
+    box-shadow: 0 5px 20px var(--accent-glow); 
+  }
+  
   .job-summary {
     display: flex; justify-content: space-between; align-items: center; padding: 1.5rem;
     cursor: pointer; list-style: none; user-select: none;
@@ -192,23 +215,52 @@
   .view { display: none; }
   .view.active { display: block; }
 
-  @media (max-width: 768px) {
+  /* 4. OPTIMIZACIÓN MOBILE NAV (Ocultar texto, mostrar icono) */
+  @media (max-width: 600px) {
     nav { padding: 0 1rem; }
-    .hero { padding-top: 5rem; }
+    .hero { padding-top: 4rem; }
     .contact-link { justify-content: flex-start; }
+    
+    .tab-text { display: none; }
+    .tab-icon { display: inline; }
+    .tab-btn { padding: 8px 12px; }
   }
+
+  /* 5. ESTILOS DE IMPRESIÓN (PDF & Papel perfectos) */
+  @media print {
+    body { background: white !important; color: black !important; background-image: none !important; }
+    nav, #progressBar, #backToTop, .hero .contact-grid, footer { display: none !important; }
+    main { padding-top: 0 !important; }
+    .hero { min-height: auto !important; padding: 2rem 0 !important; }
+    section { padding: 1.5rem 0 !important; page-break-inside: avoid; }
+    
+    /* Fuerza apertura de acordeones y elimina formato innecesario */
+    .job-accordion { border: none !important; box-shadow: none !important; border-bottom: 1px solid #ccc !important; border-radius: 0; margin-bottom: 1rem; }
+    details { display: block !important; }
+    details .job-content { display: block !important; padding-left: 0 !important; color: #333 !important; }
+    .job-icon { display: none !important; }
+    
+    .skill-tag { border: 1px solid #ccc !important; color: black !important; background: transparent !important; }
+    .card-premium { border: 1px solid #ccc !important; box-shadow: none !important; break-inside: avoid; }
+    .hero h1 span, .job-company { color: black !important; }
+  }
+
 </style>
 </head>
 <body data-theme="dark" lang="es">
+
+<div id="progressBar"></div>
 
 <nav id="navbar">
   <div class="nav-logo">JR<span>.</span></div>
   <div class="nav-right">
     <button class="tab-btn active" onclick="switchView('pro', this)">
-      <span class="lang-es">Profesional</span><span class="lang-en">Professional</span>
+      <span class="tab-icon">💼</span>
+      <span class="tab-text"><span class="lang-es">Profesional</span><span class="lang-en">Professional</span></span>
     </button>
     <button class="tab-btn" onclick="switchView('personal', this)">
-      <span class="lang-es">Personal</span><span class="lang-en">Personal</span>
+      <span class="tab-icon">👤</span>
+      <span class="tab-text"><span class="lang-es">Personal</span><span class="lang-en">Personal</span></span>
     </button>
     <button class="icon-btn" onclick="toggleLang()" id="langBtn" aria-label="Cambiar idioma">EN</button>
     <button class="icon-btn" onclick="toggleTheme()" id="themeBtn" aria-label="Cambiar tema">☀️</button>
@@ -230,27 +282,22 @@
     </p>
     
     <div class="contact-grid" style="display: flex; flex-wrap: wrap;">
-      
       <a href="Resumen Curricular - Ing. Jesus Rojas -V4.pdf" target="_blank" download class="contact-link btn-pdf" style="justify-content: flex-start;">
         <svg viewBox="0 0 24 24"><path d="M12 21l-8-9h6v-12h4v12h6l-8 9zm9-1v2h-18v-2h-2v4h22v-4h-2z"/></svg>
         <span class="lang-es">Descargar CV</span><span class="lang-en">Download CV</span>
       </a>
-
       <a href="https://wa.me/58XXXXXXXXX?text=Hola%20Jesús,%20estoy%20interesado%20en%20tus%20servicios%20y%20proyectos" class="contact-link btn-wa" style="justify-content: flex-start;">
         <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.88-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.347-.272.297-1.04 1.016-1.04 2.479 0 1.463 1.065 2.876 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
         WhatsApp
       </a>
-
       <a href="https://www.linkedin.com/in/jesuserl" target="_blank" class="contact-link" style="background: var(--bg3); justify-content: flex-start;">
         <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
         LinkedIn
       </a>
-
       <button class="contact-link" onclick="copyEmail()" style="background: var(--bg3); cursor:pointer; border: 1px solid var(--border); justify-content: flex-start;">
         <svg viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.866l5.6-6.812zm9.201-1.251l4.623-3.747v9.463l-4.623-5.716z"/></svg>
         <span class="email-text">jesuserl@gmail.com</span>
       </button>
-
     </div>
   </section>
 
@@ -588,22 +635,18 @@
   </p>
   
   <div class="contact-grid">
-    
     <button class="contact-link" onclick="copyEmail()" style="cursor:pointer; background: transparent;">
       <svg viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.866l5.6-6.812zm9.201-1.251l4.623-3.747v9.463l-4.623-5.716z"/></svg>
       <span class="email-text">jesuserl@gmail.com</span>
     </button>
-    
     <a href="https://www.linkedin.com/in/jesuserl" target="_blank" class="contact-link" style="background: transparent;">
       <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
       LinkedIn
     </a>
-
     <a href="https://wa.me/58XXXXXXXXX?text=Hola%20Jesús" class="contact-link" style="background: transparent;">
       <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.88-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.347-.272.297-1.04 1.016-1.04 2.479 0 1.463 1.065 2.876 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
       WhatsApp
     </a>
-
   </div>
 </section>
 
@@ -678,8 +721,15 @@
     });
   }
 
-  // Comportamiento del Navbar y Botón Flotante
+  // Comportamiento del Navbar, Botón Flotante y Progress Bar
   window.addEventListener('scroll', () => {
+    // 1. Progress Bar Logic
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    document.getElementById('progressBar').style.width = scrolled + "%";
+
+    // 2. Navbar & BackToTop Logic
     const nav = document.getElementById('navbar');
     const btt = document.getElementById('backToTop');
     if (window.scrollY > 50) {
