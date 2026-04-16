@@ -144,7 +144,7 @@
   .right-column {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem; /* Separación entre bloques */
+    gap: 1.5rem;
   }
 
   /* NAVEGACIÓN FLOTANTE (Pills) */
@@ -192,7 +192,7 @@
     font-weight: 600; color: var(--text-main); 
   }
 
-  /* ACORDEONES LABORALES */
+  /* ACORDEONES LABORALES / ITEMS */
   .accordion-wrapper { display: flex; flex-direction: column; gap: 12px; }
   
   .job-item { 
@@ -217,10 +217,6 @@
   
   .job-body { padding: 0 1.5rem 1.5rem 1.5rem; font-size: 14px; color: var(--text-dim); line-height: 1.7; }
 
-  /* IMAGEN PERSONAL CIRCULAR */
-  .personal-header { display: flex; align-items: center; gap: 2rem; margin-bottom: 2rem; }
-  .personal-img { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--accent); object-fit: cover; }
-
   /* MOBILE APP BAR */
   .mobile-bar {
     display: none; position: fixed; bottom: 0; left: 0; right: 0;
@@ -236,9 +232,6 @@
     .nav-tabs { display: none; }
     .mobile-bar { display: flex; }
     .content-block { padding: 1.5rem; }
-  }
-  @media (max-width: 600px) {
-    .personal-header { flex-direction: column; text-align: center; }
   }
 
   [lang="en"] .lang-es { display: none; }
@@ -310,6 +303,7 @@
         <svg viewBox="0 0 24 24"><path d="M24 5.457v13.909c0 .904-.732 1.634-1.634 1.634h-20.732c-.902 0-1.634-.73-1.634-1.634v-13.909l12 7 12-7zm-12 4.5l-12-7h24l-12 7z"/></svg>
         <span class="email-text">Gmail</span>
       </button>
+      
       <a href="https://wa.me/584224427392" target="_blank" class="contact-btn">
         <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.88-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.347-.272.297-1.04 1.016-1.04 2.479 0 1.463 1.065 2.876 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
         <span>WhatsApp</span>
@@ -546,16 +540,21 @@
     </div>
 
     <div id="view-personal" class="view-content" style="display:none">
+      
       <section class="content-block">
-        <div class="personal-header">
-          <img src="perfil.png" alt="Jesús Rojas" class="personal-img">
-          <div>
-            <div class="section-marker"></div>
-            <h2 class="title-line" style="margin-bottom:0"><span class="lang-es">Pasiones e Intereses</span><span class="lang-en">Passions & Interests</span></h2>
-          </div>
-        </div>
+        <div class="section-marker"></div>
+        <h2 class="title-line"><span class="lang-es">Sobre Mí</span><span class="lang-en">About Me</span></h2>
+        <p class="lead-text">
+          <span class="lang-es">Más allá de los servidores y la infraestructura, aplico mi enfoque analítico y pasión por la resolución de problemas a diversos intereses personales. Disfruto entender a fondo cómo funcionan los sistemas, ya sea el motor de una motocicleta, la precisión de un reloj clásico o las estadísticas detrás de un evento deportivo.</span>
+          <span class="lang-en">Beyond servers and infrastructure, I apply my analytical focus and passion for problem-solving to various personal interests. I enjoy understanding how systems work from the inside out, whether it's a motorcycle engine, the precision of a classic watch, or the statistics behind a sporting event.</span>
+        </p>
+      </section>
+
+      <section class="content-block" style="margin-top: 1.5rem;">
+        <div class="section-marker"></div>
+        <h2 class="title-line"><span class="lang-es">Pasatiempos & Exploración</span><span class="lang-en">Hobbies & Exploration</span></h2>
         
-        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:15px; margin-top: 2rem;">
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:15px;">
           <div class="job-item" style="padding: 20px;">
             <span style="font-size:30px">🏍️</span>
             <h4 style="margin-top:10px; color: var(--text-main);"><span class="lang-es">Motos Scrambler</span><span class="lang-en">Scrambler Bikes</span></h4>
@@ -639,7 +638,7 @@
     document.getElementById('view-' + view).style.display = 'block';
     
     document.querySelectorAll('.tab').forEach(t => {
-      if(t.innerHTML === btn.innerHTML || (t.textContent.includes('PROFES') && view==='pro') || (t.textContent.includes('PERSON') && view==='personal')) {
+      if(t.innerHTML === btn.innerHTML || (t.textContent.includes('💼') && view==='pro') || (t.textContent.includes('👤') && view==='personal')) {
         t.classList.add('active');
       }
     });
