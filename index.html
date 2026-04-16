@@ -9,51 +9,55 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
 
 <style>
   :root {
-    /* TEMA CLARO (Inspirado en tu imagen) */
-    --bg: #ffffff;          /* Fondo con rejilla */
-    --bg-side: #ffffff;     /* Sidebar blanca limpia */
-    --bg-card: #ffffff;     /* Tarjetas gris muy claro */
-    --text: #1e293b;        /* Títulos y texto principal (Oscuro) */
-    --text-dim: #64748b;    /* Texto secundario */
-    --accent: #2563eb;      /* Azul Royal Vibrante */
-    --accent-glow: rgba(37, 99, 235, 0.1);
-    --border: #e2e8f0;      /* Bordes suaves */
-    --grid: rgba(0, 0, 0, 0.04);
+    /* TEMA CLARO (Basado en la imagen) */
+    --bg-body: #f4f6f8;
+    --bg-card: #ffffff;
+    --bg-hover: #f1f5f9;
+    --bg-accent-light: #eff6ff;
+    
+    --text-main: #1e293b;
+    --text-dim: #64748b;
+    --accent: #2563eb; 
+    
+    --border: #e2e8f0;
+    --grid-color: rgba(0, 0, 0, 0.04);
+    --shadow: 0 10px 40px -10px rgba(0,0,0,0.08);
   }
 
   [data-theme="dark"] {
-    /* TEMA OSCURO (Ajustado) */
-    --bg: #0f172a;
-    --bg-side: #1e293b;
-    --bg-card: #334155;
-    --text: #f8fafc;
+    --bg-body: #0f172a;
+    --bg-card: #1e293b;
+    --bg-hover: #334155;
+    --bg-accent-light: rgba(37, 99, 235, 0.15);
+    
+    --text-main: #f8fafc;
     --text-dim: #94a3b8;
     --accent: #3b82f6;
-    --accent-glow: rgba(59, 130, 246, 0.2);
+    
     --border: #334155;
-    --grid: rgba(255, 255, 255, 0.03);
+    --grid-color: rgba(255, 255, 255, 0.03);
+    --shadow: 0 10px 40px -10px rgba(0,0,0,0.3);
   }
 
-  /* SCROLLBAR */
-  ::-webkit-scrollbar { width: 8px; }
-  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: var(--bg-body); }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 
-  html { scroll-behavior: smooth; }
   * { margin:0; padding:0; box-sizing:border-box; }
   
   body { 
     font-family: 'Inter', sans-serif; 
-    background: var(--bg); 
-    color: var(--text); 
+    background: var(--bg-body); 
+    color: var(--text-main); 
     line-height: 1.6;
-    background-image: linear-gradient(var(--grid) 1px, transparent 1px),
-                      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-    background-size: 45px 45px;
+    background-image: 
+      linear-gradient(var(--grid-color) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: 40px 40px;
     background-attachment: fixed;
     min-height: 100vh;
     transition: background 0.3s, color 0.3s;
@@ -64,137 +68,182 @@
     background: var(--accent); width: 0%; z-index: 9999;
   }
 
-  /* LAYOUT vCard */
+  /* LAYOUT PRINCIPAL */
   .layout-wrapper {
     max-width: 1200px;
     margin: 3rem auto;
     padding: 0 1.5rem 5rem 1.5rem;
     display: grid;
-    grid-template-columns: 320px 1fr;
+    grid-template-columns: 300px 1fr;
     gap: 2rem;
     align-items: start;
   }
 
-  /* SIDEBAR FIJO */
-  .vcard-sidebar {
-    background: var(--bg-side);
-    border: 1px solid var(--border);
+  /* SIDEBAR */
+  .sidebar-card {
+    background: var(--bg-card);
     border-radius: 24px;
-    padding: 3rem 1.5rem;
+    padding: 2.5rem 1.5rem;
     position: sticky;
     top: 2rem;
     text-align: center;
-    box-shadow: 0 10px 40px -10px rgba(0,0,0,0.05);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
   }
 
-  .avatar-logo {
-    width: 100px; height: 100px; background: transparent;
-    border: 2px solid var(--accent); border-radius: 20px;
-    margin: 0 auto 1.5rem; display: flex; align-items: center;
-    justify-content: center; font-size: 38px; font-weight: 800;
-    color: var(--text); font-family: 'JetBrains Mono', monospace;
+  .avatar-box {
+    width: 110px; height: 110px; 
+    background: transparent;
+    border: 2px solid var(--accent); 
+    border-radius: 20px;
+    margin: 0 auto 1.5rem; 
+    display: flex; align-items: center; justify-content: center; 
+    font-size: 38px; font-weight: 800;
+    color: var(--text-main); 
   }
 
-  .vcard-sidebar h1 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--text); }
-  
-  .tag-role {
-    display: inline-block; background: var(--bg-card); color: var(--accent);
-    padding: 8px 16px; border-radius: 8px; font-size: 10px;
-    font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
+  .badge-role {
+    display: inline-block;
+    background: var(--bg-accent-light); 
+    color: var(--accent);
+    padding: 8px 16px; 
+    border-radius: 8px; 
+    font-size: 10px;
+    font-weight: 800; 
+    text-transform: uppercase; 
+    letter-spacing: 1px;
     margin-bottom: 2rem;
   }
 
   .contact-list {
-    display: flex; flex-direction: column; gap: 10px;
-    padding-top: 1.5rem; border-top: 1px solid var(--border);
+    display: flex; flex-direction: column; gap: 12px;
+    margin-bottom: 2rem;
   }
 
   .contact-btn {
     display: flex; align-items: center; gap: 12px;
-    background: var(--bg); border: 1px solid var(--border);
-    padding: 12px 16px; border-radius: 12px; text-decoration: none;
-    color: var(--text); font-size: 13px; font-weight: 600; transition: 0.2s;
-    cursor: pointer;
+    background: var(--bg-hover); 
+    padding: 12px 16px; 
+    border-radius: 12px; 
+    text-decoration: none;
+    color: var(--text-main); 
+    font-size: 13px; font-weight: 600; 
+    transition: 0.2s; border: none; cursor: pointer; width: 100%;
   }
-  .contact-btn:hover { border-color: var(--accent); background: var(--bg-card); color: var(--accent); }
-  .contact-btn svg { width: 18px; height: 18px; fill: var(--accent); }
+  .contact-btn:hover { background: var(--bg-accent-light); color: var(--accent); }
+  .contact-btn svg { width: 18px; height: 18px; fill: var(--accent); flex-shrink: 0; }
 
   .action-row {
-    display: flex; justify-content: center; gap: 10px; margin-top: 1.5rem;
+    display: flex; justify-content: center; gap: 10px; margin-bottom: 1.5rem;
   }
   
   .mini-btn {
-    background: var(--bg); border: 1px solid var(--border);
-    padding: 10px; border-radius: 10px; color: var(--text);
-    cursor: pointer; transition: 0.2s; width: 45px; height: 45px;
-    display: flex; align-items: center; justify-content: center;
+    background: var(--bg-hover); border: none;
+    padding: 10px; border-radius: 10px; color: var(--text-main);
+    font-weight: 700; font-size: 13px; cursor: pointer; transition: 0.2s;
+    width: 45px; height: 45px; display: flex; align-items: center; justify-content: center;
   }
-  .mini-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .mini-btn:hover { background: var(--bg-accent-light); color: var(--accent); }
 
-  .download-cv {
-    margin-top: 1.5rem; background: var(--accent); color: white;
-    border-radius: 12px; padding: 14px; display: flex; align-items: center;
-    justify-content: center; gap: 8px; text-decoration: none;
-    font-weight: 700; font-size: 13px; transition: 0.2s;
+  .download-btn {
+    background: var(--accent); color: white; border-radius: 12px; 
+    padding: 14px; display: flex; align-items: center; justify-content: center; 
+    gap: 8px; text-decoration: none; font-weight: 600; font-size: 13px;
+    transition: 0.2s; border: none; width: 100%; cursor: pointer;
   }
-  .download-cv:hover { transform: translateY(-2px); box-shadow: 0 10px 20px var(--accent-glow); }
+  .download-btn:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(37,99,235,0.3); }
 
   /* CONTENIDO PRINCIPAL */
-  .main-content {
-    background: var(--bg-side);
-    border: 1px solid var(--border);
+  .main-card {
+    background: var(--bg-card);
     border-radius: 24px;
     padding: 3rem;
     position: relative;
-    box-shadow: 0 10px 40px -10px rgba(0,0,0,0.05);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
     min-height: 80vh;
   }
 
   .nav-tabs {
-    position: absolute; top: 0; right: 0; display: flex;
+    position: absolute; top: 0; right: 0;
+    display: flex;
   }
 
   .tab {
-    padding: 18px 24px; font-size: 12px; font-weight: 700;
+    padding: 20px 24px; font-size: 12px; font-weight: 700;
     cursor: pointer; border: none; background: transparent;
     color: var(--text-dim); transition: 0.3s;
+    border-top-right-radius: 24px;
   }
-  .tab.active { color: var(--accent); border-bottom: 2px solid var(--accent); }
+  .tab.active { color: var(--accent); }
 
-  section { padding-bottom: 2rem; }
-  .section-indicator { width: 35px; height: 4px; background: var(--accent); border-radius: 2px; margin-bottom: 1.5rem; }
-  .title-line { font-size: 1.8rem; font-weight: 800; margin-bottom: 1.5rem; color: var(--text); }
+  .section-marker {
+    width: 35px; height: 4px; background: var(--accent);
+    border-radius: 2px; margin-bottom: 1.5rem;
+  }
+
+  section { padding-bottom: 3rem; animation: fadeIn 0.4s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  p.lead-text { color: var(--text-dim); line-height: 1.8; font-size: 15px; margin-bottom: 2rem; }
+
+  /* SKILLS TAGS */
+  .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 2rem; }
+  .skill-tag { 
+    background: var(--bg-card); border: 1px solid var(--border); 
+    padding: 8px 16px; border-radius: 12px; font-size: 12px; 
+    font-weight: 600; color: var(--text-main); 
+  }
 
   /* ACORDEONES */
-  .job-card { background: var(--bg); border: 1px solid var(--border); border-radius: 16px; margin-bottom: 12px; overflow: hidden; transition: 0.3s; }
-  .job-card[open] { border-left: 4px solid var(--accent); border-color: var(--accent); background: var(--bg-side); }
-  .job-summary { padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none; outline: none; }
-  .job-summary::-webkit-details-marker { display: none; }
-  .job-title { font-size: 16px; font-weight: 700; color: var(--text); }
-  .job-date { font-size: 12px; color: var(--accent); font-weight: 800; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; margin-bottom: 4px; display: block; }
-  .job-body { padding: 0 1.5rem 1.5rem; font-size: 14px; color: var(--text-dim); line-height: 1.8; }
-
-  /* SKILLS */
-  .skills-wrap { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1rem; }
-  .skill-pill { background: var(--bg-side); border: 1px solid var(--border); padding: 6px 14px; border-radius: 10px; font-size: 12px; font-weight: 600; color: var(--text); }
-
-  /* PERSONAL */
-  .personal-header { display: flex; align-items: center; gap: 2rem; margin-bottom: 2.5rem; }
-  .personal-img { width: 130px; height: 130px; border-radius: 50%; border: 3px solid var(--accent); object-fit: cover; }
-
-  /* MOBILE */
-  .bottom-nav {
-    display: none; position: fixed; bottom: 0; left: 0; right: 0;
-    background: var(--bg-side); border-top: 1px solid var(--border);
-    z-index: 1000; justify-content: space-around; padding: 12px 0;
+  .accordion-wrapper { display: flex; flex-direction: column; gap: 16px; }
+  
+  .job-item { 
+    background: var(--bg-hover); 
+    border-radius: 16px; 
+    border: 1px solid transparent; 
+    overflow: hidden; transition: 0.3s; 
   }
+  
+  .job-item[open] { 
+    background: var(--bg-card); 
+    border-color: var(--accent); 
+    border-left: 4px solid var(--accent);
+    box-shadow: 0 4px 20px var(--bg-accent-light);
+  }
+  
+  .job-summary { 
+    padding: 1.5rem; cursor: pointer; display: flex; 
+    justify-content: space-between; align-items: flex-start; 
+    list-style: none; outline: none; 
+  }
+  .job-summary::-webkit-details-marker { display: none; }
+  
+  .job-header { display: flex; flex-direction: column; gap: 6px; }
+  .job-date { font-size: 12px; font-weight: 800; color: var(--accent); font-family: 'JetBrains Mono', monospace; text-transform: uppercase; }
+  .job-title { font-size: 15px; font-weight: 700; color: var(--text-main); }
+  
+  .job-body { padding: 0 1.5rem 1.5rem 1.5rem; font-size: 14px; color: var(--text-dim); line-height: 1.7; }
+
+  /* IMAGEN PERSONAL CIRCULAR */
+  .personal-header { display: flex; align-items: center; gap: 2rem; margin-bottom: 2rem; }
+  .personal-img { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--accent); object-fit: cover; }
+
+  /* MOBILE APP BAR */
+  .mobile-bar {
+    display: none; position: fixed; bottom: 0; left: 0; right: 0;
+    background: var(--bg-card); border-top: 1px solid var(--border);
+    z-index: 1000; justify-content: space-around; padding: 10px 0;
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
+  }
+  .mobile-bar .tab { border-radius: 0; padding: 10px; font-size: 20px; }
 
   @media (max-width: 950px) {
-    .layout-wrapper { grid-template-columns: 1fr; margin-top: 1rem; padding-bottom: 6rem; }
-    .vcard-sidebar { position: static; }
+    .layout-wrapper { grid-template-columns: 1fr; margin-top: 1rem; padding-bottom: 5rem;}
+    .sidebar-card { position: static; }
     .nav-tabs { display: none; }
-    .bottom-nav { display: flex; }
-    .main-content { padding: 2rem; }
+    .mobile-bar { display: flex; }
+    .main-card { padding: 2rem; }
   }
 
   @media (max-width: 600px) {
@@ -203,6 +252,75 @@
 
   [lang="en"] .lang-es { display: none; }
   [lang="es"] .lang-en { display: none; }
+
+  /* ========================================================
+     ESTILOS DEL MODAL DE CAPTCHA (No soy un robot)
+     ======================================================== */
+  .captcha-overlay {
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.4); backdrop-filter: blur(4px); z-index: 20000;
+    align-items: center; justify-content: center;
+    opacity: 0; transition: opacity 0.3s ease;
+  }
+  .captcha-overlay.active { display: flex; opacity: 1; }
+  
+  .captcha-modal {
+    background: var(--bg-card); border-radius: 12px; padding: 25px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2); border: 1px solid var(--border);
+    max-width: 380px; width: 90%; text-align: center;
+    transform: translateY(20px); transition: transform 0.3s ease;
+  }
+  .captcha-overlay.active .captcha-modal { transform: translateY(0); }
+
+  .captcha-modal h3 { font-size: 16px; margin-bottom: 15px; color: var(--text-main); }
+  
+  .g-recaptcha-fake {
+    display: flex; align-items: center; justify-content: space-between;
+    background: #f9f9f9; border: 1px solid #d3d3d3; border-radius: 3px;
+    padding: 10px 12px; margin: 0 auto; width: 300px; max-width: 100%;
+    cursor: pointer; box-shadow: 0px 0px 4px 1px rgba(0,0,0,0.08);
+    transition: 0.2s;
+  }
+  .g-recaptcha-fake:hover { border-color: #b0b0b0; }
+  [data-theme="dark"] .g-recaptcha-fake { background: #222; border-color: #444; }
+
+  .rc-left { display: flex; align-items: center; gap: 12px; }
+  
+  /* Animación del Checkbox */
+  .rc-checkbox {
+    width: 28px; height: 28px; border: 2px solid #c1c1c1; border-radius: 2px;
+    background: #fff; position: relative; transition: 0.2s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  
+  .rc-text { font-size: 14px; font-family: Roboto, Arial, sans-serif; color: #555; }
+  [data-theme="dark"] .rc-text { color: #ccc; }
+
+  .rc-logo { text-align: center; }
+  .rc-logo svg { width: 32px; height: 32px; fill: #4285F4; }
+  .rc-logo span { display: block; font-size: 10px; color: #999; margin-top: 2px; font-family: Roboto, Arial, sans-serif; }
+
+  /* Estados de verificación */
+  .rc-checkbox.loading {
+    border-color: transparent; border-radius: 50%;
+    border-top: 3px solid #4285F4; border-right: 3px solid transparent;
+    animation: rc-spin 1s linear infinite;
+  }
+  @keyframes rc-spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+  .rc-checkbox.checked {
+    border-color: transparent;
+  }
+  .rc-checkbox.checked::after {
+    content: ''; position: absolute; width: 8px; height: 16px;
+    border: solid #009e55; border-width: 0 3px 3px 0;
+    transform: rotate(45deg); top: 2px; left: 8px;
+  }
+  
+  .close-captcha {
+    margin-top: 15px; background: transparent; border: none;
+    color: var(--text-dim); font-size: 13px; cursor: pointer; text-decoration: underline;
+  }
 </style>
 </head>
 <body data-theme="light" lang="es">
@@ -211,16 +329,16 @@
 
 <div class="layout-wrapper">
   
-  <aside class="vcard-sidebar">
-    <div class="avatar-logo">JR_</div>
-    <h1>Jesús Rojas L.</h1>
-    <div class="tag-role">Infrastructure Specialist</div>
+  <aside class="sidebar-card">
+    <div class="avatar-box">JR_</div>
+    <div class="badge-role">INFRASTRUCTURE SPECIALIST</div>
     
     <div class="contact-list">
       <button class="contact-btn" onclick="copyEmail()">
         <svg viewBox="0 0 24 24"><path d="M24 5.457v13.909c0 .904-.732 1.634-1.634 1.634h-20.732c-.902 0-1.634-.73-1.634-1.634v-13.909l12 7 12-7zm-12 4.5l-12-7h24l-12 7z"/></svg>
         <span class="email-text">Gmail</span>
       </button>
+      
       <a href="https://wa.me/584224427392" target="_blank" class="contact-btn">
         <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.88-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.347-.272.297-1.04 1.016-1.04 2.479 0 1.463 1.065 2.876 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
         <span>WhatsApp</span>
@@ -236,13 +354,13 @@
       <button class="mini-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
     </div>
 
-    <a href="Resumen Curricular - Ing. Jesus Rojas -V4.pdf" download class="download-cv">
-      <svg style="fill:white; width:18px" viewBox="0 0 24 24"><path d="M12 21l-8-9h6v-12h4v12h6l-8 9zm9-1v2h-18v-2h-2v4h22v-4h-2z"/></svg>
+    <button class="download-btn" onclick="openCaptcha()">
+      <svg style="width:18px; fill:white" viewBox="0 0 24 24"><path d="M12 21l-8-9h6v-12h4v12h6l-8 9zm9-1v2h-18v-2h-2v4h22v-4h-2z"/></svg>
       <span class="lang-es">Descargar CV</span><span class="lang-en">Download CV</span>
-    </a>
+    </button>
   </aside>
 
-  <main class="main-content">
+  <main class="main-card">
     
     <nav class="nav-tabs">
       <button class="tab active" onclick="switchView('pro', this)"><span class="lang-es">PROFESIONAL</span><span class="lang-en">PROFESSIONAL</span></button>
@@ -250,147 +368,199 @@
     </nav>
 
     <div id="view-pro" class="view-content active">
+      
       <section>
-        <div class="section-indicator"></div>
-        <h2 class="title-line"><span class="lang-es">Perfil</span><span class="lang-en">About</span></h2>
-        <p class="lang-es" style="color: var(--text-dim);">Ingeniero de Sistemas con más de 20 años de experiencia técnica. Experto en infraestructura de servidores, virtualización local (VMware, Hyper-V) y Cloud (Azure), aseguramiento de información y consultoría funcional para ERPs (SAP Business One) y CRMs.</p>
-        <p class="lang-en" style="color: var(--text-dim);">Systems Engineer with over 20 years of technical experience. Expert in server infrastructure, local virtualization (VMware, Hyper-V), and Cloud (Azure), information assurance, and functional consulting for ERPs (SAP Business One) and CRMs.</p>
+        <div class="section-marker"></div>
+        <p class="lead-text">
+          <span class="lang-es">Ingeniero de Sistemas con más de 20 años de experiencia técnica. Experto en infraestructura de servidores, virtualización en entornos locales (VMware, Hyper-V) y Cloud (Azure), aseguramiento de información y consultoría funcional para ERPs (SAP Business One) y CRMs.</span>
+          <span class="lang-en">Systems Engineer with over 20 years of technical experience. Expert in server infrastructure, local virtualization (VMware, Hyper-V) and Cloud (Azure) environments, information assurance, and functional consulting for ERPs (SAP Business One) and CRMs.</span>
+        </p>
         
-        <div class="skills-wrap">
-          <span class="skill-pill">Azure Cloud</span><span class="skill-pill">VMware</span><span class="skill-pill">Hyper-V</span>
-          <span class="skill-pill">SAP Business One</span><span class="skill-pill">WatchGuard</span><span class="skill-pill">Docker</span>
-          <span class="skill-pill">Linux</span><span class="skill-pill">Mikrotik</span><span class="skill-pill">SQL Server</span>
+        <div class="skills-grid">
+          <span class="skill-tag">Microsoft Azure</span>
+          <span class="skill-tag">Microsoft 365</span>
+          <span class="skill-tag">VMware ESX</span>
+          <span class="skill-tag">Hyper-V</span>
+          <span class="skill-tag">Windows Server</span>
+          <span class="skill-tag">Linux</span>
+          <span class="skill-tag">SAP Business One</span>
+          <span class="skill-tag">Dynamics CRM</span>
+          <span class="skill-tag">Odoo</span>
+          <span class="skill-tag">Fortigate / Sophos</span>
+          <span class="skill-tag">Mikrotik / WatchGuard</span>
+          <span class="skill-tag">SQL Server / SAP HANA</span>
+          <span class="skill-tag">Docker</span>
         </div>
       </section>
 
       <section>
-        <div class="section-indicator"></div>
-        <h2 class="title-line"><span class="lang-es">Experiencia</span><span class="lang-en">Experience</span></h2>
-        
-        <details class="job-card" open>
-          <summary class="job-summary">
-            <div>
-              <span class="job-date">2024 — ACTUAL</span>
-              <span class="job-title"><span class="lang-es">Especialista de Infraestructura</span><span class="lang-en">Infrastructure Specialist</span> // Ron Carúpano</span>
+        <div class="section-marker"></div>
+        <div class="accordion-wrapper">
+          
+          <details class="job-item" open>
+            <summary class="job-summary">
+              <div class="job-header">
+                <span class="job-date">Sep 2024 — <span class="lang-es">ACTUAL</span><span class="lang-en">PRESENT</span></span>
+                <span class="job-title"><span class="lang-es">Especialista de Infraestructura Tecnológica</span><span class="lang-en">IT Infrastructure Specialist</span> // Ron Carúpano</span>
+              </div>
+              <span style="color:var(--accent); font-size:18px;">+</span>
+            </summary>
+            <div class="job-body">
+              <span class="lang-es">Diseño e implementación de estrategias y soluciones tecnológicas adaptadas a las necesidades de la empresa, incluyendo configuración y mantenimiento de servidores, administración de redes (firewalls, routers, switches y VPNs), y gestión de soluciones de almacenamiento y virtualización.</span>
+              <span class="lang-en">Design and implementation of technological strategies, server configuration, corporate network administration (firewalls, routers, VPNs), and virtualization management.</span>
             </div>
-            <span style="color:var(--accent); font-weight: bold;">+</span>
-          </summary>
-          <div class="job-body">
-            <span class="lang-es">Diseño e implementación de estrategias tecnológicas, administración de redes corporativas (firewalls, routers, VPNs) y gestión de virtualización.</span>
-            <span class="lang-en">Design and implementation of technological strategies, corporate network administration (firewalls, routers, VPNs), and virtualization management.</span>
+          </details>
+
+          <details class="job-item">
+            <summary class="job-summary">
+              <div class="job-header">
+                <span class="job-date">Jul 2022 — Ene 2024</span>
+                <span class="job-title"><span class="lang-es">Consultor IT Freelance</span><span class="lang-en">Independent IT Consultant</span> // Lima, Perú</span>
+              </div>
+              <span style="color:var(--accent); font-size:18px;">+</span>
+            </summary>
+            <div class="job-body">
+              <span class="lang-es">Desarrollo de múltiples proyectos tecnológicos independientes, asesoría en infraestructura e implementaciones Cloud y On-Premise.</span>
+              <span class="lang-en">Development of independent technology projects, infrastructure consulting, and Cloud and On-Premise implementations.</span>
+            </div>
+          </details>
+
+          <details class="job-item">
+            <summary class="job-summary">
+              <div class="job-header">
+                <span class="job-date">Dic 2018 — Sep 2022</span>
+                <span class="job-title">Consultor de IT — SAP B1 // PRN Consultores S.A.C</span>
+              </div>
+              <span style="color:var(--accent); font-size:18px;">+</span>
+            </summary>
+            <div class="job-body">
+              <span class="lang-es">Atención remota y presencial a servidores en Cloud y On-premise sobre plataformas SQL y HANA. Assessment de Plataforma IT y creación de reportes en Crystal Reports.</span>
+              <span class="lang-en">Remote and on-site support for Cloud and On-premise servers on SQL and HANA platforms. IT platform assessment and technical reporting.</span>
+            </div>
+          </details>
+
+          <details class="job-item">
+            <summary class="job-summary">
+              <div class="job-header">
+                <span class="job-date">Mar 2019 — Nov 2020</span>
+                <span class="job-title">Consultor de IT // Seidor Centro América y el Caribe</span>
+              </div>
+              <span style="color:var(--accent); font-size:18px;">+</span>
+            </summary>
+            <div class="job-body">
+              <span class="lang-es">Soporte a la Plataforma de SAP Business One para los clientes de Seidor en Centroamérica, brindando atención a servidores Cloud/On-premise.</span>
+              <span class="lang-en">SAP Business One platform support, providing service to Cloud/On-premise servers.</span>
+            </div>
+          </details>
+
+          <details class="job-item">
+            <summary class="job-summary">
+              <div class="job-header">
+                <span class="job-date">Sep 2014 — Sep 2017</span>
+                <span class="job-title"><span class="lang-es">Gerente de Soporte IT</span><span class="lang-en">IT Support Manager</span> // Grupo Vamatech</span>
+              </div>
+              <span style="color:var(--accent); font-size:18px;">+</span>
+            </summary>
+            <div class="job-body">
+              <span class="lang-es">Gerencia del Soporte a la Plataforma SAP B1 de clientes y apoyo en despliegues Cloud (Azure). Consultoría en Dynamics CRM, SAP B1 y despliegues de Odoo con Docker.</span>
+              <span class="lang-en">Management of SAP B1 Support and Azure Cloud deployments. Dynamics CRM, SAP B1 consulting, and local Odoo deployments with Docker.</span>
+            </div>
+          </details>
+
+          <details class="job-item">
+            <summary class="job-summary">
+              <div class="job-header">
+                <span class="job-date">Sep 2013 — Sep 2014</span>
+                <span class="job-title"><span class="lang-es">Coordinador de IT</span><span class="lang-en">IT Coordinator</span> // TOP MOBILIER, C.A (Eurosillas)</span>
+              </div>
+              <span style="color:var(--accent); font-size:18px;">+</span>
+            </summary>
+            <div class="job-body">
+              <span class="lang-es">Encargado del área tecnológica, soporte al sistema Profit Plus, estabilización de servidores (cero caídas), creación de planes de respaldo y reportes.</span>
+              <span class="lang-en">In charge of the technological area, Profit Plus system support, server stabilization (zero downtime), creation of backup plans and reports.</span>
+            </div>
+          </details>
+
+          <details class="job-item">
+            <summary class="job-summary">
+              <div class="job-header">
+                <span class="job-date">Nov 2011 — Jun 2013</span>
+                <span class="job-title"><span class="lang-es">Ingeniero de IT (Preventa y Consultoría)</span><span class="lang-en">IT Engineer (Presales & Consulting)</span> // O&M Consultores</span>
+              </div>
+              <span style="color:var(--accent); font-size:18px;">+</span>
+            </summary>
+            <div class="job-body">
+              <span class="lang-es">Implementación de VMware ESXi, vCenter Server, configuración de servidores HP en Datacenter (SAN Switch, fibra) y despliegue de nube privada.</span>
+              <span class="lang-en">VMware ESXi and vCenter Server implementation, HP server configuration in Datacenter (SAN Switch, fiber) and private cloud deployment.</span>
+            </div>
+          </details>
+
+          <details class="job-item">
+            <summary class="job-summary">
+              <div class="job-header">
+                <span class="job-date">Dic 2009 — Oct 2011</span>
+                <span class="job-title"><span class="lang-es">Gerente de Tecnología</span><span class="lang-en">Technology Manager</span> // Inv. y Sum. Informáticos JRAA</span>
+              </div>
+              <span style="color:var(--accent); font-size:18px;">+</span>
+            </summary>
+            <div class="job-body">
+              <span class="lang-es">Empresa propia. Ventas y servicios tecnológicos orientados a productos empresariales de HP y Symantec.</span>
+              <span class="lang-en">Own company. Sales and technology services oriented to enterprise products from HP and Symantec.</span>
+            </div>
+          </details>
+
+          <details class="job-item">
+            <summary class="job-summary">
+              <div class="job-header">
+                <span class="job-date">Nov 2004 — Dic 2008</span>
+                <span class="job-title"><span class="lang-es">Director de Informática</span><span class="lang-en">IT Director</span> // IVEC</span>
+              </div>
+              <span style="color:var(--accent); font-size:18px;">+</span>
+            </summary>
+            <div class="job-body">
+              <span class="lang-es">Dirección de informática, control de proyectos IT para 230 usuarios. Mejoras en sistemas desarrollados, migración a nuevas plataformas y expansión del DataCenter.</span>
+              <span class="lang-en">IT direction, IT project control for 230 users. Improvements in developed systems, migration to new platforms and DataCenter expansion.</span>
+            </div>
+          </details>
+
+          <details class="job-item">
+            <summary class="job-summary">
+              <div class="job-header">
+                <span class="job-date">---</span>
+                <span class="job-title"><span class="lang-es">Experiencia Docente</span><span class="lang-en">Teaching Experience</span> // Universidad de Carabobo & IUTEPI</span>
+              </div>
+              <span style="color:var(--accent); font-size:18px;">+</span>
+            </summary>
+            <div class="job-body">
+              <span class="lang-es"><strong>UC:</strong> Plataforma Computacional I y II. <br><strong>IUTEPI:</strong> Lógica y Diagramación, Introducción a la Computación.</span>
+              <span class="lang-en"><strong>UC:</strong> Computational Platform I & II. <br><strong>IUTEPI:</strong> Logic and Flowcharting, Introduction to Computing.</span>
+            </div>
+          </details>
+
+        </div>
+      </section>
+
+      <section>
+        <div class="section-indicator" style="margin-top: 2rem;"></div>
+        <div class="accordion-wrapper">
+          <div class="job-item" style="padding: 1.5rem;">
+            <div class="job-header">
+              <span class="job-date">1999 — 2004</span>
+              <span class="job-title"><span class="lang-es">Ingeniero de Sistemas</span><span class="lang-en">Systems Engineer</span> // Universidad Bicentenaria de Aragua</span>
+            </div>
           </div>
-        </details>
-
-        <details class="job-card">
-          <summary class="job-summary">
-            <div>
-              <span class="job-date">2022 — 2024</span>
-              <span class="job-title"><span class="lang-es">Consultor IT Freelance</span><span class="lang-en">IT Freelance Consultant</span> // Lima, Perú</span>
+          <div class="job-item" style="padding: 1.5rem;">
+            <div class="job-header">
+              <span class="job-date">1996 — 1999</span>
+              <span class="job-title">T.S.U. en Administración mención Informática // CUMT</span>
             </div>
-            <span style="color:var(--accent); font-weight: bold;">+</span>
-          </summary>
-          <div class="job-body">Proyectos independientes de infraestructura e implementaciones Cloud/On-Premise.</div>
-        </details>
-
-        <details class="job-card">
-          <summary class="job-summary">
-            <div>
-              <span class="job-date">2018 — 2022</span>
-              <span class="job-title">Consultor IT SAP B1 // PRN Consultores S.A.C</span>
+          </div>
+          <div class="job-item" style="padding: 1.5rem;">
+            <div class="job-header">
+              <span class="job-date"><span class="lang-es">CERTIFICACIÓN</span><span class="lang-en">CERTIFICATION</span></span>
+              <span class="job-title">Mikrotik MTCNA-1706NA7858</span>
             </div>
-            <span style="color:var(--accent); font-weight: bold;">+</span>
-          </summary>
-          <div class="job-body">Soporte a servidores Cloud/On-premise en plataforma SQL y HANA. Assessment de Plataforma IT.</div>
-        </details>
-
-        <details class="job-card">
-          <summary class="job-summary">
-            <div>
-              <span class="job-date">2019 — 2020</span>
-              <span class="job-title">Consultor de IT // Seidor Centro América y el Caribe</span>
-            </div>
-            <span style="color:var(--accent); font-weight: bold;">+</span>
-          </summary>
-          <div class="job-body">Soporte remoto a servidores Cloud/On-premise de SAP Business One en Centroamérica.</div>
-        </details>
-
-        <details class="job-card">
-          <summary class="job-summary">
-            <div>
-              <span class="job-date">2014 — 2017</span>
-              <span class="job-title">Gerente de Soporte IT // Grupo Vamatech</span>
-            </div>
-            <span style="color:var(--accent); font-weight: bold;">+</span>
-          </summary>
-          <div class="job-body">Gerencia de soporte SAP B1 y Azure. Consultoría en Dynamics CRM y despliegues Odoo con Docker.</div>
-        </details>
-
-        <details class="job-card">
-          <summary class="job-summary">
-            <div>
-              <span class="job-date">2013 — 2014</span>
-              <span class="job-title">Coordinador de IT // TOP MOBILIER (Eurosillas)</span>
-            </div>
-            <span style="color:var(--accent); font-weight: bold;">+</span>
-          </summary>
-          <div class="job-body">Soporte a Profit Plus, estabilización de servidores y planes de respaldo críticos.</div>
-        </details>
-
-        <details class="job-card">
-          <summary class="job-summary">
-            <div>
-              <span class="job-date">2011 — 2013</span>
-              <span class="job-title">Ingeniero de IT // O&M Consultores</span>
-            </div>
-            <span style="color:var(--accent); font-weight: bold;">+</span>
-          </summary>
-          <div class="job-body">Implementación de VMware ESXi, vCenter Server y configuración de servidores HP.</div>
-        </details>
-
-        <details class="job-card">
-          <summary class="job-summary">
-            <div>
-              <span class="job-date">2009 — 2011</span>
-              <span class="job-title">Gerente de Tecnología // Informáticos JRAA, C.A</span>
-            </div>
-            <span style="color:var(--accent); font-weight: bold;">+</span>
-          </summary>
-          <div class="job-body">Gestión técnica propia orientada a soluciones corporativas HP y Symantec.</div>
-        </details>
-
-        <details class="job-card">
-          <summary class="job-summary">
-            <div>
-              <span class="job-date">2004 — 2008</span>
-              <span class="job-title">Director de Informática // IVEC</span>
-            </div>
-            <span style="color:var(--accent); font-weight: bold;">+</span>
-          </summary>
-          <div class="job-body">Dirección IT para 230 usuarios, migración de plataformas y expansión de Datacenter.</div>
-        </details>
-
-        <details class="job-card">
-          <summary class="job-summary">
-            <div>
-              <span class="job-date">---</span>
-              <span class="job-title">Docencia Universitaria // UC & IUTEPI</span>
-            </div>
-            <span style="color:var(--accent); font-weight: bold;">+</span>
-          </summary>
-          <div class="job-body">Cátedras de Plataforma Computacional, Lógica y Diagramación.</div>
-        </details>
-      </section>
-
-      <section>
-        <div class="section-indicator"></div>
-        <h2 class="title-line">Educación</h2>
-        <div class="job-card" style="padding: 1.5rem;">
-          <span class="job-date">1999 — 2004</span>
-          <div class="job-title">Ingeniero de Sistemas // Univ. Bicentenaria de Aragua</div>
-        </div>
-        <div class="job-card" style="padding: 1.5rem;">
-          <span class="job-date">1996 — 1999</span>
-          <div class="job-title">T.S.U. Administración Informática // CUMT</div>
+          </div>
         </div>
       </section>
     </div>
@@ -399,28 +569,44 @@
       <section>
         <div class="personal-header">
           <img src="perfil.png" alt="Jesús Rojas" class="personal-img">
-          <h2 class="title-line"><span class="lang-es">Intereses</span><span class="lang-en">Interests</span></h2>
+          <div>
+            <div class="section-indicator"></div>
+            <h2 class="title-line" style="margin-bottom:0"><span class="lang-es">Intereses</span><span class="lang-en">Interests</span></h2>
+          </div>
         </div>
+        
         <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:15px;">
-          <div class="job-card" style="padding: 20px;">
+          <div class="job-item" style="padding: 20px;">
             <span style="font-size:30px">🏍️</span>
-            <h4 style="margin-top:10px; color: var(--text);">Motos Scrambler</h4>
-            <p style="font-size:12px; color:var(--text-dim)">Engine swaps y mecánica hands-on.</p>
+            <h4 style="margin-top:10px; color: var(--text-main);"><span class="lang-es">Motos Scrambler</span><span class="lang-en">Scrambler Bikes</span></h4>
+            <p style="font-size:12px; color:var(--text-dim); margin-top:5px;">
+              <span class="lang-es">Proyectos mecánicos hands-on, modificaciones y engine swaps.</span>
+              <span class="lang-en">Hands-on mechanical projects, modifications, and engine swaps.</span>
+            </p>
           </div>
-          <div class="job-card" style="padding: 20px;">
+          <div class="job-item" style="padding: 20px;">
             <span style="font-size:30px">⌚</span>
-            <h4 style="margin-top:10px; color: var(--text);">Casio Vintage</h4>
-            <p style="font-size:12px; color:var(--text-dim)">Coleccionismo de relojería digital robusta.</p>
+            <h4 style="margin-top:10px; color: var(--text-main);"><span class="lang-es">Casio Vintage</span><span class="lang-en">Vintage Casio</span></h4>
+            <p style="font-size:12px; color:var(--text-dim); margin-top:5px;">
+              <span class="lang-es">Coleccionismo y restauración de relojería digital robusta (Geo Trail).</span>
+              <span class="lang-en">Collecting and restoring rugged digital watches (Geo Trail).</span>
+            </p>
           </div>
-          <div class="job-card" style="padding: 20px;">
+          <div class="job-item" style="padding: 20px;">
             <span style="font-size:30px">🏀</span>
-            <h4 style="margin-top:10px; color: var(--text);">NBA Analytics</h4>
-            <p style="font-size:12px; color:var(--text-dim)">Estadísticas de la era dorada de los 90s.</p>
+            <h4 style="margin-top:10px; color: var(--text-main);"><span class="lang-es">Análisis NBA</span><span class="lang-en">NBA Analytics</span></h4>
+            <p style="font-size:12px; color:var(--text-dim); margin-top:5px;">
+              <span class="lang-es">Métricas avanzadas para comparar el rendimiento histórico de los 90s.</span>
+              <span class="lang-en">Advanced metrics comparing historical 90s performance.</span>
+            </p>
           </div>
-          <div class="job-card" style="padding: 20px;">
+          <div class="job-item" style="padding: 20px;">
             <span style="font-size:30px">🤖</span>
-            <h4 style="margin-top:10px; color: var(--text);">Inteligencia Artificial</h4>
-            <p style="font-size:12px; color:var(--text-dim)">Exploración de LLMs y agentes autónomos.</p>
+            <h4 style="margin-top:10px; color: var(--text-main);"><span class="lang-es">Inteligencia Artificial</span><span class="lang-en">AI Tinkering</span></h4>
+            <p style="font-size:12px; color:var(--text-dim); margin-top:5px;">
+              <span class="lang-es">Exploración de LLMs y automatización de flujos con agentes autónomos.</span>
+              <span class="lang-en">Exploring LLMs and automating workflows with autonomous agents.</span>
+            </p>
           </div>
         </div>
       </section>
@@ -434,6 +620,38 @@
   <button class="tab" onclick="switchView('personal', this)" style="font-size:22px">👤</button>
   <button class="tab" onclick="window.scrollTo({top:0, behavior:'smooth'})" style="font-size:22px">🔝</button>
 </nav>
+
+
+<div class="captcha-overlay" id="captchaModal">
+  <div class="captcha-modal">
+    <h3>
+      <span class="lang-es">Verificación de seguridad</span>
+      <span class="lang-en">Security verification</span>
+    </h3>
+    <p style="font-size:13px; color:var(--text-dim); margin-bottom: 20px;">
+      <span class="lang-es">Por favor, confirma que eres humano para iniciar la descarga.</span>
+      <span class="lang-en">Please confirm you are human to start the download.</span>
+    </p>
+
+    <div class="g-recaptcha-fake" onclick="verifyCaptcha()">
+      <div class="rc-left">
+        <div class="rc-checkbox" id="rc-box"></div>
+        <span class="rc-text">
+          <span class="lang-es">No soy un robot</span>
+          <span class="lang-en">I'm not a robot</span>
+        </span>
+      </div>
+      <div class="rc-logo">
+        <svg viewBox="0 0 48 48"><path fill="#4285F4" d="M24 4C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4zm10.7 14.5l-12.8 15.6c-.3.4-.8.6-1.3.6h-.1c-.5-.1-.9-.4-1.2-.8l-6.2-7.8c-.6-.7-.5-1.8.2-2.4.7-.6 1.8-.5 2.4.2l4.9 6.2 11.5-14c.6-.7 1.7-.8 2.4-.2.7.5.8 1.6.2 2.6z"/></svg>
+        <span>reCAPTCHA</span>
+      </div>
+    </div>
+
+    <button class="close-captcha" onclick="closeCaptcha()">
+      <span class="lang-es">Cancelar</span><span class="lang-en">Cancel</span>
+    </button>
+  </div>
+</div>
 
 <script>
   function switchView(view, btn) {
@@ -462,7 +680,11 @@
 
   function copyEmail() {
     navigator.clipboard.writeText("jesuserl@gmail.com");
-    alert("Email copiado!");
+    const textNodes = document.querySelectorAll('.email-text');
+    textNodes.forEach(node => {
+      node.textContent = document.body.lang === 'es' ? "¡Copiado!" : "Copied!";
+      setTimeout(() => node.textContent = "Gmail", 2000);
+    });
   }
 
   window.addEventListener('scroll', () => {
@@ -471,6 +693,57 @@
     const scrolled = (winScroll / height) * 100;
     document.getElementById('progressBar').style.width = scrolled + "%";
   });
+
+  /* ========================================================
+     LÓGICA DEL CAPTCHA FALSO Y DESCARGA DE CV
+     ======================================================== */
+  const captchaModal = document.getElementById('captchaModal');
+  const rcBox = document.getElementById('rc-box');
+  let isVerified = false;
+
+  function openCaptcha() {
+    captchaModal.classList.add('active');
+  }
+
+  function closeCaptcha() {
+    captchaModal.classList.remove('active');
+    // Resetear el captcha después de cerrar
+    setTimeout(() => {
+      rcBox.classList.remove('loading', 'checked');
+      isVerified = false;
+    }, 300);
+  }
+
+  function verifyCaptcha() {
+    if (isVerified) return; // Evitar multiples clicks
+    isVerified = true;
+    
+    // 1. Mostrar Spinner de carga
+    rcBox.classList.add('loading');
+    
+    // 2. Simular tiempo de verificación de red (1.2 segundos)
+    setTimeout(() => {
+      rcBox.classList.remove('loading');
+      rcBox.classList.add('checked'); // Mostrar check verde
+      
+      // 3. Iniciar descarga e ir cerrando modal
+      setTimeout(() => {
+        downloadFile();
+        closeCaptcha();
+      }, 700);
+      
+    }, 1200);
+  }
+
+  function downloadFile() {
+    // Generar enlace dinámicamente para evadir scrapers básicos
+    const a = document.createElement('a');
+    a.href = "Resumen Curricular - Ing. Jesus Rojas -V4.pdf";
+    a.download = "Resumen Curricular - Ing. Jesus Rojas -V4.pdf";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
 </script>
 </body>
 </html>
