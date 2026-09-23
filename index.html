@@ -5,7 +5,86 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Jesús Rojas — IT Infrastructure Leader</title>
-<meta name="description" content="Líder de Infraestructura Tecnológica con más de 20 años de experiencia.">
+<meta name="description" content="Líder de Infraestructura Tecnológica con más de 20 años de experiencia en entornos On-Premise y Cloud. Microsoft Azure, SAP Business One, redes y virtualización.">
+
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="canonical" href="https://jesuserl.github.io/">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f4f6f8">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f172a">
+
+<meta property="og:type" content="profile">
+<meta property="og:site_name" content="Jesús Rojas — IT Infrastructure Leader">
+<meta property="og:url" content="https://jesuserl.github.io/">
+<meta property="og:title" content="Jesús Rojas — IT Infrastructure Leader">
+<meta property="og:description" content="Líder de Infraestructura Tecnológica con más de 20 años de experiencia en entornos On-Premise y Cloud. Microsoft Azure, SAP Business One, redes y virtualización.">
+<meta property="og:image" content="https://jesuserl.github.io/perfil.PNG">
+<meta property="og:image:alt" content="Foto de perfil de Jesús Rojas">
+<meta property="og:locale" content="es_VE">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="profile:first_name" content="Jesús">
+<meta property="profile:last_name" content="Rojas">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Jesús Rojas — IT Infrastructure Leader">
+<meta name="twitter:description" content="Líder de Infraestructura Tecnológica con más de 20 años de experiencia en entornos On-Premise y Cloud.">
+<meta name="twitter:image" content="https://jesuserl.github.io/perfil.PNG">
+
+<script>
+  window.GA_ID = ''; // TODO: agregar tu Measurement ID de GA4 (p.ej. G-XXXXXXXXXX)
+  if (window.GA_ID) {
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    window.gtag = gtag;
+    var ga = document.createElement('script');
+    ga.async = true;
+    ga.src = 'https://www.googletagmanager.com/gtag/js?id=' + window.GA_ID;
+    document.head.appendChild(ga);
+    gtag('js', new Date());
+    gtag('config', window.GA_ID);
+  }
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Profile",
+  "@id": "https://jesuserl.github.io/#profile",
+  "mainEntityOfPage": "https://jesuserl.github.io/",
+  "name": "Jesús Enrique Rojas L.",
+  "url": "https://jesuserl.github.io/",
+  "image": "https://jesuserl.github.io/perfil.PNG",
+  "jobTitle": "Especialista de Infraestructura Tecnológica",
+  "email": "jesuserl@gmail.com",
+  "sameAs": [
+    "https://www.linkedin.com/in/jesuserl",
+    "https://wa.me/584224427392"
+  ],
+  "alumniOf": [
+    "Universidad Bicentenaria de Aragua",
+    "CUMT"
+  ],
+  "knowsAbout": [
+    "Microsoft Azure",
+    "Microsoft 365",
+    "VMware",
+    "Hyper-V",
+    "Windows Server",
+    "Linux",
+    "SAP Business One",
+    "Dynamics CRM",
+    "Odoo",
+    "Docker",
+    "SQL Server",
+    "SAP HANA",
+    "Redes y Firewalls"
+  ],
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Ron Carúpano"
+  }
+}
+</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -286,9 +365,44 @@
     transform: rotate(45deg); top: 2px; left: 8px;
   }
   .close-captcha { margin-top: 15px; background: transparent; border: none; color: var(--text-dim); font-size: 13px; cursor: pointer; text-decoration: underline; }
+
+  /* ACCESIBILIDAD: reducir movimiento */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+    .reveal { opacity: 1 !important; transform: none !important; }
+  }
+
+  /* SCROLL REVEAL */
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* IMPRESIÓN DEL CV */
+  @media print {
+    body { background: #ffffff !important; }
+    #progressBar, .sidebar-card, .nav-tabs, .mobile-bar, .captcha-overlay { display: none !important; }
+    .layout-wrapper { max-width: 100%; margin: 0; padding: 0; display: block; }
+    .right-column { display: block; gap: 0; }
+    .content-block { box-shadow: none; border: 1px solid #e2e8f0; padding: 1.2rem 1.5rem; break-inside: avoid; }
+    details:not([open]) { border: 1px solid #e2e8f0; border-radius: 16px; margin-bottom: 8px; }
+    details:not([open]) > *:not(summary) { display: block !important; }
+    .job-item[open] { border-color: transparent; border-left: 4px solid #2563eb; }
+  }
 </style>
 </head>
 <body data-theme="light" lang="es">
+<script>
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem('theme'); } catch (e) { /* noop */ }
+    if (!t) { t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+    document.body.dataset.theme = t;
+  })();
+</script>
 
 <div id="progressBar"></div>
 
@@ -299,7 +413,7 @@
     <div class="badge-role">INFRASTRUCTURE SPECIALIST</div>
     
     <div class="contact-list">
-      <button class="contact-btn" onclick="copyEmail()">
+      <button class="contact-btn" onclick="openCaptcha('email')" aria-label="Revelar y copiar correo de contacto">
         <svg viewBox="0 0 24 24"><path d="M24 5.457v13.909c0 .904-.732 1.634-1.634 1.634h-20.732c-.902 0-1.634-.73-1.634-1.634v-13.909l12 7 12-7zm-12 4.5l-12-7h24l-12 7z"/></svg>
         <span class="email-text">Gmail</span>
       </button>
@@ -319,7 +433,7 @@
       <button class="mini-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
     </div>
 
-    <button class="download-btn" onclick="openCaptcha()">
+    <button class="download-btn" onclick="openCaptcha('cv')">
       <svg style="width:18px; fill:white" viewBox="0 0 24 24"><path d="M12 21l-8-9h6v-12h4v12h6l-8 9zm9-1v2h-18v-2h-2v4h22v-4h-2z"/></svg>
       <span class="lang-es">Descargar CV</span><span class="lang-en">Download CV</span>
     </button>
@@ -646,8 +760,10 @@
 
   function toggleTheme() {
     const isDark = document.body.dataset.theme === 'dark';
-    document.body.dataset.theme = isDark ? 'light' : 'dark';
-    document.getElementById('themeBtn').textContent = isDark ? '🌙' : '☀️';
+    const next = isDark ? 'light' : 'dark';
+    document.body.dataset.theme = next;
+    try { localStorage.setItem('theme', next); } catch (e) { /* noop */ }
+    document.getElementById('themeBtn').textContent = next === 'dark' ? '☀️' : '🌙';
   }
 
   function toggleLang() {
@@ -657,10 +773,9 @@
   }
 
   function copyEmail() {
-    navigator.clipboard.writeText("jesuserl@gmail.com");
-    const textNodes = document.querySelectorAll('.email-text');
-    textNodes.forEach(node => {
-      node.textContent = document.body.lang === 'es' ? "¡Copiado!" : "Copied!";
+    navigator.clipboard.writeText(EMAIL);
+    document.querySelectorAll('.email-text').forEach(node => {
+      node.textContent = document.body.lang === 'es' ? "¡Correo copiado!" : "Email copied!";
       setTimeout(() => node.textContent = "Gmail", 2000);
     });
   }
@@ -672,11 +787,34 @@
     document.getElementById('progressBar').style.width = scrolled + "%";
   });
 
+  (function initReveal() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!('IntersectionObserver' in window)) return;
+    const io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.content-block').forEach(function (el) {
+      el.classList.add('reveal');
+      io.observe(el);
+    });
+  })();
+
+  const EMAIL = 'jesu' + 'serl@g' + 'mail.com';
+  const captchaMode = { value: 'cv' };
+
   const captchaModal = document.getElementById('captchaModal');
   const rcBox = document.getElementById('rc-box');
   let isVerified = false;
 
-  function openCaptcha() { captchaModal.classList.add('active'); }
+  function openCaptcha(mode) {
+    captchaMode.value = mode || 'cv';
+    captchaModal.classList.add('active');
+  }
 
   function closeCaptcha() {
     captchaModal.classList.remove('active');
@@ -693,8 +831,24 @@
     setTimeout(() => {
       rcBox.classList.remove('loading');
       rcBox.classList.add('checked');
-      setTimeout(() => { downloadFile(); closeCaptcha(); }, 700);
+      setTimeout(() => {
+        if (captchaMode.value === 'email') {
+          revealEmail();
+        } else {
+          downloadFile();
+        }
+        closeCaptcha();
+      }, 700);
     }, 1200);
+  }
+
+  function revealEmail() {
+    document.querySelectorAll('.email-text').forEach(node => {
+      node.textContent = EMAIL;
+      setTimeout(() => {
+        copyEmail();
+      }, 1200);
+    });
   }
 
   function downloadFile() {
