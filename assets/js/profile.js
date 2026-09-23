@@ -1,4 +1,4 @@
-{
+window.PROFILE_DATA = {
   "hero": {
     "identity": {
       "es": "Jesús Enrique Rojas L. — Especialista en Infraestructura",
@@ -156,4 +156,4 @@
       }
     }
   ]
-}
+};

@@ -350,21 +350,15 @@
 
   /* ---------- CARGA DE DATOS ---------- */
   function loadData() {
-    Promise.all([
-      fetch('assets/js/i18n.en.json').then(function (r) { return r.json(); }),
-      fetch('assets/data/profile.json').then(function (r) { return r.json(); })
-    ]).then(function (results) {
-      I18N = results[0];
-      PROFILE = results[1];
-      applyI18n();
-      renderExperience();
-      renderEducation();
-      renderHobbies();
-      runTyping();
-      initStats();
-    }).catch(function () {
-      applyI18n();
-    });
+    I18N = window.I18N_DATA || {};
+    PROFILE = window.PROFILE_DATA || null;
+    if (!PROFILE) return;
+    applyI18n();
+    renderExperience();
+    renderEducation();
+    renderHobbies();
+    runTyping();
+    initStats();
   }
 
   initReveal();

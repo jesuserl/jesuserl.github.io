@@ -11,7 +11,9 @@ El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/). Ca
 - **Resplandores ambientales**: blobs de gradiente animados con drift lento detrás del hero (CSS puro).
 - **Top bar sticky de vidrio**: navegación fija con `backdrop-filter`, se compacta al hacer scroll; sustituye la pill flotante.
 - **FAB "volver arriba"**: reemplaza la barra inferior móvil; aparece al superar 500 px de scroll.
-- **Banda de estadísticas con count-up**: valores auto-calculados desde `profile.json` (tecnologías, empresas, certificaciones).
+- **Banda de estadísticas con count-up**: valores auto-calculados desde `profile.js` (tecnologías, empresas, certificaciones).
+- **Fix local:** datos cargados por `<script>` (`profile.js`, `i18n.en.js`) en lugar de `fetch`/JSON, por lo que la app funciona también abriendo `index.html` desde disco (`file://`).
+- **Assets con versión** (`?v=4.1.0`) para invalidar caché de navegador/CDN.
 - **Skills en marquee infinito**: tira deslizante de tecnologías con máscara de desvanecido, pausa al hover y una segunda fila de comandos en contrasentido.
 - **Experiencia en timeline**: línea vertical con nodos que brillan al abrirse; el `+` rota a `−`.
 - **Glow al hover** en tarjetas de contenido y **tilt 3D** en las hobby cards.
@@ -34,8 +36,8 @@ El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/). Ca
 - **Avatar real** (`perfil.PNG`) con fallback `JR_`.
 
 ### Refactor
-- Migrado a estructura modular: CSS y JS extraídos a `assets/`, contenido del CV en `assets/data/profile.json`.
-- i18n EN con diccionario `assets/js/i18n.en.json` y atributos `data-i18n`; ES sigue en el HTML (crawlable).
+- Migrado a estructura modular: CSS y JS extraídos a `assets/`, contenido del CV en `assets/js/profile.js`.
+- i18n EN con diccionario `assets/js/i18n.en.js` y atributos `data-i18n`; ES sigue en el HTML (crawlable).
 - `404.html`, `robots.txt` y `sitemap.xml` añadidos.
 - Analítica **GA4** configurable (`window.GA_ID`).
 - Workflow **Lighthouse CI** en GitHub Actions.

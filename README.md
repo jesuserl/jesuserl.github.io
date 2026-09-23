@@ -11,7 +11,7 @@ Sitio estático sin frameworks ni dependencias externas pesadas:
 * **HTML5 Semántico:** estructura sólida y accesible con acceso directo a los datos.
 * **CSS3 (Custom Properties & Grid/Flexbox):** diseño responsive y gestión de temas dinámicos.
 * **Vanilla JavaScript:** lógica de micro-interacciones, render de contenido y multilingüismo.
-* **JSON data-driven:** la experiencia, educación y hobbies viven en `assets/data/profile.json`; editar el CV no requiere tocar HTML.
+* **JSON data-driven:** la experiencia, educación y hobbies viven en `assets/js/profile.js`; editar el CV no requiere tocar HTML.
 * **SVG:** iconografía ligera de alta calidad.
 
 ## ✨ Características Principales
@@ -21,7 +21,7 @@ Sitio estático sin frameworks ni dependencias externas pesadas:
 * **Skills en marquee infinito:** tira deslizante de tecnologías con máscara de desvanecido y fila de comandos en contrasentido.
 * **Experiencia en timeline:** línea temporal con nodos y glow al abrir el acordeón.
 * **Hobby cards con tilt 3D:** inclinación al pasar el cursor (desactivada con `prefers-reduced-motion` y táctil).
-* **Multilingüe Nativo (ES/EN):** textos primarios en ES dentro del HTML (crawlables) y diccionario EN cargado desde `assets/js/i18n.en.json`.
+* **Multilingüe Nativo (ES/EN):** textos primarios en ES dentro del HTML (crawlables) y diccionario EN cargado desde `assets/js/i18n.en.js`.
 * **Modo Oscuro/Claro persistente:** se guarda en `localStorage` y respeta `prefers-color-scheme` al primer acceso (sin flash).
 * **`prefers-reduced-motion`:** desactiva animaciones y efectos para usuarios sensibles.
 * **UX de Alto Nivel:**
@@ -48,10 +48,10 @@ Sitio estático sin frameworks ni dependencias externas pesadas:
 ├── assets/
 │   ├── favicon.svg                   # Favicon del sitio
 │   ├── css/styles.css                # Estilos por secciones
-│   ├── data/profile.json             # Contenido del CV (ES/EN data-driven)
 │   └── js/
 │       ├── main.js                   # Lógica de la app (render, i18n, temas)
-│       └── i18n.en.json              # Diccionario de traducción inglés
+│       ├── i18n.en.js                # Diccionario de traducción inglés
+│       └── profile.js                # Contenido del CV (ES/EN data-driven)
 ├── .github/workflows/lighthouse.yml  # Auditoría Lighthouse en cada push
 ├── README.md                         # Este documento
 └── CHANGELOG.md                      # Histórico de versiones
@@ -64,7 +64,7 @@ El repositorio se publica automáticamente como **GitHub Pages** (sitio de usuar
 2. Publicar. El sitio queda en `https://jesuserl.github.io`.
 
 ## 🧪 Desarrollo local
-El contenido se carga desde JSON vía `fetch`, por lo que necesita un servidor HTTP local:
+Los datos se cargan como scripts (`profile.js`, `i18n.en.js`) y funcionan tanto servido como abriendo `index.html` directo desde disco:
 
 ```bash
 python -m http.server 8000
@@ -74,7 +74,7 @@ npx serve
 
 Abre `http://localhost:8000`.
 
-Para editar el CV, modifica `assets/data/profile.json` (meses/fechas, puestos, descripciones en `es`/`en`).
+Para editar el CV, modifica `assets/js/profile.js` (meses/fechas, puestos, descripciones en `es`/`en`).
 
 ## 📈 Analytics
 Para activar GA4, define tu Measurement ID en `index.html`:

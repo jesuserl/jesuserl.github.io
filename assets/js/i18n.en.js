@@ -1,4 +1,4 @@
-{
+window.I18N_DATA = {
   "nav.pro": "Professional",
   "nav.personal": "Personal",
   "profile.title": "Professional Profile",
@@ -22,4 +22,4 @@
   "captcha.descMail": "Please confirm you are human to reveal the email.",
   "captcha.name": "I'm not a robot",
   "captcha.cancel": "Cancel"
-}
+};
