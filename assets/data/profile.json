@@ -1,4 +1,17 @@
 {
+  "hero": {
+    "identity": {
+      "es": "Jesús Enrique Rojas L. — Especialista en Infraestructura",
+      "en": "Jesús Enrique Rojas L. — IT Infrastructure Specialist"
+    },
+    "roles": [
+      { "es": "Microsoft Azure", "en": "Microsoft Azure" },
+      { "es": "VMware & Hyper-V", "en": "VMware & Hyper-V" },
+      { "es": "SAP Business One", "en": "SAP Business One" },
+      { "es": "Redes y Firewalls", "en": "Networks & Firewalls" },
+      { "es": "Docker & Odoo", "en": "Docker & Odoo" }
+    ]
+  },
   "experience": [
     {
       "dates": { "es": "Sep 2024 — ACTUAL", "en": "Sep 2024 — PRESENT" },

@@ -9,9 +9,17 @@
   "about.title": "About Me",
   "about.body": "Beyond servers and infrastructure, I apply my analytical focus and passion for problem-solving to various personal interests. I enjoy understanding how systems work from the inside out, whether it's a motorcycle engine, the precision of a classic watch, or the statistics behind a sporting event.",
   "hobbies.title": "Hobbies & Exploration",
+  "hero.identity": "Jesús Enrique Rojas L. — IT Infrastructure Specialist",
+  "hero.available": "Available for projects",
+  "cta.experience": "View Experience",
+  "stats.years": "Years of Experience",
+  "stats.tech": "Technologies",
+  "stats.comp": "Companies",
+  "stats.certs": "Certifications",
   "download.pdf": "Download CV",
   "captcha.title": "Security verification",
   "captcha.desc": "Please confirm you are human to start the download.",
+  "captcha.descMail": "Please confirm you are human to reveal the email.",
   "captcha.name": "I'm not a robot",
   "captcha.cancel": "Cancel"
 }

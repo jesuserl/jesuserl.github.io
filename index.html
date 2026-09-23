@@ -88,7 +88,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="assets/css/styles.css">
 </head>
@@ -103,6 +103,24 @@
 </script>
 
 <div id="progressBar"></div>
+
+<nav class="top-nav" id="topNav" aria-label="Navegación principal">
+  <div class="nav-inner">
+    <a class="nav-brand" href="./" aria-label="Inicio">JR_</a>
+    <div class="nav-tabs" role="tablist">
+      <button class="tab active" onclick="switchView('pro', this)" data-i18n="nav.pro">Profesional</button>
+      <button class="tab" onclick="switchView('personal', this)" data-i18n="nav.personal">Personal</button>
+    </div>
+    <div class="nav-actions">
+      <button class="mini-btn" onclick="toggleLang()" title="Idioma" id="langBtn">EN</button>
+      <button class="mini-btn" onclick="toggleTheme()" title="Tema" id="themeBtn">🌙</button>
+      <button class="download-btn nav-download" onclick="openCaptcha('cv')">
+        <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:currentColor;" aria-hidden="true"><path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-8 2v2h16v-2H4z"/></svg>
+        <span class="nav-label" data-i18n="download.pdf">CV</span>
+      </button>
+    </div>
+  </div>
+</nav>
 
 <div class="layout-wrapper">
 
@@ -129,11 +147,6 @@
       </a>
     </div>
 
-    <div class="action-row">
-      <button class="mini-btn" onclick="toggleLang()" id="langBtn">EN</button>
-      <button class="mini-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
-    </div>
-
     <button class="download-btn" onclick="openCaptcha('cv')">
       <svg style="width:18px; fill:white" viewBox="0 0 24 24"><path d="M12 21l-8-9h6v-12h4v12h6l-8 9zm9-1v2h-18v-2h-2v4h22v-4h-2z"/></svg>
       <span data-i18n="download.pdf">Descargar CV</span>
@@ -142,46 +155,134 @@
 
   <main class="right-column">
 
-    <nav class="nav-tabs">
-      <button class="tab active" onclick="switchView('pro', this)" data-i18n="nav.pro">Profesional</button>
-      <button class="tab" onclick="switchView('personal', this)" data-i18n="nav.personal">Personal</button>
-    </nav>
-
+    <!-- VISTA PROFESIONAL -->
     <div id="view-pro" class="view-content active">
 
-      <section class="content-block">
-        <div class="section-marker"></div>
-        <h2 class="title-line" data-i18n="profile.title">Perfil Profesional</h2>
-        <p class="lead-text" data-i18n="profile.body">Ingeniero de Sistemas con más de 20 años de experiencia técnica. Experto en infraestructura de servidores, virtualización en entornos locales (VMware, Hyper-V) y Cloud (Azure), aseguramiento de información y consultoría funcional para ERPs (SAP Business One) y CRMs. Orientado a la optimización continua y a la creación de arquitecturas de TI resilientes.</p>
-      </section>
+      <section class="content-block hero-block">
+        <div class="terminal" role="presentation">
+          <div class="terminal-bar">
+            <span class="t-dot r"></span><span class="t-dot y"></span><span class="t-dot g"></span>
+            <span class="t-title">jesus@infra — zsh</span>
+          </div>
+          <div class="terminal-body">
+            <div class="t-line"><span class="t-prompt">jesus@infra:~$</span> whoami</div>
+            <div class="t-line t-out" data-i18n="hero.identity">Jesús Enrique Rojas L. — Especialista en Infraestructura</div>
+            <div class="t-line"><span class="t-prompt">jesus@infra:~$</span> ./stack.sh --focus</div>
+            <div class="t-line t-type"><span class="t-out" id="typeText">Azure</span><span class="cursor" aria-hidden="true">▊</span></div>
+          </div>
+        </div>
 
-      <section class="content-block" style="margin-top: 1.5rem;">
-        <div class="section-marker"></div>
-        <h2 class="title-line" data-i18n="skills.title">Skills Técnicos</h2>
-        <div class="skills-grid">
-          <span class="skill-tag">Microsoft Azure</span>
-          <span class="skill-tag">Microsoft 365</span>
-          <span class="skill-tag">VMware ESX</span>
-          <span class="skill-tag">Hyper-V</span>
-          <span class="skill-tag">Windows Server</span>
-          <span class="skill-tag">Linux</span>
-          <span class="skill-tag">SAP Business One</span>
-          <span class="skill-tag">Dynamics CRM</span>
-          <span class="skill-tag">Odoo</span>
-          <span class="skill-tag">Fortigate / Sophos</span>
-          <span class="skill-tag">Mikrotik / WatchGuard</span>
-          <span class="skill-tag">SQL Server / SAP HANA</span>
-          <span class="skill-tag">Docker</span>
+        <h1 class="hero-name">JESÚS <span class="grad">ROJAS</span></h1>
+        <p class="hero-sub lead-text" data-i18n="profile.body">Ingeniero de Sistemas con más de 20 años de experiencia técnica. Experto en infraestructura de servidores, virtualización en entornos locales (VMware, Hyper-V) y Cloud (Azure), aseguramiento de información y consultoría funcional para ERPs (SAP Business One) y CRMs. Orientado a la optimización continua y a la creación de arquitecturas de TI resilientes.</p>
+
+        <div class="hero-cta">
+          <button class="download-btn hero-btn" onclick="document.getElementById('exp-block').scrollIntoView({behavior:'smooth'})">
+            <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:currentColor;" aria-hidden="true"><path d="M7 10l5 5 5-5H7z"/></svg>
+            <span data-i18n="cta.experience">Ver Experiencia</span>
+          </button>
+          <button class="download-btn hero-ghost" onclick="openCaptcha('cv')">
+            <svg style="width:16px; fill:currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21l-8-9h6v-12h4v12h6l-8 9zm9-1v2h-18v-2h-2v4h22v-4h-2z"/></svg>
+            <span data-i18n="download.pdf">Descargar CV</span>
+          </button>
+        </div>
+
+        <div class="hero-status">
+          <span class="pulse-dot" aria-hidden="true"></span>
+          <span data-i18n="hero.available">Disponible para proyectos</span>
         </div>
       </section>
 
-      <section class="content-block" style="margin-top: 1.5rem;">
-        <div class="section-marker"></div>
-        <h2 class="title-line" data-i18n="experience.title">Experiencia Laboral</h2>
-        <div class="accordion-wrapper" id="experience-list"></div>
+      <section class="stats-band" id="stats" aria-label="Métricas">
+        <div class="stat">
+          <span class="stat-value">20+</span>
+          <span class="stat-label" data-i18n="stats.years">Años de experiencia</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="stat-tech">13</span>
+          <span class="stat-label" data-i18n="stats.tech">Tecnologías</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="stat-companies">10</span>
+          <span class="stat-label" data-i18n="stats.comp">Empresas</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="stat-certs">3</span>
+          <span class="stat-label" data-i18n="stats.certs">Certificaciones</span>
+        </div>
       </section>
 
-      <section class="content-block" style="margin-top: 1.5rem;">
+      <section class="content-block">
+        <div class="section-marker"></div>
+        <h2 class="title-line" data-i18n="skills.title">Skills Técnicos</h2>
+
+        <div class="marquee" aria-label="Tecnologías">
+          <div class="marquee-track">
+            <div class="marquee-group">
+              <span class="marquee-item"><span class="m-prefix">$</span> Azure</span>
+              <span class="marquee-item"><span class="m-prefix">$</span> Microsoft 365</span>
+              <span class="marquee-item"><span class="m-prefix">$</span> VMware ESX</span>
+              <span class="marquee-item"><span class="m-prefix">$</span> Hyper-V</span>
+              <span class="marquee-item"><span class="m-prefix">$</span> Windows Server</span>
+              <span class="marquee-item"><span class="m-prefix">$</span> Linux</span>
+              <span class="marquee-item"><span class="m-prefix">$</span> SAP Business One</span>
+              <span class="marquee-item"><span class="m-prefix">$</span> Dynamics CRM</span>
+              <span class="marquee-item"><span class="m-prefix">$</span> Odoo</span>
+              <span class="marquee-item"><span class="m-prefix">$</span> Fortigate / Sophos</span>
+              <span class="marquee-item"><span class="m-prefix">$</span> Mikrotik / WatchGuard</span>
+              <span class="marquee-item"><span class="m-prefix">$</span> SQL Server / SAP HANA</span>
+              <span class="marquee-item"><span class="m-prefix">$</span> Docker</span>
+            </div>
+            <div class="marquee-group" aria-hidden="true">
+              <span class="marquee-item"><span class="m-prefix">$</span> Azure</span>
+              <span class="marquee-item"><span class="m-prefix">$</span> Microsoft 365</span>
+              <span class="marquee-item"><span class="m-prefix">$</span> VMware ESX</span>
+              <span class="marquee-item"><span class="m-prefix">$</span> Hyper-V</span>
+              <span class="marquee-item"><span class="m-prefix">$</span> Windows Server</span>
+              <span class="marquee-item"><span class="m-prefix">$</span> Linux</span>
+              <span class="marquee-item"><span class="m-prefix">$</span> SAP Business One</span>
+              <span class="marquee-item"><span class="m-prefix">$</span> Dynamics CRM</span>
+              <span class="marquee-item"><span class="m-prefix">$</span> Odoo</span>
+              <span class="marquee-item"><span class="m-prefix">$</span> Fortigate / Sophos</span>
+              <span class="marquee-item"><span class="m-prefix">$</span> Mikrotik / WatchGuard</span>
+              <span class="marquee-item"><span class="m-prefix">$</span> SQL Server / SAP HANA</span>
+              <span class="marquee-item"><span class="m-prefix">$</span> Docker</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="marquee marquee-commands" aria-hidden="true">
+          <div class="marquee-track reverse">
+            <div class="marquee-group">
+              <span class="marquee-item cmd">uptime</span>
+              <span class="marquee-item cmd">df -h</span>
+              <span class="marquee-item cmd">ping -c1 auth.core</span>
+              <span class="marquee-item cmd">systemctl status</span>
+              <span class="marquee-item cmd">./deploy.sh --env=prod</span>
+              <span class="marquee-item cmd">terraform plan</span>
+              <span class="marquee-item cmd">kubectl get pods</span>
+              <span class="marquee-item cmd">mysqldump --all</span>
+            </div>
+            <div class="marquee-group">
+              <span class="marquee-item cmd">uptime</span>
+              <span class="marquee-item cmd">df -h</span>
+              <span class="marquee-item cmd">ping -c1 auth.core</span>
+              <span class="marquee-item cmd">systemctl status</span>
+              <span class="marquee-item cmd">./deploy.sh --env=prod</span>
+              <span class="marquee-item cmd">terraform plan</span>
+              <span class="marquee-item cmd">kubectl get pods</span>
+              <span class="marquee-item cmd">mysqldump --all</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-block" id="exp-block">
+        <div class="section-marker"></div>
+        <h2 class="title-line" data-i18n="experience.title">Experiencia Laboral</h2>
+        <div class="accordion-wrapper timeline" id="experience-list"></div>
+      </section>
+
+      <section class="content-block">
         <div class="section-marker"></div>
         <h2 class="title-line" data-i18n="edu.title">Educación & Certificaciones</h2>
         <div class="accordion-wrapper" id="education-list"></div>
@@ -189,6 +290,7 @@
 
     </div>
 
+    <!-- VISTA PERSONAL -->
     <div id="view-personal" class="view-content" style="display:none">
 
       <section class="content-block">
@@ -208,11 +310,7 @@
   </main>
 </div>
 
-<nav class="mobile-bar">
-  <button class="tab active" onclick="switchView('pro', this)"><span style="font-size:22px">💼</span></button>
-  <button class="tab" onclick="switchView('personal', this)"><span style="font-size:22px">👤</span></button>
-  <button class="tab" onclick="window.scrollTo({top:0, behavior:'smooth'})"><span style="font-size:22px">🔝</span></button>
-</nav>
+<button class="fab-top" id="fabTop" onclick="window.scrollTo({top:0, behavior:'smooth'})" aria-label="Volver arriba">↑</button>
 
 <div class="captcha-overlay" id="captchaModal">
   <div class="captcha-modal">
