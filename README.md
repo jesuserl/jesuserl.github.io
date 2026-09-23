@@ -23,10 +23,15 @@ Para garantizar el máximo rendimiento y compatibilidad, el sitio fue construido
     * **Scroll Reveal:** Animaciones suaves de aparición de contenido.
     * **Accesibilidad (A11y):** Optimizado para navegación por teclado y lectores de pantalla.
 * **Ready for Print:** Estilos CSS específicos (`@media print`) para asegurar que el CV se imprima o guarde en PDF con formato profesional (fondo blanco, tipografía optimizada).
+* **Captcha Simulado:** Verificación ilustrativa estilo reCAPTCHA antes de revelar el correo de contacto.
+* **Descarga de CV:** Botón para descargar el resumen curricular en PDF directamente desde la página.
 
 ## 📂 Estructura del Proyecto
 ```text
 .
-├── index.html                               # Código fuente principal (Single Page Application)
+├── index.html                                  # Código fuente principal (Single Page Application)
 ├── Resumen Curricular - Ing. Jesus Rojas -V4.pdf  # Currículum descargable
-└── README.md                                # Documentación del repositorio
+├── perfil.PNG                                  # Imagen de perfil
+├── README.md                                   # Documentación del repositorio
+└── CHANGELOG.md                                # Histórico de versiones
+```
