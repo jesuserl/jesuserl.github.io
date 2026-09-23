@@ -1,0 +1,17 @@
+{
+  "nav.pro": "Professional",
+  "nav.personal": "Personal",
+  "profile.title": "Professional Profile",
+  "profile.body": "Systems Engineer with over 20 years of technical experience. Expert in server infrastructure, local virtualization (VMware, Hyper-V) and Cloud (Azure) environments, information assurance, and functional consulting for ERPs (SAP Business One) and CRMs. Focused on continuous optimization and creating resilient IT architectures.",
+  "skills.title": "Technical Skills",
+  "experience.title": "Work Experience",
+  "edu.title": "Education & Certifications",
+  "about.title": "About Me",
+  "about.body": "Beyond servers and infrastructure, I apply my analytical focus and passion for problem-solving to various personal interests. I enjoy understanding how systems work from the inside out, whether it's a motorcycle engine, the precision of a classic watch, or the statistics behind a sporting event.",
+  "hobbies.title": "Hobbies & Exploration",
+  "download.pdf": "Download CV",
+  "captcha.title": "Security verification",
+  "captcha.desc": "Please confirm you are human to start the download.",
+  "captcha.name": "I'm not a robot",
+  "captcha.cancel": "Cancel"
+}

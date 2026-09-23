@@ -1,0 +1,146 @@
+{
+  "experience": [
+    {
+      "dates": { "es": "Sep 2024 — ACTUAL", "en": "Sep 2024 — PRESENT" },
+      "role": { "es": "Especialista de Infraestructura", "en": "Infrastructure Specialist" },
+      "organization": "Ron Carúpano",
+      "description": {
+        "es": "Diseño e implementación de estrategias tecnológicas adaptadas, configuración de servidores, administración de redes (firewalls, routers, switches y VPNs), y gestión de almacenamiento y virtualización.",
+        "en": "Design and implementation of technological strategies, server configuration, corporate network administration (firewalls, routers, VPNs), and virtualization management."
+      },
+      "open": true
+    },
+    {
+      "dates": "Jul 2022 — Ene 2024",
+      "role": { "es": "Consultor IT Freelance", "en": "Independent IT Consultant" },
+      "organization": "Lima, Perú",
+      "description": {
+        "es": "Desarrollo de proyectos tecnológicos independientes e implementaciones Cloud y On-Premise.",
+        "en": "Development of independent technology projects, infrastructure consulting, and Cloud and On-Premise implementations."
+      }
+    },
+    {
+      "dates": "Dic 2018 — Sep 2022",
+      "role": "Consultor de IT — SAP B1",
+      "organization": "PRN Consultores S.A.C",
+      "description": {
+        "es": "Soporte a servidores Cloud/On-premise en plataforma SQL y HANA. Assessment de Plataforma IT y reportes en Crystal Reports.",
+        "en": "Remote and on-site support for Cloud and On-premise servers on SQL and HANA platforms. IT platform assessment and technical reporting."
+      }
+    },
+    {
+      "dates": "Mar 2019 — Nov 2020",
+      "role": "Consultor de IT",
+      "organization": "Seidor Centro América y el Caribe",
+      "description": {
+        "es": "Soporte a la Plataforma de SAP Business One, brindando atención remota a servidores Cloud/On-premise.",
+        "en": "SAP Business One platform support, providing service to Cloud/On-premise servers."
+      }
+    },
+    {
+      "dates": "Sep 2014 — Sep 2017",
+      "role": { "es": "Gerente de Soporte IT", "en": "IT Support Manager" },
+      "organization": "Grupo Vamatech",
+      "description": {
+        "es": "Gerencia de Soporte SAP B1 y Azure. Consultoría en Dynamics CRM, SAP B1 y despliegues locales de Odoo con Docker.",
+        "en": "Management of SAP B1 Support and Azure Cloud deployments. Dynamics CRM, SAP B1 consulting, and local Odoo deployments with Docker."
+      }
+    },
+    {
+      "dates": "Sep 2013 — Sep 2014",
+      "role": { "es": "Coordinador de IT", "en": "IT Coordinator" },
+      "organization": "TOP MOBILIER, C.A",
+      "description": {
+        "es": "Soporte al sistema Profit Plus, estabilización de servidores (cero caídas), creación de planes de respaldo.",
+        "en": "Profit Plus system support, server stabilization (zero downtime), creation of backup plans."
+      }
+    },
+    {
+      "dates": "Nov 2011 — Jun 2013",
+      "role": { "es": "Ingeniero de IT", "en": "IT Engineer" },
+      "organization": "O&M Consultores",
+      "description": {
+        "es": "Implementación de VMware ESXi, vCenter Server, configuración de servidores HP (SAN Switch, fibra).",
+        "en": "VMware ESXi and vCenter Server implementation, HP server configuration in Datacenter (SAN Switch, fiber)."
+      }
+    },
+    {
+      "dates": "Dic 2009 — Oct 2011",
+      "role": { "es": "Gerente de Tecnología", "en": "Technology Manager" },
+      "organization": "Informáticos JRAA",
+      "description": {
+        "es": "Ventas y servicios tecnológicos orientados a productos empresariales de HP y Symantec.",
+        "en": "Sales and technology services oriented to enterprise products from HP and Symantec."
+      }
+    },
+    {
+      "dates": "Nov 2004 — Dic 2008",
+      "role": { "es": "Director de Informática", "en": "IT Director" },
+      "organization": "IVEC",
+      "description": {
+        "es": "Dirección IT para 230 usuarios. Mejoras en sistemas, migración de plataformas y expansión del DataCenter.",
+        "en": "IT direction, IT project control for 230 users. Improvements in systems, migration to new platforms and DataCenter expansion."
+      }
+    },
+    {
+      "dates": "---",
+      "role": { "es": "Experiencia Docente", "en": "Teaching Experience" },
+      "organization": "UC & IUTEPI",
+      "description": {
+        "es": "<strong>UC:</strong> Plataforma Computacional. <br><strong>IUTEPI:</strong> Lógica, Diagramación e Introducción a la Computación.",
+        "en": "<strong>UC:</strong> Computational Platform. <br><strong>IUTEPI:</strong> Logic and Flowcharting, Introduction to Computing."
+      }
+    }
+  ],
+  "education": [
+    {
+      "dates": "1999 — 2004",
+      "title": { "es": "Ingeniero de Sistemas", "en": "Systems Engineer" },
+      "organization": "Universidad Bicentenaria de Aragua"
+    },
+    {
+      "dates": "1996 — 1999",
+      "title": "T.S.U. en Administración mención Informática",
+      "organization": "CUMT"
+    },
+    {
+      "dates": { "es": "CERTIFICACIÓN", "en": "CERTIFICATION" },
+      "title": "Mikrotik MTCNA-1706NA7858",
+      "organization": ""
+    }
+  ],
+  "hobbies": [
+    {
+      "icon": "🏍️",
+      "title": { "es": "Motos Scrambler", "en": "Scrambler Bikes" },
+      "description": {
+        "es": "Proyectos mecánicos hands-on, modificaciones y engine swaps.",
+        "en": "Hands-on mechanical projects, modifications, and engine swaps."
+      }
+    },
+    {
+      "icon": "⌚",
+      "title": { "es": "Casio Vintage", "en": "Vintage Casio" },
+      "description": {
+        "es": "Coleccionismo y restauración de relojería digital robusta (Geo Trail).",
+        "en": "Collecting and restoring rugged digital watches (Geo Trail)."
+      }
+    },
+    {
+      "icon": "🏀",
+      "title": { "es": "Análisis NBA", "en": "NBA Analytics" },
+      "description": {
+        "es": "Métricas avanzadas para comparar el rendimiento histórico de los 90s.",
+        "en": "Advanced metrics comparing historical 90s performance."
+      }
+    },
+    {
+      "icon": "🤖",
+      "title": { "es": "Inteligencia Artificial", "en": "AI Tinkering" },
+      "description": {
+        "es": "Exploración de LLMs y automatización de flujos con agentes autónomos.",
+        "en": "Exploring LLMs and automating workflows with autonomous agents."
+      }
+    }
+  ]
+}
