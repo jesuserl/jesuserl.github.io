@@ -4,6 +4,25 @@ Todas las versiones notables de este proyecto se registran en este archivo.
 
 El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/). Cada cambio menor (patches 3.3.x.y) se registra como commit en el historial de Git.
 
+## [V4.1.0] - 2026-09-23
+
+### Agregado
+- **Estética Terminal/IDE**: hero con ventana de terminal (typing animado de roles, cursor parpadeante, quien soy en `$ whoami`), nombre en mono con gradiente y CTAs.
+- **Resplandores ambientales**: blobs de gradiente animados con drift lento detrás del hero (CSS puro).
+- **Top bar sticky de vidrio**: navegación fija con `backdrop-filter`, se compacta al hacer scroll; sustituye la pill flotante.
+- **FAB "volver arriba"**: reemplaza la barra inferior móvil; aparece al superar 500 px de scroll.
+- **Banda de estadísticas con count-up**: valores auto-calculados desde `profile.json` (tecnologías, empresas, certificaciones).
+- **Skills en marquee infinito**: tira deslizante de tecnologías con máscara de desvanecido, pausa al hover y una segunda fila de comandos en contrasentido.
+- **Experiencia en timeline**: línea vertical con nodos que brillan al abrirse; el `+` rota a `−`.
+- **Glow al hover** en tarjetas de contenido y **tilt 3D** en las hobby cards.
+- **Emoji del botón de tema sincronizado** con el tema cargado.
+- **Captcha contextual**: mensaje distinto al revelar email vs descargar CV.
+
+### Cambiado
+- `window.GA_ID` y `data-i18n` ampliados para las nuevas secciones (hero, stats, CTA).
+- Impresión: el marquee se despliega como etiquetas envueltas y se ocultan nav/FAB/home.
+- `prefers-reduced-motion` cubre marquee, blobs, pulso, cursor y typing (parado en el primer rol).
+
 ## [V4.0.0] - 2026-09-23
 
 ### Agregado

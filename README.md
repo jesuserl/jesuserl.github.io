@@ -1,6 +1,6 @@
 # Personal Portfolio - Jesús Enrique Rojas L.
 
-Este repositorio contiene el código fuente de mi sitio web profesional y portafolio personal, alojado en GitHub Pages. El diseño ha sido concebido bajo una estética de ingeniería, utilizando el esquema de colores **Darcula** (popular en entornos de desarrollo como IntelliJ IDEA) para comunicar un perfil técnico, sobrio y orientado a la eficiencia.
+Este repositorio contiene el código fuente de mi sitio web profesional y portafolio personal, alojado en GitHub Pages. El diseño sigue la **estética Terminal/IDE**: esquema de colores Darcula (IntelliJ IDEA), hero que simula una consola con typing animado, tipografía monoespaciada y acentos técnicos.
 
 ## 🚀 Vista Previa
 Puedes visitar el sitio en vivo aquí: [https://jesuserl.github.io/](https://jesuserl.github.io/)
@@ -15,16 +15,21 @@ Sitio estático sin frameworks ni dependencias externas pesadas:
 * **SVG:** iconografía ligera de alta calidad.
 
 ## ✨ Características Principales
-* **Diseño Darcula UI:** interfaz optimizada para reducir la fatiga visual con acentos en azul técnico.
+* **Diseño Darcula / Terminal-IDE:** ventana de terminal en el hero con typing animado de roles, cursor parpadeante y resplandores ambientales.
+* **Top bar sticky de vidrio:** navegación fija con `backdrop-blur` que se compacta al hacer scroll; FAB "volver arriba" en móvil.
+* **Banda de estadísticas con count-up:** años, tecnologías, empresas y certificaciones calculadas automáticamente del JSON.
+* **Skills en marquee infinito:** tira deslizante de tecnologías con máscara de desvanecido y fila de comandos en contrasentido.
+* **Experiencia en timeline:** línea temporal con nodos y glow al abrir el acordeón.
+* **Hobby cards con tilt 3D:** inclinación al pasar el cursor (desactivada con `prefers-reduced-motion` y táctil).
 * **Multilingüe Nativo (ES/EN):** textos primarios en ES dentro del HTML (crawlables) y diccionario EN cargado desde `assets/js/i18n.en.json`.
 * **Modo Oscuro/Claro persistente:** se guarda en `localStorage` y respeta `prefers-color-scheme` al primer acceso (sin flash).
-* **`prefers-reduced-motion`:** desactiva animaciones para usuarios sensibles.
+* **`prefers-reduced-motion`:** desactiva animaciones y efectos para usuarios sensibles.
 * **UX de Alto Nivel:**
     * **Acordeones Interactivos:** experiencia laboral organizada en `details`/`summary`.
     * **Barra de Progreso:** indicador de lectura en la parte superior.
     * **Scroll Reveal:** animaciones suaves de aparición con `IntersectionObserver`.
     * **Accesibilidad (A11y):** landmarks semánticos y atributos ARIA en controles.
-* **Ready for Print:** estilos `@media print` para imprimir o guardar el CV en PDF limpio (acordeones abiertos, sin elementos de navegación).
+* **Ready for Print:** estilos `@media print` para imprimir o guardar el CV en PDF limpio (acordeones abiertos, marquee desplegado en etiquetas, sin navegación).
 * **Captcha Simulado + Antispam:** el correo se ofusca en el código y solo se revela/copia tras validar el captcha.
 * **Descarga de CV:** botón que descarga el resumen curricular en PDF.
 * **SEO y Compartir:** Open Graph, Twitter Card, JSON-LD (`schema.org/Profile`), favicon, canonical y `theme-color`.
