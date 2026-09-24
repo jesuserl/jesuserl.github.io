@@ -66,7 +66,7 @@ body {
   margin: 5.5rem auto 3rem;
   padding: 0 1.5rem 5rem 1.5rem;
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: 300px minmax(0, 1fr);
   gap: 2rem;
   align-items: start;
 }
@@ -142,6 +142,7 @@ body {
   flex-direction: column;
   gap: 1.5rem;
 }
+.right-column > * { min-width: 0; }
 
 /* NAVEGACIÓN SUPERIOR STICKY (Glass) */
 .top-nav {
@@ -252,7 +253,7 @@ p.lead-text { color: var(--text-dim); line-height: 1.8; font-size: 15px; }
 .fab-top:hover { transform: translateY(-3px) scale(1.05); }
 
 @media (max-width: 950px) {
-  .layout-wrapper { grid-template-columns: 1fr; margin-top: 1rem; padding-bottom: 5rem;}
+  .layout-wrapper { grid-template-columns: minmax(0, 1fr); margin-top: 1rem; padding-bottom: 5rem;}
   .sidebar-card { position: static; }
   .content-block { padding: 1.5rem; }
   .nav-actions .mini-btn { width: 40px; height: 40px; }
@@ -595,10 +596,4 @@ p.lead-text { color: var(--text-dim); line-height: 1.8; font-size: 15px; }
 .accordion-wrapper {
   max-width: 100%;
   overflow-x: hidden;
-}
-[style*="white-space: nowrap"],
-[style*="min-width"] {
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }

@@ -4,6 +4,16 @@ Todas las versiones notables de este proyecto se registran en este archivo.
 
 El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/). Cada cambio menor (patches 3.3.x.y) se registra como commit en el historial de Git.
 
+## [V4.1.1] - 2026-09-24
+
+### Corregido
+- **Desborde horizontal en escritorio**: la tira del marquee (`width: max-content`, miles de px) inflaba la pista del grid (regla `minmax(auto, 1fr)`), estirando la columna derecha ~3850 px y sacando tablas/tabs del margen derecho.
+  - Causa raíz corregida: `grid-template-columns: 300px minmax(0, 1fr)` (y `minmax(0, 1fr)` en el breakpoint ≤950 px) para que la pista no crezca con el contenido.
+  - `min-width: 0` en los hijos de `.right-column` para que los bloques puedan encogerse bajo su contenido.
+  - Red de seguridad global: `overflow-x: clip` en `body` y `max-width: 100%` / `overflow-x: hidden` en contenedores clave (`.content-block`, `.stats-band`, `.terminal`, `.hero-block`, `.marquee`, `.accordion-wrapper`).
+  - Nav responsiva: `flex-wrap: wrap` en `.nav-inner` y breakpoints (≤1100 CV a icono, ≤900 botones compactos, ≤560 dos filas centradas: tabs arriba, acciones abajo).
+- Verificado por CDP en 1024/1280/1440/1920 (pro y personal, ES y EN) y móvil 320–768: `scrollWidth ≤ innerWidth` y **cero desbordes visibles**.
+
 ## [V4.1.0] - 2026-09-23
 
 ### Agregado
