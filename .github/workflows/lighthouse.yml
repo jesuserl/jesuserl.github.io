@@ -1,0 +1,24 @@
+name: Lighthouse CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run Lighthouse CI
+        uses: GoogleChrome/lighthouse-ci-action@v12
+        with:
+          urls: 'https://jesuserl.github.io/'
+          uploadArtifacts: true
+          temporaryPublicStorage: false
