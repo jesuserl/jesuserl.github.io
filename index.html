@@ -802,6 +802,23 @@
     <!-- Bento Grid Section -->
     <main class="bento-grid">
 
+      <!-- 9. Interactive Terminal Strip (Movido al inicio) -->
+      <section class="bento-card card-terminal">
+        <div class="terminal-bar">
+          <div class="term-btn red"></div>
+          <div class="term-btn yellow"></div>
+          <div class="term-btn green"></div>
+          <span style="font-size:0.8rem; color:var(--text-muted); margin-left:0.5rem;">jesus@datacenter-core: ~/infra</span>
+        </div>
+        <div class="term-text">
+          <p><span class="term-green">jesus@core:~$</span> ./check-systems.sh --verbose</p>
+          <p class="term-muted">[OK] Hyper-V & VMware ESXi clusters operational (Failover: ACTIVE)</p>
+          <p class="term-muted">[OK] SAP Business One HANA replica synchronized</p>
+          <p class="term-muted">[OK] Azure VPN Gateway tunnels: 3/3 ESTABLISHED</p>
+          <p><span class="term-cyan">[READY]</span> Open for strategic infrastructure leadership & enterprise consulting.</p>
+        </div>
+      </section>
+
       <!-- 1. Hero Highlight Block -->
       <section class="bento-card card-hero">
         <div>
@@ -1129,23 +1146,6 @@
               <p class="personal-desc">Exploración activa de LLMs, automatización con agentes y flujos de trabajo inteligentes.</p>
             </div>
           </div>
-        </div>
-      </section>
-
-      <!-- 9. Interactive Terminal Strip -->
-      <section class="bento-card card-terminal">
-        <div class="terminal-bar">
-          <div class="term-btn red"></div>
-          <div class="term-btn yellow"></div>
-          <div class="term-btn green"></div>
-          <span style="font-size:0.8rem; color:var(--text-muted); margin-left:0.5rem;">jesus@datacenter-core: ~/infra</span>
-        </div>
-        <div class="term-text">
-          <p><span class="term-green">jesus@core:~$</span> ./check-systems.sh --verbose</p>
-          <p class="term-muted">[OK] Hyper-V & VMware ESXi clusters operational (Failover: ACTIVE)</p>
-          <p class="term-muted">[OK] SAP Business One HANA replica synchronized</p>
-          <p class="term-muted">[OK] Azure VPN Gateway tunnels: 3/3 ESTABLISHED</p>
-          <p><span class="term-cyan">[READY]</span> Open for strategic infrastructure leadership & enterprise consulting.</p>
         </div>
       </section>
 
