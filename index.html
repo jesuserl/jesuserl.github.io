@@ -791,7 +791,7 @@
       <div class="nav-actions">
         <button class="pill-btn" onclick="toggleTheme()" id="themeBtn" title="Cambiar tema">
           <i data-lucide="moon" style="width:16px;height:16px;"></i>
-          <span id="themeText">Modo</span>
+          <span id="themeText">Modo Oscuro</span>
         </button>
         <a href="https://wa.me/584224427392" target="_blank" rel="noopener" class="pill-btn primary">
           <i data-lucide="message-circle" style="width:16px;height:16px;"></i>
@@ -1188,20 +1188,47 @@
     // Inicializar Lucide Icons
     lucide.createIcons();
 
+    function applyTheme(theme) {
+      const safeTheme = theme === 'light' ? 'light' : 'dark';
+      document.body.dataset.theme = safeTheme;
+      const themeBtn = document.getElementById('themeBtn');
+      const themeText = document.getElementById('themeText');
+
+      if (themeBtn && themeText) {
+        if (safeTheme === 'light') {
+          themeBtn.innerHTML = '<i data-lucide="sun" style="width:16px;height:16px;"></i><span id="themeText">Modo Claro</span>';
+        } else {
+          themeBtn.innerHTML = '<i data-lucide="moon" style="width:16px;height:16px;"></i><span id="themeText">Modo Oscuro</span>';
+        }
+      }
+
+      try {
+        localStorage.setItem('theme', safeTheme);
+      } catch (error) {
+        console.warn('No se pudo guardar el tema:', error);
+      }
+
+      lucide.createIcons();
+    }
+
+    function initializeTheme() {
+      try {
+        const savedTheme = localStorage.getItem('theme');
+        const preferredTheme = savedTheme === 'light' || savedTheme === 'dark' ? savedTheme : 'dark';
+        applyTheme(preferredTheme);
+      } catch (error) {
+        applyTheme('dark');
+      }
+    }
+
     // Toggle Dark / Light Theme
     function toggleTheme() {
       const current = document.body.dataset.theme;
       const next = current === 'dark' ? 'light' : 'dark';
-      document.body.dataset.theme = next;
-      const themeBtn = document.getElementById('themeBtn');
-      const themeText = document.getElementById('themeText');
-      if (next === 'light') {
-        themeBtn.innerHTML = '<i data-lucide="sun" style="width:16px;height:16px;"></i> Modo Claro';
-      } else {
-        themeBtn.innerHTML = '<i data-lucide="moon" style="width:16px;height:16px;"></i> Modo Oscuro';
-      }
-      lucide.createIcons();
+      applyTheme(next);
     }
+
+    initializeTheme();
 
     // Modal CV Handlers
     function openCaptchaModal() {
