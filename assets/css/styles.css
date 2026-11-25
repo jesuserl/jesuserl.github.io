@@ -34,9 +34,14 @@
   --glow: rgba(59,130,246,0.45);
 }
 
-::-webkit-scrollbar { width: 8px; height: 8px; }
-::-webkit-scrollbar-track { background: var(--bg-body); }
-::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+@supports not (scrollbar-color: auto) {
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: var(--bg-body); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+}
+
+/* Standard scrollbar (supported in modern browsers) */
+html { scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
 
 * { margin:0; padding:0; box-sizing:border-box; }
 
@@ -399,7 +404,7 @@ p.lead-text { color: var(--text-dim); line-height: 1.8; font-size: 15px; }
 .t-title { margin-left: 8px; font-size: 11px; color: var(--text-dim); }
 .terminal-body { padding: 16px 18px; }
 .t-line { opacity: 0; animation: fadeIn .4s ease forwards; }
-.t-line:nth-child(1) { animation-delay: .15s; }
+.t-line { animation-delay: calc(sibling-index() * 0.45s); }
 .t-line:nth-child(2) { animation-delay: .6s; }
 .t-line:nth-child(3) { animation-delay: 1.05s; }
 .t-line:nth-child(4) { animation-delay: 1.4s; }
